@@ -1,0 +1,82 @@
+body, html,li,ol,ul,div,section{
+    font-family: 'Open Sans', sans-serif !important;
+}
+.center{
+    position:absolute;
+    top: 0px;
+    left: 0;
+    transform: translate(-50%,-50%); 
+
+}
+
+.card1{
+width: 100%;
+max-width: 133px;
+min-width: 133px;
+min-height: 179px;
+max-height: 179px;
+overflow: hidden;
+background: #cccccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+.card1_image{
+position: relative;
+width: 100%;
+border-radius: inherit;
+}
+.card1:hover
+{
+border: 1px solid #3ba7e6;
+}
+
+.card2{
+width: 100%;
+
+min-width: 200px;
+min-height: 400px;
+max-height: 400px;
+overflow: hidden;
+margin-bottom: 1rem;
+box-sizing: border-box;
+}
+/* this used for padding for card 2 link and document name postioning */
+.card2_body{
+padding: .3rem 1rem!important;
+}
+.card2_image{
+position: relative;
+width: 100%;
+border-radius: inherit;
+}
+.card2:hover
+{
+border: 1px solid #3ba7e6;
+}
+
+.title{
+color: #222222;;
+position: relative;
+font-size:14px;
+line-height: 80%;
+
+}
+.sub_title{
+position: relative;
+font-size:12px;
+ color:#b6adad; 
+}
+.sub_menu{
+display: block;
+width: 100%;
+position: relative;
+}
+div.document{
+padding: 0px;
+margin: 0px;
+}
+/* overriding bootstrap css */
+.pp-2{
+padding: 20px 20px 20px 30px !important;
+
+}

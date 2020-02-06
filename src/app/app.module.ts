@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
-
-
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
 import { NgModule } from '@angular/core';
 import {  Routes, RouterModule } from '@angular/router';
 
@@ -34,17 +32,21 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { UploadComponent } from './upload/upload.component';
 import { RandumComponent } from './randum/randum.component';
+import { DocumentComponent } from './document/document.component';
+import { QuilleditorComponent } from './quilleditor/quilleditor.component';
 
 
 
 const appRoutes:Routes = [
   { path: '' , component : DashboardComponent },
+  { path: 'document' , component : DocumentComponent },
+  { path: 'quilleditor' , component : QuilleditorComponent },
   { path: 'login' , component : LoginComponent },
   { path: 'signup',component : SignupComponent },
   { path: 'question', component : QuestionComponent },
   { path: 'preloader', component : PreloaderComponent },
   { path: 'reporting', component : ReportingComponent },
-  { path: 'reporting', component : ReportingComponent },
+ 
   { path: 'bar-chart', component : BarChartComponent },
 
   { path : 'profile',component : ProfileComponent},
@@ -77,7 +79,9 @@ const appRoutes:Routes = [
     LoginComponent,
     SignupComponent,
     UploadComponent,
-    RandumComponent
+    RandumComponent,
+    DocumentComponent,
+    QuilleditorComponent
     
   ],
   imports: [
@@ -85,12 +89,17 @@ const appRoutes:Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
+    QuillModule,
    
     
     
     
     AppRoutingModule,
+    QuillModule.forRoot(
+      
+    ),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
