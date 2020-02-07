@@ -50,31 +50,8 @@ a{
 
 }
 
-.menu:hover{
-    
-    background-color: hsla(0, 0%, 0%, 0.151)!important;
-    border-left: 2px  #f15500;
-    border-left-style:solid;
-    transition: .2s;
 
 
-
-}
-
-.nav-menu{
-  
-}
-
-div.nav-menu:hover,
-div.nav-menu:active{
-    
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
-    cursor: pointer;
-
-    
-    
-}
 
 
 div.nav-menu:visited span.menu-text
@@ -126,7 +103,7 @@ input,a,button,div:focus,
 
 }
 .mat-expansion-header{
-    padding: 0px 30px 0px 8px;
+    /* padding: 0px 30px 0px 8px; */
 }
 /* --------------------- */
 

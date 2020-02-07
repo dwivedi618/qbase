@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { QuillModule } from 'ngx-quill';
+// import { QuillModule } from 'ngx-quill';
 import { NgModule } from '@angular/core';
 import {  Routes, RouterModule } from '@angular/router';
 
@@ -91,15 +91,15 @@ const appRoutes:Routes = [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    QuillModule,
+    // QuillModule,
    
     
     
     
     AppRoutingModule,
-    QuillModule.forRoot(
+    // QuillModule.forRoot(
       
-    ),
+    // ),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
