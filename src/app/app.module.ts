@@ -5,6 +5,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {  Routes, RouterModule } from '@angular/router';
 
+// angular editor
+import { HttpClientModule} from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -34,6 +38,7 @@ import { UploadComponent } from './upload/upload.component';
 import { RandumComponent } from './randum/randum.component';
 import { DocumentComponent } from './document/document.component';
 import { QuilleditorComponent } from './quilleditor/quilleditor.component';
+import { ResumeComponent } from './resume/resume.component';
 
 
 
@@ -51,6 +56,7 @@ const appRoutes:Routes = [
 
   { path : 'profile',component : ProfileComponent},
   { path : 'randum',component : RandumComponent },
+  { path : 'resume' , component : ResumeComponent },
 
 
 ];
@@ -81,7 +87,8 @@ const appRoutes:Routes = [
     UploadComponent,
     RandumComponent,
     DocumentComponent,
-    QuilleditorComponent
+    QuilleditorComponent,
+    ResumeComponent
     
   ],
   imports: [
@@ -91,6 +98,7 @@ const appRoutes:Routes = [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    HttpClientModule, AngularEditorModule,
     // QuillModule,
    
     

@@ -24,7 +24,7 @@
                                         
                                <mat-list>
                                        <mat-list-item>
-                                                <div class="nav-menu" >
+                                                <div >
                                                 <a [routerLink]="['/reporting']" routerLinkActive="router-link-active" >
                                                         <button mat-icon-button><mat-icon>dashboard</mat-icon></button>
                                                         <span class="menu-text">Reporting</span>
@@ -33,33 +33,7 @@
                                         </div>
                                          </mat-list-item>
                                 
-                                        <mat-list-item>
-                                        <div class="nav-menu" >
-                                        
-                                                <button mat-icon-button><mat-icon>timeline</mat-icon></button>
-                                                <span class="menu-text">Timeline</span>
-                                
-                                        </div>
-                                        </mat-list-item>
-
-                                        <mat-list-item>
-                                        <div class="nav-menu" >
-                                        
-                                                <button mat-icon-button><mat-icon>email</mat-icon></button>
-                                                <span class="menu-text">Email</span>
-                                
-                                        </div>
-                                        </mat-list-item>
-
-                                        <mat-list-item>
-                                        <div class="nav-menu" >
-                                        
-                                                <button mat-icon-button><mat-icon>settings</mat-icon></button>
-                                                <span class="menu-text">Settings</span>
-                                
-                                        </div>
-                                        </mat-list-item>                
-                                </mat-list>
+                                     </mat-list>
                                 
                         </mat-expansion-panel>
                 
@@ -74,13 +48,27 @@
                         <span class="menu-text">dummy calculator</span>
         </div>
 </a>
-<a [routerLink]="['/quilleditor']" routerLinkActive="router-link-active" >
+
+<a [routerLink]="['/document']" routerLinkActive="router-link-active" >
         <div class="nav-menu">
                         <button mat-icon-button><mat-icon>school</mat-icon></button>
+                        <span class="menu-text">document</span>
+        </div>
+</a>
+
+<a [routerLink]="['/quilleditor']" routerLinkActive="router-link-active" >
+        <div class="nav-menu">
+                        <button mat-icon-button><mat-icon>subject</mat-icon></button>
                         <span class="menu-text">Quill Editor</span>
         </div>
 </a>
-       
+
+<a [routerLink]="['/resume']" routerLinkActive="router-link-active" >
+        <div class="nav-menu">
+                        <button mat-icon-button><mat-icon>work</mat-icon></button>
+                        <span class="menu-text">Resume</span>
+        </div>
+</a>
 
         
 

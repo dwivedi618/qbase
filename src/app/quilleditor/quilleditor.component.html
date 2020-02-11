@@ -1,12 +1,7 @@
-<section class="quill_editor_section">
-<div class="container">
-  <!-- <div class="col-md-8">
-    <form [formGroup]="editorForm" (ngSubmit)= "onSubmit()">
-     
-          <quill-editor [styles]="{height: '250px'}" [modules]="config" formControlName="editor"></quill-editor>
-      
-    </form>
-    
- </div> -->
-</div>
+<section class="editor_container"
+ fxLayout
+ fxLayoutAlign="center">
+
+<angular-editor class="editor_1" [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent"></angular-editor>
+
 </section>

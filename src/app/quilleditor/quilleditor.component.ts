@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -9,41 +9,63 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class QuilleditorComponent implements OnInit {
   
-  
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+      spellcheck: true,
+      height: '70%',
+      minHeight: '842px',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '595px',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        {class: 'arial', name: 'Arial'},
+        {class: 'times-new-roman', name: 'Times New Roman'},
+        {class: 'calibri', name: 'Calibri'},
+        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      ],
+      customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    uploadUrl: 'v1/image',
+    sanitize: true,
+    toolbarPosition: 'top',
+    // toolbarHiddenButtons: [
+    //   ['bold', 'italic'],
+    //   ['fontSize']
+    // ]
+};
   //  editorForm: FormGroup;
   //  editorStyle = {
   //    width : '300px',
   //    height : '300px'
   //  }
 
-  //  config = {
-  //    toolbar : [
-  //     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-  //     ['blockquote', 'code-block'],
-  
-  //     [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-  //     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-  //     [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-  //     [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-  //     [{ 'direction': 'rtl' }],                         // text direction
-  
-  //     [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-  //     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-  
-  //     [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-  //     [{ 'font': [] }],
-  //     [{ 'align': [] }],
-  
-  //     ['clean'],                                         // remove formatting button
-  
-  //     ['link', 'image', 'video']                         // link and image, video
-  //    ]
-  //  }
 
   ngOnInit() {
     // this.editorForm = new FormGroup({
     //   'editor' : new FormControl(null)
     // })
+
+ 
     
   }
 
