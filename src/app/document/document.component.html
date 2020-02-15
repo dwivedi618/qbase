@@ -5,8 +5,13 @@
          
             <div class="d-flex">
                     <div class="mr-auto pp-2  title "><button type="button" class="btn btn-light btn-sm">Start a New Document</button></div>
-                    <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">Template Gallery
-                    <i class="fa fa-angle-right"></i></button></div>
+                        <div class="pp-2 title">
+                            <a [routerLink]="['../tpg']" >
+                            <button type="button" class="btn btn-light btn-sm">Template Gallery
+                            <i class="fa fa-angle-right"></i>
+                            </button>
+                              </a>
+                    </div>
            </div>
      </div>
   
@@ -85,7 +90,45 @@
                       <h5 class="title">Document Name</h5>
                         <div class="d-flex justify-content-between" >
                             <a href="#" class="card-link">25 NOV 2019</a>
-                            <a href="#" class="card-link"><i class="material-icons">more_vert</i></a>
+                            
+                               <!-- button for acoount navigation -->
+
+      <button mat-icon-button [matMenuTriggerFor]="account">
+        <!-- avatar module inserted -->
+        <i  class="card-link" class="material-icons">more_vert</i>
+        <!-- ---------------- -->
+      </button>
+
+      <!-- when profile button trigerd dropdown will show -->
+    <mat-menu #account="matMenu" class="mat-menu-account">
+
+
+<!-- option 2 for login button if not logged in -->
+        <a mat-menu-item [routerLink]="[ './login']">
+          <button mat-icon-button >
+            <mat-icon>account_circle</mat-icon>
+            <span >login</span>
+          </button>
+       </a>
+<!-- option 3 for displaying questions -->
+        
+        <a mat-menu-item [routerLink]="[ './question']">
+          <button mat-icon-button>
+            <mat-icon>grain</mat-icon>
+            <span>show Question</span>
+          </button>
+        </a>
+
+
+        
+      
+
+
+        
+    </mat-menu>
+    <!-- dropdown menu ends here -->
+    
+  
                         </div>  
                     </div>
                 </div>

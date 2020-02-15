@@ -6,19 +6,23 @@ import { Component, OnInit ,EventEmitter , Output , Input} from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  isOpen = true;
+  
 
   @Output() sidenavToggle = new EventEmitter<void>();
   
 
   
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   ngOnInit() {
   }
+  isOpen = false;
   onToggleSidenav(){
-    this.isOpen = !(this.isOpen);
+  
+    (this.isOpen) = !(this.isOpen);
     this.sidenavToggle.emit();
     
     

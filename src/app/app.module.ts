@@ -39,16 +39,23 @@ import { RandumComponent } from './randum/randum.component';
 import { DocumentComponent } from './document/document.component';
 import { QuilleditorComponent } from './quilleditor/quilleditor.component';
 import { ResumeComponent } from './resume/resume.component';
+import { AboutComponent } from './about/about.component';
+import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionpaper.component';
+import { TemplategalleryComponent } from './templategallery/templategallery.component';
 
 
 
 const appRoutes:Routes = [
   { path: '' , component : DashboardComponent },
+  { path: 'about' , component : AboutComponent },
+
   { path: 'document' , component : DocumentComponent },
+  { path : 'tpg', component :TemplategalleryComponent },
   { path: 'quilleditor' , component : QuilleditorComponent },
   { path: 'login' , component : LoginComponent },
   { path: 'signup',component : SignupComponent },
   { path: 'question', component : QuestionComponent },
+  { path: 'aboutquestionpaper' ,component : AboutquestionpaperComponent},
   { path: 'preloader', component : PreloaderComponent },
   { path: 'reporting', component : ReportingComponent },
  
@@ -88,7 +95,10 @@ const appRoutes:Routes = [
     RandumComponent,
     DocumentComponent,
     QuilleditorComponent,
-    ResumeComponent
+    ResumeComponent,
+    AboutComponent,
+    AboutquestionpaperComponent,
+    TemplategalleryComponent
     
   ],
   imports: [

@@ -1,6 +1,13 @@
 *{
   line-height: 24px !important;
 
+
+}
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
 }
 .example-header {
   position: fixed;
@@ -47,14 +54,22 @@ mat-toolbar{
   text-align: center;
   
 }
+.brand_name{
+  position: relative;
+  font-size: 1rem;
+  font-weight: bolder;
+}
 .selected-option-container{
   /* position: relative; */
   display: inline-block;
   margin-left: 89px;
+  position: fixed;
+  z-index: 10000;
+
 }
 .selected-option{
-  color: #ccc;
-  font-size: .8rem;
+  color: #222;
+  font-size: 1rem;
   text-transform: uppercase;
 }
 .icon-small{

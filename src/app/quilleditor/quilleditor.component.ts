@@ -12,11 +12,12 @@ export class QuilleditorComponent implements OnInit {
   editorConfig: AngularEditorConfig = {
     editable: true,
       spellcheck: true,
-      height: '70%',
-      minHeight: '842px',
+      height: 'auto',
+      minHeight: 'auto',
       maxHeight: 'auto',
       width: 'auto',
-      minWidth: '595px',
+      minWidth: 'auto',
+      
       translate: 'yes',
       enableToolbar: true,
       showToolbar: true,
@@ -54,10 +55,10 @@ export class QuilleditorComponent implements OnInit {
     // ]
 };
   //  editorForm: FormGroup;
-  //  editorStyle = {
-  //    width : '300px',
-  //    height : '300px'
-  //  }
+   editorStyle = {
+     width : '300px',
+     height : '300px'
+   }
 
 
   ngOnInit() {

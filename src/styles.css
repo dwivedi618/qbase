@@ -37,7 +37,25 @@ a{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.custom_btn {
+    align-items: center;
+    border-radius: 40px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    height: 45px;
+    width: 150px;
 
+    justify-content: center;
+  }
+
+
+  .btn_black{
+    background: #000;
+    color: white;
+    font-weight: bolder;
+    
+
+
+  }
 .material-icons {
     font-family: 'Material Icons';
     color: #666666;
