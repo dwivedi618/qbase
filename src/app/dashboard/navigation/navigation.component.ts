@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit ,Inject,EventEmitter , Output , Input} from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 
 
@@ -11,18 +13,40 @@ import { Component, OnInit ,Inject,EventEmitter , Output , Input} from '@angular
 })
 export class NavigationComponent implements OnInit {
   
-
+  name: string ;
+  email: string;
   @Output() sidenavToggle = new EventEmitter<void>();
   
 
+  mySubscription: any;
+
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    private authService: AuthenticationService,
+    private router: Router
+    ) {
+      
+      // this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      //   return false;
+      // };
+      
+      // this.mySubscription = this.router.events.subscribe((event) => {
+      //   if (event instanceof NavigationEnd) {
+      //     // Trick the Router into believing it's last link wasn't previously loaded
+      //     this.router.navigated = false;
+      //   }
+      // });
+     }
+
+
   
-
-  constructor(@Inject(DOCUMENT) private document: any) { 
     
-  }
-
   ngOnInit() {
     this.elem = document.documentElement;
+    this.name = localStorage.getItem('name');
+    this.email = localStorage.getItem('email');
+    console.log("helllooooooooooooooooooooooooo",this.name)
+
   }
   elem : any;
   isOpen = false;
@@ -64,4 +88,13 @@ export class NavigationComponent implements OnInit {
     }
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/about']);
+  }
+  // ngOnDestroy() {
+  //   if (this.mySubscription) {
+  //     this.mySubscription.unsubscribe();
+  //   }
+  // }
 }

@@ -21,6 +21,8 @@ export class SignupComponent implements OnInit {
     name: "fdsfd"
   };
 
+  returnUrl: string;
+
   constructor(
     private _snackBar: MatSnackBar,//alert after sign up
     private router: Router,
@@ -37,19 +39,20 @@ export class SignupComponent implements OnInit {
       duration: 2000,
     });
   }
-
   onSignup(form: NgForm) {
     console.log("--------------->>>>>>>>>>>",form.value.email);
     this.user.email = form.value.email;
     this.user.password = form.value.password;
     this.user.name = form.value.name;
+    this.returnUrl = '/login';
 
     this.userService.signup(this.user)
     .pipe(first())
     .subscribe(
       data => {
+        console.log("signup test",data)
         this.alertService.success('Signup successfully', true);
-        this.router.navigate['/login']
+        this.router.navigate([this.returnUrl]);
       },
       error => {
         this.alertService.error(error);

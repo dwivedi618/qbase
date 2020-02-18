@@ -32,13 +32,17 @@ export class LoginComponent implements OnInit {
     console.log(form.value.email );
 
     this.loading = true;
-    this.returnUrl = '/about'
+    this.returnUrl = '/document'
     this.authService.login(form.value.email, form.value.password)
     .pipe(first())
     .subscribe(
       data => {
         console.log(data);
-        this.router.navigate([this.returnUrl]);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([this.returnUrl]);
+        }); 
+        //this.router.navigate([this.returnUrl]);
+        //window.location.reload();
       },
       error => {
         this.alertService.error(error);

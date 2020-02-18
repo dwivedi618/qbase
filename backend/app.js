@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-var sequelize = undefined;
+let sequelize = undefined;
 if (env === "production") {
     sequelize = new Sequelize(conf.db.uri);
 } else {
@@ -59,15 +59,20 @@ const User = sequelize.define("user",{
 
 
 const Question = sequelize.define("question",{
-    statement: {
+    question: {
         type: Sequelize.STRING
     },
     type: {
         type: Sequelize.TINYINT
-    }
+    },
+    unit: Sequelize.TINYINT,
+    subject: Sequelize.STRING,
+    topic: Sequelize.STRING,
+    image: Sequelize.BLOB,
+    difficultyLevel: Sequelize.ENUM('LOW','MEDIUM','HIGH'),
 });
 
-sequelize.sync({});
+sequelize.sync({alter:true});
 
 
 app.use((req, res, next) => {
@@ -78,24 +83,23 @@ app.use((req, res, next) => {
 
 //routes
 app.post("/login", async (req,res) => {
-    console.log("this is data from client");
-    console .log(req.body.email);
-
+    
     const  user = await User.findOne({
-       where: {
-        email: req.body.email
-       },
-       raw: true
-   });
-   if (!user) return res.send("Email could not found!");
-   if (user.password == req.body.password) {
-       res.json({
-           message: "Logged in successfully!", 
-           token:"33ejfdsjfkadsjfkajdsfk",
-           name: user.name,
-           email: user.email
+        where: {
+            email: req.body.email
+        },
+        raw: true
+    });
+    if (!user) return res.send("Email could not found!");
+    if (user.password == req.body.password) {
+        console.log(req.body.name);
+        res.json({
+            message: "Logged in successfully!", 
+            token:"33ejfdsjfkadsjfkajdsfk",
+            name: user.name,
+            email: user.email
         });
-
+        
    } else {
         res.json({
             message:"Invalid Password"

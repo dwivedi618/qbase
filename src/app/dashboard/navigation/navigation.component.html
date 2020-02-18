@@ -62,7 +62,7 @@
 
         <!-- username beside the user icon in naviagtion bar -->
         <div fxLayoutAlign="center center" fxHide.xs="true">
-        <span class="session-username">Shivam Dwivedi</span>
+        <span class="session-username">{{name}}</span>
         </div>
 
 
@@ -90,8 +90,8 @@
                 </div>
                 <div class="username-email-container" fxLayout="column" fxLayoutAlign="start space-around ">
 
-                  <div class="username"><span >Shivam Dwivedi</span></div>
-                  <div class="email"><span >Shivamdwivedi618@gmail.com</span></div>
+                  <div class="username"><span > {{name}} </span></div>
+                  <div class="email"><span >{{email}}</span></div>
 
                   <a [routerLink]="['/profile']" routerLinkActive="router-link-active">
                     Account Settings
@@ -102,6 +102,13 @@
             </a>
                
         </button>
+        <!-- option 2 for login button if not logged in -->
+        
+          <button mat-icon-button (click)="logout()">logout
+            
+            
+          </button>
+      
 
 <!-- option 2 for login button if not logged in -->
         <a mat-menu-item [routerLink]="[ './login']">
