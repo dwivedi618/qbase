@@ -5,6 +5,15 @@
 
 @import 'material-design-icons/iconfont/material-icons.css';
 
+.brand_name32{
+  font-size: 32px;
+}
+.brand_name48{
+  font-size: 48px;
+}
+.brand_name64{
+  font-size: 64px;
+}
 
 /* color */
 /* #0AABBA

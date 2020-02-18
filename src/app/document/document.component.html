@@ -4,7 +4,11 @@
      <div class="row  sub_menu ">
          
             <div class="d-flex">
-                    <div class="mr-auto pp-2  title "><button type="button" class="btn btn-light btn-sm">Start a New Document</button></div>
+                    <div class="mr-auto pp-2  title ">
+                        <a [routerLink]= "['/quilleditor']" routerLinkActive="router-link-active">
+                        <button type="button" class="btn btn-light btn-sm">Create New Template</button>
+                        </a>
+                    </div>
                         <div class="pp-2 title">
                             <a [routerLink]="['../tpg']" >
                             <button type="button" class="btn btn-light btn-sm">Template Gallery
@@ -16,6 +20,8 @@
      </div>
   
      <div class="row container d-flex justify-content-between document">
+        <a [routerLink]= "['/quilleditor']" routerLinkActive="router-link-active">
+            
         <div class="col-md-2">
             <div class="card1">
                 <img src="https://ssl.gstatic.com/docs/templates/thumbnails/docs-blank-googlecolors.png" class="card1_image"> 
@@ -23,6 +29,7 @@
            <span class="title" >Blank</span>  <br>
            <span class="sub_title" >New Document</span>
         </div>
+        </a>
         <div class="col-md-2">
             <div class="card1">
                     <img src="https://ssl.gstatic.com/docs/templates/thumbnails/1XykI9TfWo4IoUqGLjQ-D8NIU4jZ1Ml9OI8-Euj5FrA0_400_3.png" class="card1_image"> 

@@ -7,14 +7,15 @@
             <img src="../assets/qbase48.png" alt="qbase">
           </div>
 <!-- form------------------------------------------------------------- -->
-        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="login-form" #f="ngForm" (ngSubmit)="onSubmit(f)">      
+        <form  fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="login-form" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">      
           
           <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px"><!--all input field container-->
           <!-- email input field -->
           <div class="input-email">
             <mat-form-field appearance="outline" class="login-input ">
               
-               <input type="email"  matInput placeholder="Email " ngModel name="email">
+               <input type="email"  matInput placeholder="Email " ngModel name="email" #emailInput="ngModel" required>
+               <mat-error *ngIf="emailInput.invalid">Please enter valid Email</mat-error>
                <!-- <mat-icon matPreffix>sentiment_very_satisfied</mat-icon> -->
                <!-- <mat-hint>Hint</mat-hint> -->
             </mat-form-field>
@@ -23,7 +24,8 @@
           <!-- password input field -->
           <div >
             <mat-form-field appearance="outline" class="login-input">
-                <input matInput placeholder="Password" ngModel name="password" [type]="hide ? 'password' : 'text'">
+                <input matInput placeholder="Password" ngModel name="password" [type]="hide ? 'password' : 'text'" #passwordInput="ngModel">
+                <mat-error *ngIf="">Please enter valid password.</mat-error>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
@@ -40,7 +42,7 @@
               </div>
 
       <div >
-       <button type="submit" mat-icon-button class="custom-btn btn-black">LOGIN  
+       <button type="submit" mat-icon-button class="custom-btn btn-black" >LOGIN  
        </button> 
       </div>  
 

@@ -1,22 +1,25 @@
-<mat-nav-list>
+<mat-nav-list fxLayout="column" fxLayoutAlign="center center" >
+  <div fxLayout="row" fxLayoutAlign="center center">
+       <p mat-line>Create new</p>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center">
+        
         <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
-          <span mat-line>Google Keep</span>
-          <span mat-line>Add to a note</span>
+          <button mat-icon-button aria-label="Upload new question">
+            <mat-icon>cloud_upload</mat-icon>
+          </button>
+          
+          <span mat-line>Upload new question</span>
+          
+        </a>
+        <a [routerLink]="['./document']" routerLinkActive="router-link-active" mat-list-item (click)="openLink($event)">
+         
+            <mat-icon>description</mat-icon>
+         
+          <span mat-line>Generate question paper</span>
+          
         </a>
       
-        <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
-          <span mat-line>Google Docs</span>
-          <span mat-line>Embed in a document</span>
-        </a>
-      
-        <a href="https://plus.google.com/" mat-list-item (click)="openLink($event)">
-          <span mat-line>Google Plus</span>
-          <span mat-line>Share with your friends</span>
-        </a>
-      
-        <a href="https://hangouts.google.com/" mat-list-item (click)="openLink($event)">
-          <span mat-line>Google Hangouts</span>
-          <span mat-line>Show to your coworkers</span>
-        </a>
-      </mat-nav-list>
+  </div>
+</mat-nav-list>
       

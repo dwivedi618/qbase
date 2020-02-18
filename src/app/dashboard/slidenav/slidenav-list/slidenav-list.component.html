@@ -1,10 +1,11 @@
-      
-<div class="special-button-conatiner special-button-1"  fxLayoutAlign="space-arround center"
-(click)="openBottomSheet()" >
-        <button mat-icon-button >
-        <i class="material-icons add-icon">add</i>
-        <span>Create</span>
-        </button>
+<div fxLayoutAlign="center center" class="special-button-conatiner" >
+        <div class="special-button-1"  fxLayoutAlign="center center"
+        (click)="openBottomSheet()" >
+                <button mat-icon-button >
+                <i class="material-icons add-icon">add</i>
+                
+                </button>
+        </div>
 </div>
 
 <div fxLayout="column" fxLayoutAlign="center " fxLayoutGap="5px" >
@@ -13,7 +14,7 @@
         
         
               
-                        <mat-expansion-panel class="mat-expansion">
+                        <!-- <mat-expansion-panel class="mat-expansion">
                                         
                                 <mat-expansion-panel-header fxLayoutAlign="center center" class="mat-expansion-header">
                                                 
@@ -39,36 +40,46 @@
                 
         
 
-        
+         -->
 
         
-<a [routerLink]="['/randum']" routerLinkActive="router-link-active" >
+<!-- <a [routerLink]="['/randum']" routerLinkActive="router-link-active" >
         <div class="nav-menu">
                         <button mat-icon-button><mat-icon>school</mat-icon></button>
                         <span class="menu-text">dummy calculator</span>
         </div>
-</a>
+</a> -->
+<mat-list>
+        <a [routerLink] = "['./document']" router-Link-Active = "router-Link-active">
+        <mat-list-item>
+                <mat-icon>subject</mat-icon>
+                <span mat-line>Document</span>    
+        </mat-list-item>
+        </a>
 
-<a [routerLink]="['/document']" routerLinkActive="router-link-active" >
-        <div class="nav-menu">
-                        <button mat-icon-button><mat-icon>school</mat-icon></button>
-                        <span class="menu-text">document</span>
-        </div>
-</a>
+        <a [routerLink] = "['./quilleditor']" router-Link-Active = "router-Link-active">
+                <mat-list-item>
+                        <mat-icon>create</mat-icon>
+                        <span mat-line>Editor</span>    
+                </mat-list-item>
+        </a>
+        <a [routerLink] = "['./aboutquestionpaper']" router-Link-Active = "router-Link-active">
+                <mat-list-item>
+                        <mat-icon>launch</mat-icon>
+                        <span mat-line>Basic data</span>    
+                </mat-list-item>
+        </a>
+</mat-list>
 
-<a [routerLink]="['/quilleditor']" routerLinkActive="router-link-active" >
+
+
+<!-- <a [routerLink]="['/quilleditor']" routerLinkActive="router-link-active" >
         <div class="nav-menu">
                         <button mat-icon-button><mat-icon>subject</mat-icon></button>
                         <span class="menu-text">Quill Editor</span>
         </div>
-</a>
+</a> -->
 
-<a [routerLink]="['/resume']" routerLinkActive="router-link-active" >
-        <div class="nav-menu">
-                        <button mat-icon-button><mat-icon>work</mat-icon></button>
-                        <span class="menu-text">Resume</span>
-        </div>
-</a>
 
         
 

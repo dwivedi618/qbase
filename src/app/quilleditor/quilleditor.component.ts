@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
+import {  OnInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  AfterViewInit,
+  ElementRef
+} from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -7,68 +14,48 @@ import { FormGroup, FormControl } from '@angular/forms';
   templateUrl: './quilleditor.component.html',
   styleUrls: ['./quilleditor.component.css']
 })
-export class QuilleditorComponent implements OnInit {
+export class QuilleditorComponent implements AfterViewInit {
   
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-      spellcheck: true,
-      height: 'auto',
-      minHeight: 'auto',
-      maxHeight: 'auto',
-      width: 'auto',
-      minWidth: 'auto',
-      
-      translate: 'yes',
-      enableToolbar: true,
-      showToolbar: true,
-      placeholder: 'Enter text here...',
-      defaultParagraphSeparator: '',
-      defaultFontName: '',
-      defaultFontSize: '',
-      fonts: [
-        {class: 'arial', name: 'Arial'},
-        {class: 'times-new-roman', name: 'Times New Roman'},
-        {class: 'calibri', name: 'Calibri'},
-        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
-      ],
-      customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
-    uploadUrl: 'v1/image',
-    sanitize: true,
-    toolbarPosition: 'top',
-    // toolbarHiddenButtons: [
-    //   ['bold', 'italic'],
-    //   ['fontSize']
-    // ]
-};
-  //  editorForm: FormGroup;
-   editorStyle = {
-     width : '300px',
-     height : '300px'
-   }
+  @ViewChild( 'demoForm' ) demoForm?: NgForm;
+		@ViewChild( 'preview' ) preview: ElementRef;
+		@ViewChild( 'editor' ) editor;
 
+		public model = {
+			name: 'John',
+			surname: 'Doe',
+			description: '<p>This is a sample form using CKEditor 4 and created in Angular.</p>'
+		};
 
-  ngOnInit() {
-    // this.editorForm = new FormGroup({
-    //   'editor' : new FormControl(null)
-    // })
+		public isPreviewActive: boolean;
+
+		public previewModel: string;
+
+		onSubmit() {
+			alert( `Form submit, model: ${ JSON.stringify( this.model ) }` );
+		}
+
+		reset() {
+			this.demoForm!.reset();
+		}
+
+		get description() {
+			return this.demoForm!.controls.description;
+		}
+
+		ngAfterViewInit() {
+			this.editor.dataChange.subscribe( ( value ) => {
+				if ( !this.isPreviewActive ) {
+					this.previewModel = value;
+				}
+			} );
+		}
+	
+
+  // ngOnInit() {
 
  
     
-  }
+  // }
 
   
 }

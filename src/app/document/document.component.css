@@ -8,6 +8,9 @@ body, html,li,ol,ul,div,section{
     transform: translate(-50%,-50%); 
 
 }
+a{
+    text-decoration: none!important;
+}
 
 .card1{
 width: 100%;

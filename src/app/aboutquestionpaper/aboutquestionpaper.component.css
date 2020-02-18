@@ -4,6 +4,13 @@
     font-weight:bold;
     text-align: center;
 }
+.secondary_paragraph{
+    color: #666;
+    font-size: 2rem;
+    font-weight:bold;
+    text-align: center;
+
+}
 .example_form_field{
     width: 500px;
 }

@@ -13,10 +13,13 @@
 
   <!-- for mobile devices  side nav mode="over" and for  others mode="side" -->
     
-    <mat-sidenav 
+    <mat-sidenav position="start" [mode]="isLargeScreen() ? 'side' : 'over'"
     #sidenav 
-    [mode]="isLargeScreen() ? 'side' : 'over'" [opened]="isLargeScreen()"
-    class="sidenav-full-open" ><!--this class is reposible for sliding style and appearence of side navigaion-->
+    class="sidenav-full-open"
+    >
+    <!-- [mode]="isLargeScreen() ? 'side' : 'over'" [opened]="isLargeScreen()"
+    class="sidenav-full-open"  -->
+    <!--this class is reposible for sliding style and appearence of side navigaion-->
     
 
       <!-- options inside the sidenav -->
@@ -27,7 +30,7 @@
       <mat-divider></mat-divider>
 
 
-          <span>Privacy Policy . Terms of service</span>
+          <span mat-line>Privacy Policy . Terms of service</span>
 
       </div>
 

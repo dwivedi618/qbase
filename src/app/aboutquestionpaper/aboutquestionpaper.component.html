@@ -1,46 +1,142 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
+  
   <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Document Name</ng-template>
+
     <div fxLayout="row" fxLayoutAlign="center center" >
       <div fxLayout="column" fxLayoutAlign="center center">
-          <p class="primary_paragraph">Give a name ...</p>
+          <p class="primary_paragraph">Name your document</p>
           <mat-form-field class="example_form_field">
             <input matInput type="text" placeholder="Document Name " [(ngModel)]="value" formControlName="firstCtrl" required>
             <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
-          <!-- <button type="submit" mat-icon-button class="custom_btn btn_black">Let's Go  
-          </button> -->
-          <div class="special-button-conatiner special-button-1 "  fxLayoutAlign="space-arround center"
+          
+          <!-- <div class="special-button-conatiner special-button-1 "  fxLayoutAlign="space-arround center"
           matRipple 
-          >
+          > -->
           <div fxLayoutAlign="center">
-            <button mat-button matStepperNext>Let's Go </button>
+            <button mat-button matStepperNext>Next</button>
           </div>
             
             
-    </div>
+    <!-- </div> -->
       </div>
     </div>
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Document Name</ng-template>
-      
     
-      
     </form>
   </mat-step>
+
+
+
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
+      <ng-template matStepLabel>Session</ng-template>
+
+      <div fxLayout="row" fxLayoutAlign="center center" >
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <p class="primary_paragraph">Session ...</p>
+        <mat-form-field class="example_form_field">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let session of sessions" [selectable]="selectable"
+                     [removable]="removable" (removed)="remove(session)">
+              {{session.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="2019-20" formControlName="secondCtrl" required
+                  type="text"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)" >
+          </mat-chip-list>
+        </mat-form-field>
+        </div>
+      </div>
+        
+      
+      <div fxLayoutAlign="center">
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
+
+<!-- third stepeer -->
+<mat-step [stepControl]="thirdFormGroup">
+  <form [formGroup]="thirdFormGroup">
+    <ng-template matStepLabel>Subject</ng-template>
+
+    <div fxLayout="row" fxLayoutAlign="center center" >
+      <div fxLayout="column" fxLayoutAlign="center center">
+          <p class="primary_paragraph">Subject</p>
+      <mat-form-field class="example_form_field">
+        
+          <mat-label>Select a Subject</mat-label>
+          <mat-select [(value)]="selectedSubject" name="subject" >
+            <mat-option *ngFor="let subject of subjects" [value]="subject.value" required>{{subject.viewSubject}}</mat-option>
+            
+          </mat-select>
+        
+      
+        
+        
+      </mat-form-field>
+      <p>selected Subject : {{selectedSubject}}</p>
+      </div>
+    </div>
+      
+    
+    <div fxLayoutAlign="center">
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </form>
+</mat-step>
+
+<!-- --------- -->
+<!-- forth steper for slybus and topic from units-->
+<mat-step [stepControl]="forthFormGroup">
+  <form [formGroup]="forthFormGroup">
+    <ng-template matStepLabel>Slybus for {{selectedSubject}}</ng-template>
+
+    <div fxLayout="row" fxLayoutAlign="center center" >
+      <div fxLayout="column" fxLayoutAlign="center center">
+          <p class="primary_paragraph">Slybus For</p>
+          <p class="secondary_paragraph">{{selectedSubject}}</p>
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Unit 1"> 
+              <mat-form-field class="example_form_field">
+                  <mat-chip-list
+                              [multiple]="true"
+                              selectable>
+                              <mat-chip *ngFor="let i of topicsOfUnit1"
+                                (click)="toggleChip(i)"
+                                [selected]="chips.has(i)">{{ topicsOfUnit1}}
+                              </mat-chip>
+                  </mat-chip-list>
+               </mat-form-field>
+            </mat-tab>
+
+           
+            
+          </mat-tab-group>
+     
+      </div>
+    </div>
+      
+    
+    <div fxLayoutAlign="center">
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </form>
+</mat-step>
+
+<!-- --------- -->
+
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     You are now done.
@@ -50,6 +146,7 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+
 
 
 

@@ -1,32 +1,33 @@
 
-<!-- this mat-car only used here because mat-card-avatar is used for  circular img icon -->
+<!-- this mat-card only used here because mat-card-avatar is used for  circular img icon -->
 <mat-card class="no-effect-card">
+  
   
 
 <!-- mat-toolbar is main container for all navigation menus -->
 <mat-toolbar role="heading" class="example-header">
   
+  <mat-toolbar-row>
+    <!-- button form sidenav open and close --> 
+    <button mat-icon-button (click)="onToggleSidenav()" matTooltip="main menu" >
+      <mat-icon >menu</mat-icon>
+    </button>     
+  <!-- ---------------------------------- -->
+  <a [routerLink]="['./about']" routerLinkActive="router-link-active" >
+  <div fxLayout="row" class="logo_and_brand_name">
+    
+      <div class="logo" fxLayoutAlign="center">
+        <img src="../assets/qbase48.png" alt="qbase">
+      </div>
 
-      <div class="topnav-left" fxLayoutAlign="center center"> 
-        <!-- button form sidenav open and close --> 
-          <button mat-icon-button (click)="onToggleSidenav()" matTooltip="main menu" class="center">
-            
-            <mat-icon >menu</mat-icon>
-          </button>     
-        <!-- ---------------------------------- -->
-        
-      </div> 
-      <!-- <div fxLayoutAlign="center center"  >
-        <a [routerLink]="['/about']" routerLinkActive="router-link-activer" >
-          <h1 class="brand_name">qbase</h1>
-        </a>
-        </div> -->
-
-      <!-- this div contains the selected options or path of items -->
-      
-        <!-- --------------------- -->
-      
-      
+      <div fxLayoutAlign="center center"  >
+        <h1 class="brand_name">qbase</h1>
+      </div>
+    
+  </div>
+  </a>
+  
+    <span class="example-spacer"></span>
         
       <div class="topnav-right" fxFlex fxLayout="row" fxLayoutAlign="flex-end" fxLayoutGap="10px">
          
@@ -52,6 +53,12 @@
                   </mat-menu> -->
         
         <!-- -------------------------------- -->
+        <button mat-button (click)="openFullscreen()"
+        matTooltip="Fullscreen" >
+          <mat-icon>zoom_out_map</mat-icon>
+         </button>
+     
+        <!-- <h2 (click)="closeFullscreen()">close</h2> -->
 
         <!-- username beside the user icon in naviagtion bar -->
         <div fxLayoutAlign="center center" fxHide.xs="true">
@@ -74,7 +81,7 @@
     <mat-menu #account="matMenu" class="mat-menu-account">
 <!-- options 1 for mini profile -->
         <button mat-menu-item id="mini-profile-container">
-            <a [routerLink]="[ '/account']">
+            <a [routerLink]="[ '/profile']">
               <div fxLayout="row" fxLayoutAlign="start" >
                 <div>
                   <!-- this mat-card-avatar only works wthin mat-card -->
@@ -138,7 +145,7 @@
     <!-- dropdown menu ends here -->
     <!-- ------------------------------- -->
   </div>
-  
+</mat-toolbar-row>
 </mat-toolbar>
 <!-- <mat-divider></mat-divider> -->
 

@@ -9,13 +9,15 @@ import {  Routes, RouterModule } from '@angular/router';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
+//CKEditorModule
+import {CKEditorModule} from 'ckeditor4-angular';
+
 
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServiceLoginComponent } from './service-login/service-login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavigationComponent } from './dashboard/navigation/navigation.component';
 import { SlidenavComponent } from './dashboard/slidenav/slidenav.component';
@@ -42,6 +44,10 @@ import { ResumeComponent } from './resume/resume.component';
 import { AboutComponent } from './about/about.component';
 import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionpaper.component';
 import { TemplategalleryComponent } from './templategallery/templategallery.component';
+import { UserService } from './services/user.service';
+import { AuthenticationService } from './services/authentication.service';
+import { AlertService } from './services/alert.service';
+import { PasswordrecoveryComponent } from './login/passwordrecovery/passwordrecovery.component';
 
 
 
@@ -73,7 +79,6 @@ const appRoutes:Routes = [
 
   declarations: [
     AppComponent,
-    ServiceLoginComponent,
     DashboardComponent,
     NavigationComponent,
     SlidenavComponent,
@@ -98,7 +103,8 @@ const appRoutes:Routes = [
     ResumeComponent,
     AboutComponent,
     AboutquestionpaperComponent,
-    TemplategalleryComponent
+    TemplategalleryComponent,
+    PasswordrecoveryComponent
     
   ],
   imports: [
@@ -110,6 +116,7 @@ const appRoutes:Routes = [
     FlexLayoutModule,
     HttpClientModule, AngularEditorModule,
     // QuillModule,
+    CKEditorModule,
    
     
     
@@ -120,7 +127,11 @@ const appRoutes:Routes = [
     // ),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    UserService,
+    AuthenticationService,
+    AlertService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

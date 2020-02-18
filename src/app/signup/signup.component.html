@@ -6,14 +6,23 @@
             <img src="../assets/qbase48.png" alt="qbase">
           </div>
 
-        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="login-form" #f="ngForm" (ngSubmit)="onSubmit(f)">      
+        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="login-form" #signupForm="ngForm" (ngSubmit)="onSignup(signupForm  )">      
           
           <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0px"><!--all input field container-->
-          <!-- email input field -->
+          <!-- name input field -->
+          <div class="input-email">
+            <mat-form-field appearance="outline" class="login-input ">
+              
+               <input type="text"  matInput placeholder="shivam dwivedi" ngModel name="name">
+               
+            </mat-form-field>
+          </div>
+            <!-- email input field -->
           <div class="input-email">
             <mat-form-field appearance="outline" class="login-input ">
               
                <input type="email"  matInput placeholder="youemail@mail.com " ngModel name="email">
+               <!-- <mat-error *ngIf="emailInput.invalid">Please enter valid Email</mat-error> -->
                <!-- <mat-icon matPreffix>sentiment_very_satisfied</mat-icon> -->
                <!-- <mat-hint>Hint</mat-hint> -->
             </mat-form-field>
@@ -22,21 +31,14 @@
           <!-- password input field -->
           <div >
             <mat-form-field appearance="outline" class="login-input">
-                <input matInput placeholder="Password" ngModel name="password1" [type]="hide ? 'password' : 'text'">
+                <input matInput placeholder="Password" ngModel name="password" [type]="hide ? 'password' : 'text'" #password="ngModel">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
           </div>
               <!-- ---------------------- -->
-              <div >
-                  <mat-form-field appearance="outline" class="login-input">
-                      <input matInput placeholder="Confirm Password" ngModel name="password2" [type]="hide ? 'password' : 'text'">
-                      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                      </button>
-                  </mat-form-field>
-                </div>
+            
                     <!-- ---------------------- -->
              
           </div><!--all input field ends here-->
@@ -45,7 +47,7 @@
     
 
       <div >
-       <button type="submit" mat-icon-button class="custom-btn btn-black">Sign Up  
+       <button type="submit" mat-icon-button class="custom-btn btn-black" mat-stroked-button (click)="openSnackBar(message.value, action.value)">Sign Up  
        </button> 
       </div>  
 
