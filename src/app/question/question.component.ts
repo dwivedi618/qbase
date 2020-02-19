@@ -1,25 +1,27 @@
 import {SelectionModel} from '@angular/cdk/collections';
-import {Component,OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import {Component,OnInit, ViewChild} from '@angular/core';
+import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
 
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  question: string;
+  subject: string;
+  level: string;
+  topic: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'medium', topic: 'B'},
+  {subject: 'Data structure', question: 'Differentiate between file and structure storage structure.', level: 'high', topic: 'He'},
+  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'medium', topic: 'B'},
+  {subject: 'Data structure', question: 'When is a binary search best applied?', level: 'medium', topic: 'Li'},
+  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
+  {subject: 'Data structure', question: 'How do you reference all the elements in a one-dimension array?', level: 'high', topic: 'Be'},
+  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
+  {subject: 'Data structure', question: 'Which data structures are applied when dealing with a recursive function?', level: 'high', topic: 'C'},
+  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
+  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
+  {subject: 'Data structure', question: 'What is data structure?', level: 'low', topic: 'H'},
+  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
 ];
 
 @Component({
@@ -30,7 +32,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class QuestionComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['select', 'subject', 'question', 'level', 'topic'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
 
@@ -53,10 +55,25 @@ export class QuestionComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.subject + 1}`;
   }
-  constructor() {}
 
+  // filtering
+
+  3
+  public doFilter = (value: string) => {
+      this.dataSource.filter = value.trim().toLocaleLowerCase();
+    }
+
+    // sorting
+    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    
+  constructor() {}
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
   ngOnInit() {
 
   }

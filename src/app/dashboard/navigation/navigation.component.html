@@ -53,24 +53,37 @@
                   </mat-menu> -->
         
         <!-- -------------------------------- -->
-        <button mat-button (click)="openFullscreen()"
-        matTooltip="Fullscreen" >
-          <mat-icon>zoom_out_map</mat-icon>
+        <!-- toggle icon for fullscreen /exit -->
+        <div *ngIf="userActive">
+        <button *ngIf="show_fullscreen" mat-button (click)="openFullscreen()"
+           matTooltip="Fullscreen" >
+          <mat-icon>fullscreen</mat-icon>
          </button>
-     
-        <!-- <h2 (click)="closeFullscreen()">close</h2> -->
+         <button *ngIf="close_fullscreen" mat-button (click)="closeFullscreen()"
+           matTooltip="Exit Fullscreen" >
+          <mat-icon>fullscreen_exit</mat-icon>
+         </button>
+        </div>
+         <!-- --------- -->
+         
+          <div *ngIf="!userActive">
+            <a mat-stroked-button color="primary" [routerLink]="['./login']">login</a>
+            <button mat-stroked-button color="primary" [routerLink]="['./signup']">signup</button>
+            
+          </div>
+          
 
         <!-- username beside the user icon in naviagtion bar -->
-        <div fxLayoutAlign="center center" fxHide.xs="true">
+        <div fxLayoutAlign="center center" fxHide.xs="true" *ngIf="userActive">
         <span class="session-username">{{name}}</span>
         </div>
 
 
         <!-- button for acoount navigation -->
 
-      <button mat-icon-button [matMenuTriggerFor]="account">
+      <button mat-icon-button [matMenuTriggerFor]="account" *ngIf="userActive">
         <!-- avatar module inserted -->
-        <div id="avatar">
+        <div id="avatar" *ngIf="userActive">
 
             <app-avatar class="avatar-small"></app-avatar>
         </div>
@@ -103,11 +116,8 @@
                
         </button>
         <!-- option 2 for login button if not logged in -->
-        
-          <button mat-icon-button (click)="logout()">logout
-            
-            
-          </button>
+        <button mat-stroked-button color="primary" (click)="logout()">logout</button>
+         
       
 
 <!-- option 2 for login button if not logged in -->
@@ -119,20 +129,15 @@
        </a>
 <!-- option 3 for displaying questions -->
         
-        <a mat-menu-item [routerLink]="[ './question']">
-          <button mat-icon-button>
-            <mat-icon>grain</mat-icon>
-            <span>show Question</span>
-          </button>
-        </a>
+        
 
 
-        <a mat-menu-item [routerLink]="[ './preloader']">
+        <!-- <a mat-menu-item [routerLink]="[ './preloader']">
           <button mat-icon-button>
             <mat-icon>360</mat-icon>
             <span>preloader</span>
           </button>
-        </a>
+        </a> -->
 
 
         <a mat-menu-item [routerLink]="[ './settings']">

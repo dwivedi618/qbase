@@ -50,6 +50,10 @@ export class NavigationComponent implements OnInit {
   }
   elem : any;
   isOpen = false;
+  userActive = false;
+  show_fullscreen = true;
+  close_fullscreen = false;
+
   onToggleSidenav(){
   
     (this.isOpen) = !(this.isOpen);
@@ -60,15 +64,23 @@ export class NavigationComponent implements OnInit {
   openFullscreen() {
     if (this.elem.requestFullscreen) {
       this.elem.requestFullscreen();
+      this.show_fullscreen = false;
+      this.close_fullscreen = true;
     } else if (this.elem.mozRequestFullScreen) {
       /* Firefox */
       this.elem.mozRequestFullScreen();
+      this.show_fullscreen = false;
+      this.close_fullscreen = true;
     } else if (this.elem.webkitRequestFullscreen) {
       /* Chrome, Safari and Opera */
       this.elem.webkitRequestFullscreen();
+      this.show_fullscreen = false;
+      this.close_fullscreen = true;
     } else if (this.elem.msRequestFullscreen) {
       /* IE/Edge */
       this.elem.msRequestFullscreen();
+      this.show_fullscreen = false;
+      this.close_fullscreen = true;
     }
   }
 
@@ -76,15 +88,23 @@ export class NavigationComponent implements OnInit {
   closeFullscreen() {
     if (this.document.exitFullscreen) {
       this.document.exitFullscreen();
+      this.show_fullscreen = true;
+      this.close_fullscreen = false;
     } else if (this.document.mozCancelFullScreen) {
       /* Firefox */
       this.document.mozCancelFullScreen();
+      this.show_fullscreen = true;
+      this.close_fullscreen = false;
     } else if (this.document.webkitExitFullscreen) {
       /* Chrome, Safari and Opera */
       this.document.webkitExitFullscreen();
+      this.show_fullscreen = true;
+      this.close_fullscreen = false;
     } else if (this.document.msExitFullscreen) {
       /* IE/Edge */
       this.document.msExitFullscreen();
+      this.show_fullscreen = true;
+      this.close_fullscreen = false;
     }
   }
 

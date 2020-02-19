@@ -5,11 +5,11 @@
   <div fxLayout="column" fxLayoutAlign="center center">
         
         <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
-          <button mat-icon-button aria-label="Upload new question">
+          <button mat-icon-button aria-label="">
             <mat-icon>cloud_upload</mat-icon>
           </button>
           
-          <span mat-line>Upload new question</span>
+          <span mat-line> keep note</span>
           
         </a>
         <a [routerLink]="['./document']" routerLinkActive="router-link-active" mat-list-item (click)="openLink($event)">
@@ -19,6 +19,13 @@
           <span mat-line>Generate question paper</span>
           
         </a>
+        <a [routerLink]="['./uploadquestion']" routerLinkActive="router-link-active" mat-list-item (click)="openLink($event)">
+         
+          <mat-icon>description</mat-icon>
+       
+        <span mat-line>Upload new question </span>
+        
+      </a>
       
   </div>
 </mat-nav-list>
