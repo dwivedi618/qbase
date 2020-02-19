@@ -1,7 +1,7 @@
 module.exports = {
   db: {
     username: "root",
-    password: "root@123",
+    password: "root",
     database: "Qbase",
     sequelize: {
       dialect: "mysql",

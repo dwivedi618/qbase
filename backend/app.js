@@ -83,6 +83,7 @@ app.use((req, res, next) => {
 
 //routes
 app.post("/login", async (req,res) => {
+    console.log(req.body.email);
     
     const  user = await User.findOne({
         where: {
@@ -90,10 +91,9 @@ app.post("/login", async (req,res) => {
         },
         raw: true
     });
-    if (!user) return res.send("Email could not found!");
+    if (!user) return res.status(401).json("Email could not found!");
     if (user.password == req.body.password) {
-        console.log(req.body.name);
-        res.json({
+        res.status(200).json({
             message: "Logged in successfully!", 
             token:"33ejfdsjfkadsjfkajdsfk",
             name: user.name,
@@ -101,7 +101,7 @@ app.post("/login", async (req,res) => {
         });
         
    } else {
-        res.json({
+        res.status(401).json({
             message:"Invalid Password"
         });
    }
@@ -114,7 +114,7 @@ app.post("/signup", async (req,res) => {
         email: req.body.email,
         password: req.body.password
     });
-    res.json({
+    res.status(201).json({
         message: 'user created..' 
     });
 });
