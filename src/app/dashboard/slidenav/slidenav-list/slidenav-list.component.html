@@ -57,17 +57,23 @@
         </mat-list-item>
         </a>
 
-        <a [routerLink] = "['./quilleditor']" router-Link-Active = "router-Link-active">
+        <a [routerLink] = "['./quilleditor']" >
                 <mat-list-item>
                         <mat-icon>create</mat-icon>
                         <span mat-line>Editor</span>    
                 </mat-list-item>
         </a>
-        <a [routerLink] = "['./aboutquestionpaper']" router-Link-Active = "router-Link-active">
+        <a [routerLink] = "['./aboutquestionpaper']" >
                 <mat-list-item>
                         <mat-icon>launch</mat-icon>
                         <span mat-line>Basic data</span>    
                 </mat-list-item>
+        </a>
+        <a  [routerLink]="[ './question']">
+                <mat-list-item>
+                  <mat-icon>grain</mat-icon>
+                  <span mat-line>show Question</span>
+                </mat-list-item> 
         </a>
 </mat-list>
 

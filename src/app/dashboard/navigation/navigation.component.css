@@ -1,7 +1,8 @@
 
 mat-toolbar-row{
   box-shadow: 0 0 1px black;
-}.example-icon {
+}
+.example-icon {
   padding: 0 14px;
 }
 
@@ -14,12 +15,12 @@ mat-toolbar-row{
 
 
 }
-a{
+/* a{
   text-decoration: none;
 }
 a:hover{
   text-decoration: none;
-}
+} */
 .example-header {
   position: fixed;
   padding: 0;
@@ -90,9 +91,9 @@ mat-toolbar{
   color: #ccc;
   transition: .2s all;
 }
-button,mat-icon{
+/* button,mat-icon{
   line-height: normal !important;
-}
+} */
 
 
 .username-email-container{
@@ -127,14 +128,14 @@ button,mat-icon{
   line-height: normal;
 }
 
-button a{
+/* button a{
   text-decoration: none;
   color: black;
-}
-button:active,button:visited,button:focus{
+} */
+/* button:active,button:visited,button:focus{
   outline: none;
   border: none;
-}
+} */
 
 .center {
   margin: 0;

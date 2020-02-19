@@ -56,6 +56,9 @@ export class QuilleditorComponent implements AfterViewInit {
  
     
   // }
+  editorConfig = {
+    placeholder: 'Type the content here!',
+  };
 
   
 }
