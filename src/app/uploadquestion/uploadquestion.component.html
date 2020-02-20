@@ -1,3 +1,69 @@
-<p>
-  uploadquestion works!
-</p>
+<div class="bootstrap">
+    <div class="row">
+        <div class="col-6 ">
+          <br>
+           <div class="container">
+             <textarea class="form-control" rows="5" > What is Hashing?</textarea>
+             <br>
+             <div class="container st">
+                <div>
+                 <i class="material-icons">wallpaper</i>
+                 <a mat-stroked-button routerLink=".">Attach Image</a>
+                              Add a New Question
+             <a mat-stroked-button routerLink=".">ADD</a>
+                 </div>
+               </div>
+
+           
+           </div>
+           <br>
+           <div class="sit">
+           <a mat-stroked-button routerLink=".">Save Question</a>
+          </div>
+        </div>
+        <div class="col-6">
+          <br>
+            SUBJECTS
+            <div>
+                <mat-form-field class="example_form_field">
+                <mat-label>Select a Subject</mat-label>
+                <mat-select [(value)]="selectedSubject" name="subject" >
+                      <mat-option *ngFor="let subject of subjects" [value]="subject.value" required>{{subject.viewSubject}}</mat-option>
+                </mat-select>       
+                </mat-form-field>
+              </div>
+                <div>
+                UNITS
+
+                <mat-chip-list aria-label="Unit selection">
+                    <mat-chip>Unit 1</mat-chip>
+                    <mat-chip>Unit 2</mat-chip>
+                    <mat-chip>Unit 3</mat-chip>
+                    <mat-chip>Unit 4</mat-chip>
+                    <mat-chip>Unit 5</mat-chip>
+                  </mat-chip-list>
+                </div>
+                <br> 
+                <div>
+                    TOPICS
+                    <mat-chip-list aria-label="Topic selection">
+                        <mat-chip>Array</mat-chip>
+                        <mat-chip>Stack and Queue</mat-chip>
+                        <mat-chip>Linkedlist</mat-chip>
+                        <mat-chip>Tree</mat-chip>
+                        <mat-chip>Graph</mat-chip>
+                      </mat-chip-list>
+                    </div>
+                    <br>
+                    <div>
+                        LEVELS
+                        <mat-chip-list aria-label="Level selection">
+                            <mat-chip>Hard</mat-chip>
+                            <mat-chip>Medium</mat-chip>
+                            <mat-chip>Easy</mat-chip>
+                          </mat-chip-list>
+                        </div>
+    
+        </div>
+    </div>
+</div>

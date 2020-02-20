@@ -14,7 +14,7 @@ export interface Subject {
 }
 export interface Topic {
   topic: string;
-  subTopic : string;
+  
 }
 
 @Component({
