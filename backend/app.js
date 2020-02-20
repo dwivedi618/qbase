@@ -91,7 +91,7 @@ app.post("/login", async (req,res) => {
         },
         raw: true
     });
-    if (!user) return res.status(401).json("Email could not found!");
+    if (!user) return res.status(401).json({message: "Email not found"})
     if (user.password == req.body.password) {
         res.status(200).json({
             message: "Logged in successfully!", 
@@ -114,8 +114,8 @@ app.post("/signup", async (req,res) => {
         email: req.body.email,
         password: req.body.password
     });
-    res.status(201).json({
-        message: 'user created..' 
+    res.status(200).json({
+        message: "user created" ,
     });
 });
 

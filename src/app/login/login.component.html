@@ -13,7 +13,7 @@
           <!-- email input field -->
           <div class="input-email">
             <mat-form-field appearance="outline" class="login-input ">
-               <input type="email"  matInput placeholder="Email " ngModel name="email" #emailInput="ngModel" required>
+               <input required type="email"  matInput placeholder="Email " ngModel name="email" #emailInput="ngModel" >
                <mat-error *ngIf="emailInput.invalid">Please enter valid Email</mat-error>
             </mat-form-field>
             <!-- <mat-form-field appearance="outline" class="login-input ">
@@ -50,7 +50,7 @@
               </div>
 
       <div >
-       <button type="submit" mat-icon-button class="custom-btn btn-black" >LOGIN  
+       <button type="submit" mat-icon-button class="custom-btn btn-black" (click)="openSnackBar()">LOGIN  
        </button> 
       </div>  
 

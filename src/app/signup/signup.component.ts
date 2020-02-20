@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
   returnUrl: string;
 
   constructor(
-    private _snackBar: MatSnackBar,//alert after sign up
+    private snackBar: MatSnackBar,//alert msg after sign up
     private router: Router,
     private userService: UserService,
     private alertService: AlertService
@@ -33,12 +33,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-//alert after sign up
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
+
   onSignup(form: NgForm) {
     console.log("--------------->>>>>>>>>>>",form.value.email);
     this.user.email = form.value.email;
@@ -51,13 +46,24 @@ export class SignupComponent implements OnInit {
     .subscribe(
       data => {
         console.log("signup test",data)
+        // this.openSnackBar(data.message,'done');
         this.alertService.success('Signup successfully', true);
         this.router.navigate([this.returnUrl]);
+        // this.openSnackBar(data.message,'done');
       },
       error => {
-        this.alertService.error(error);
+        this.openSnackBar(error.message,'done');
+        // this.alertService.error(error);
       }
     );
+  }
+
+  //alert after sign up
+  // alert msg
+  openSnackBar(message: string,action:string) {
+    this.snackBar.open(message,'Done' ,{
+      duration: 3000
+    });
   }
 
 }

@@ -7,6 +7,7 @@ import { AlertService } from '../services/alert.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { validation } from '../validation';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -30,11 +31,14 @@ export class LoginComponent implements OnInit {
   loading: boolean;
 
   constructor(
+    private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthenticationService,
     private alertService: AlertService
   ) { }
+
+  
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -48,6 +52,8 @@ export class LoginComponent implements OnInit {
   ]);
 
   matcher = new MyErrorStateMatcher();
+
+  
   
   onLogin(form: NgForm) {
     console.log(form.value.email );
@@ -62,15 +68,24 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate([this.returnUrl]);
         }); 
+        this.openSnackBar(data.message,'done');
         //this.router.navigate([this.returnUrl]);
         //window.location.reload();
       },
       error => {
-        this.alertService.error(error);
+        // this.alertService.error(error);
+        this.openSnackBar(error.message,'done');
         this.loading = false;
       }
     );
 
+  }
+
+  // alert msg
+  openSnackBar(message: string,action:string) {
+    this.snackBar.open(message,'Done' ,{
+      duration: 3000
+    });
   }
 
 }
