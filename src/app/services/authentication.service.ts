@@ -2,10 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment }   from '../../environments/environment'
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: HttpClient) { }
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
+
+    constructor(private http: HttpClient) {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+    }
+
+    public get currentUserValue(): User {
+        return this.currentUserSubject.value;
+    }
 
     login(username: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/login`, { email: username, password: password },
@@ -21,6 +33,8 @@ export class AuthenticationService {
                     localStorage.setItem('token', user.token);
                     localStorage.setItem('name',user.name);
                     localStorage.setItem('email',user.email);
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
                 }
 
                 return user;
@@ -32,6 +46,8 @@ export class AuthenticationService {
         localStorage.removeItem('name');
         localStorage.removeItem('email');
         localStorage.removeItem('token');
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
 
     }
 }

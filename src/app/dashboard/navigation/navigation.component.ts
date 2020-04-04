@@ -26,16 +26,7 @@ export class NavigationComponent implements OnInit {
     private router: Router
     ) {
       
-      // this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      //   return false;
-      // };
       
-      // this.mySubscription = this.router.events.subscribe((event) => {
-      //   if (event instanceof NavigationEnd) {
-      //     // Trick the Router into believing it's last link wasn't previously loaded
-      //     this.router.navigated = false;
-      //   }
-      // });
      }
 
 
@@ -50,7 +41,7 @@ export class NavigationComponent implements OnInit {
   }
   elem : any;
   isOpen = false;
-  userActive = false;
+  userActive = true;
   show_fullscreen = true;
   close_fullscreen = false;
 

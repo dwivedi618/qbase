@@ -1,5 +1,8 @@
-body, html,li,ol,ul,div,section{
+li,ol,ul,div,section{
     font-family: 'Open Sans', sans-serif !important;
+}
+section{
+    padding: 2rem 0;
 }
 .center{
     position:absolute;
@@ -11,6 +14,12 @@ body, html,li,ol,ul,div,section{
 a{
     text-decoration: none!important;
 }
+.new_template{
+    width: 100%;
+    min-width: 60vw;
+    min-height: 5rem;
+}
+
 
 .card1{
 width: 100%;

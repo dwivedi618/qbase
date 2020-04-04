@@ -8,6 +8,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { validation } from '../validation';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material';
+import { MessageService } from '../services/message.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private router: Router,
+    private messageService : MessageService,
     private authService: AuthenticationService,
     private alertService: AlertService
   ) { }
@@ -42,25 +44,25 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      numberInput: ['', [Validators.required, validation.numberValidator]]
+      email : ['',[Validators.required,Validators.email]],
+      password : ['',Validators.required]
+     
    });
   
   }
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  get form() { return this.loginForm.controls; }
+ 
 
   matcher = new MyErrorStateMatcher();
 
   
   
-  onLogin(form: NgForm) {
-    console.log(form.value.email );
+  onLoginSubmit() {
+    console.log(this.form.email.value);
 
     this.loading = true;
     this.returnUrl = '/document'
-    this.authService.login(form.value.email, form.value.password)
+    this.authService.login(this.form.email.value, this.form.password.value)
     .pipe(first())
     .subscribe(
       data => {
@@ -68,24 +70,18 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate([this.returnUrl]);
         }); 
-        this.openSnackBar(data.message,'done');
+        this.messageService.openSnackBar(data.message,null);
         //this.router.navigate([this.returnUrl]);
         //window.location.reload();
       },
       error => {
         // this.alertService.error(error);
-        this.openSnackBar(error.message,'done');
+        this.messageService.openSnackBar('Email Or Password Incorrect',null);
         this.loading = false;
       }
     );
 
   }
 
-  // alert msg
-  openSnackBar(message: string,action:string) {
-    this.snackBar.open(message,'Done' ,{
-      duration: 3000
-    });
-  }
 
 }

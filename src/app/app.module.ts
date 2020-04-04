@@ -7,7 +7,9 @@ import {  Routes, RouterModule } from '@angular/router';
 
 
 //CKEditorModule
-import {CKEditorModule} from 'ckeditor4-angular';
+// import {CKEditorModule} from 'ckeditor4-angular';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 
 
 import { MaterialModule } from './material.module';
@@ -118,6 +120,7 @@ const appRoutes:Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
@@ -129,7 +132,7 @@ const appRoutes:Routes = [
     
     AppRoutingModule,
    
-    RouterModule.forRoot(appRoutes)
+    
   ],
   providers: [
     UserService,

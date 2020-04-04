@@ -22,6 +22,9 @@
     
     
 }
+.full_width{
+    width: 100%;
+}
 .login-form{
     
     position: relative;

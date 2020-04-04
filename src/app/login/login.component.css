@@ -30,6 +30,9 @@
     min-height: 50vh;
 
 }
+.full_width{
+    width: 100%;
+}
 @media(max-width:420px){
     .login-form{
         max-width:100vw ;

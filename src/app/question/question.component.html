@@ -1,13 +1,13 @@
 <!-- filtering field -->
-<div class="filter_field">
-<div fxLayout="row" fxLayoutAlign="center center" >
-  <mat-form-field fxFlex="50%" appearance="outline">
+<div class="container filter_field">
+<div class="d-flex justify-content-center">
+  <mat-form-field class="container" appearance="outline">
     <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
 </div>
 
 </div>
-<div class="table_container">
+<div class="container table_container ">
   
 
 <table mat-table [dataSource]="dataSource" class=" mat-elevation-z8" matSort>

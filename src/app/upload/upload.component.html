@@ -1,32 +1,19 @@
-<mat-nav-list fxLayout="column" fxLayoutAlign="center center" >
-  <div fxLayout="row" fxLayoutAlign="center center">
-       <p mat-line>Create new</p>
+<mat-nav-list >
+  <div class="text-center">
+       <h1 class="text-success">Create New</h1>
   </div>
-  <div fxLayout="column" fxLayoutAlign="center center">
-        
-        <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
-          <button mat-icon-button aria-label="">
-            <mat-icon>cloud_upload</mat-icon>
-          </button>
-          
-          <span mat-line> keep note</span>
-          
+  <div >
+        <a [routerLink]="['./document']" (click)="closeSheet()" >
+         <mat-list-item>
+           <mat-icon mat-list-icon>description</mat-icon>
+           <p mat-line>Generate question paper</p>
+         </mat-list-item>
         </a>
-        <a [routerLink]="['./document']" routerLinkActive="router-link-active" mat-list-item (click)="openLink($event)">
-         
-            <mat-icon>description</mat-icon>
-         
-          <span mat-line>Generate question paper</span>
-          
-        </a>
-        <a [routerLink]="['./uploadquestion']" routerLinkActive="router-link-active" mat-list-item (click)="openLink($event)">
-         
-          <mat-icon>description</mat-icon>
-       
-        <span mat-line>Upload new question </span>
-        
-      </a>
-      
+        <a [routerLink]="['./uploadquestion']" (click)="closeSheet()" >
+         <mat-list-item>
+           <mat-icon mat-list-icon>description</mat-icon>
+           <p mat-line>Upload new question </p>
+         </mat-list-item>
+      </a>  
   </div>
 </mat-nav-list>
-      

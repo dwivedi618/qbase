@@ -7,21 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent{
+  bottomSheetRef: any;
 
   constructor(  ) { }
+  closeSheet(){
+    this.bottomSheetRef.dismiss();
+  }
   
 }
-
-  // @Component({
-  //   selector: 'uploadSheet',
-  //   templateUrl: 'uplaodSheet.html',
-  // })
-  // export class UploadSheet {
-  //   constructor(private bottomSheetRef: MatBottomSheetRef<UploadSheet>) {}
-  
-  //   openLink(event: MouseEvent): void {
-  //     this.bottomSheetRef.dismiss();
-  //     event.preventDefault();
-  //   }
-  // }
-

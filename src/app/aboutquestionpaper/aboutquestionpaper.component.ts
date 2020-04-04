@@ -16,6 +16,10 @@ export interface Topic {
   topic: string;
   
 }
+export interface DifficultyLevel{
+  
+  difficultyLevel: string;
+}
 
 @Component({
   selector: 'app-aboutquestionpaper',
@@ -41,6 +45,9 @@ export class AboutquestionpaperComponent implements OnInit {
       {value: 'Microprocessor',viewSubject : 'Microprocessor'},
       {value: 'Information Theory of Coding',viewSubject : 'Information Theory of Coding'},
     ];
+    DifficultyLevel = [
+      "Low","Medium","High",
+    ];
    
     topicsOfUnit1 = ["Introduction", "array","linked lists"];
     topicsOfUnit2 = [ "Stacks", "Queues"];
@@ -53,6 +60,7 @@ export class AboutquestionpaperComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   forthFormGroup: FormGroup;
+  difficultyLevelFormGroup: FormGroup;
 
 
 
@@ -72,6 +80,9 @@ export class AboutquestionpaperComponent implements OnInit {
     });
     this.forthFormGroup = this._formBuilder.group({
       forthCtrl: ['', Validators.required]
+    });
+    this.difficultyLevelFormGroup = this._formBuilder.group({
+      fifthCtrl: ['', Validators.required]
     });
   }
   

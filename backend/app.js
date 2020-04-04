@@ -50,10 +50,15 @@ const User = sequelize.define("user",{
     email: {
         type: Sequelize.STRING,
         unique: true,
-        allowNull: false
+        allowNull: false,
+        len: { args: [5, 100], msg:"email can't be bigger than 100"},
+
     },
     password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        len: { args: [6, 100], msg:"email can't be bigger than 100"},
+
     } 
 });
 
@@ -72,7 +77,7 @@ const Question = sequelize.define("question",{
     difficultyLevel: Sequelize.ENUM('LOW','MEDIUM','HIGH'),
 });
 
-sequelize.sync({alter:true});
+sequelize.sync();
 
 
 app.use((req, res, next) => {

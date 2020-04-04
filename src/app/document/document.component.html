@@ -1,199 +1,149 @@
-<section  class=" jumbotron  d-flex justify-content-center  ">
-        
-    <div class="row container d-flex justify-content-between ">
-     <div class="row  sub_menu ">
-         
-            <div class="d-flex">
-                    <div class="mr-auto pp-2  title ">
-                        <a [routerLink]= "['/quilleditor']" routerLinkActive="router-link-active">
-                        <button type="button" class="btn btn-light btn-sm">Create New Template</button>
-                        </a>
-                    </div>
-                        <div class="pp-2 title">
-                            <a [routerLink]="['../tpg']" >
-                            <button type="button" class="btn btn-light btn-sm">Template Gallery
-                            <i class="fa fa-angle-right"></i>
-                            </button>
-                              </a>
-                    </div>
-           </div>
-     </div>
-  
-     <div class="row container d-flex justify-content-between document">
-        <a [routerLink]= "['/quilleditor']" routerLinkActive="router-link-active">
+<section class="jumbotron">
+    <!-- <div class="container d-flex justify-content-center padding_top_down">
+        <div class="row">
+        <div class="col-lg-12">
+        <div class="">
+        <a [routerLink]="['/quilleditor']" routerLinkActive="router-link-active">
+            <div class="">
+                    <button mat-raised-button color="primary" type="button" >Create New Template</button>
+                </div>
+            </a>
+        </div>
+        </div>
+        </div>
+    </div> -->
+<div class="container d-flex justify-content-center padding_top_down">
+    <div class="col-lg-12">
+    <a [routerLink]= "['/quilleditor']" routerLinkActive="router-link-active">
             
-        <div class="col-md-2">
-            <div class="card1">
-                <img src="https://ssl.gstatic.com/docs/templates/thumbnails/docs-blank-googlecolors.png" class="card1_image"> 
-            </div>
-           <span class="title" >Blank</span>  <br>
-           <span class="sub_title" >New Document</span>
-        </div>
-        </a>
-        <div class="col-md-2">
-            <div class="card1">
-                    <img src="https://ssl.gstatic.com/docs/templates/thumbnails/1XykI9TfWo4IoUqGLjQ-D8NIU4jZ1Ml9OI8-Euj5FrA0_400_3.png" class="card1_image"> 
-            </div>
-            <span class="title" >Computer Science</span>  <br>
-            <span class="sub_title" >Microprocessor</span>
-        </div>
-         <div class="col-md-2">
-            <div class="card1">
-                <img src="https://ssl.gstatic.com/docs/templates/thumbnails/1sU-PkDNWXs52qVV_ujI2lk-S370udkGd5E5SNqZh2Wg_400_3.png" class="card1_image"> 
-            </div>
-           <span class="title" >Information Technology</span>  <br>
-           <span class="sub_title" >Data Structure</span>
-        </div>
-        <div class="col-md-2">
-            <div class="card1">
-                <img src="https://ssl.gstatic.com/docs/templates/thumbnails/1Kt_YsonekD4k0eXrVqdcDEOkv08MQXBa_wlEHGV02Xs_400_3.png" class="card1_image"> 
-            </div>
-            <span class="title" >Electrical Engineering</span>  <br>
-            <span class="sub_title" >Digital Logic Design</span>
-        </div>    
-        <div class="col-md-2">
-            <div class="card1">
-                <img src="https://ssl.gstatic.com/docs/templates/thumbnails/10e8_E36oj6_LuCRzckBFX_9oqbCHntmYB-jxB5U9gsw_400_2.png" class="card1_image"> 
-             </div>
-            <span class="title" >Computer Science</span>  <br>
-            <span class="sub_title" >Distributed System</span>
-        </div>  
-        <div class="col-md-2">
-             <div class="card1">
-                <img src="https://ssl.gstatic.com/docs/templates/thumbnails/1TojfPV3jurwEV2RpmVqnCCCR4z9g2eQBZ40XTHPBqk8_400_3.png" class="card1_image"> 
-            </div>
-            <span class="title" >Information Technology</span>  <br>
-            <span class="sub_title" >Cloud Computing</span>
-         </div>  
-        </div>
-        
+            <div class="">
+                <div class="card box_shadow new_template text-center">
+               
+                    <img style="width:100px;" class="card-img-top" src="https://ssl.gstatic.com/docs/templates/thumbnails/docs-blank-googlecolors.png" class="card1_image"> 
+               <h1>Create New Template</h1>
+                </div>
     </div>
-  </section>
-  
-  
-  <!-- recent document section -->
-  <section class="d-flex justify-content-center">
-      <div class="row container d-flex justify-content-between ">
-          <div class="row  sub_menu ">
-                  <div class="d-flex">
-                          <div class="mr-auto pp-2  title "><button type="button" class="btn btn-light btn-sm">Recent Documents</button></div>
-                          <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">Owner
-                          <i class="fa fa-angle-right"></i></button></div>
-                          <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">
-                              <i class="material-icons">view_list</i></button></div>
-                          <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">
-                              <i class="material-icons">
-                                  sort_by_alpha
-                              </i>
-                                  </button></div>
-                              
-                   </div>
-           </div>
-          <div class="row container d-flex justify-content-between document">
-            <div class="col-md-3">
-                <div class="card card2" style="width: 100%;">
-                    <img class="card-img-top" src="https://i.pinimg.com/originals/00/56/f1/0056f1ff4530f07ad6ecdc002e7e2864.jpg" alt="Card image cap">
-                    <div class="card2_body">
-                      <h5 class="title">Document Name</h5>
-                        <div class="d-flex justify-content-between" >
-                            <a href="#" class="card-link">25 NOV 2019</a>
-                            
-                               <!-- button for acoount navigation -->
-
-      <button mat-icon-button [matMenuTriggerFor]="account">
-        <!-- avatar module inserted -->
-        <i  class="card-link" class="material-icons">more_vert</i>
-        <!-- ---------------- -->
-      </button>
-
-      <!-- when profile button trigerd dropdown will show -->
-    <mat-menu #account="matMenu" class="mat-menu-account">
-
-
-<!-- option 2 for login button if not logged in -->
-        <a mat-menu-item [routerLink]="[ './login']">
-          <button mat-icon-button >
-            <mat-icon>account_circle</mat-icon>
-            <span >login</span>
-          </button>
-       </a>
-<!-- option 3 for displaying questions -->
-        
-        <a mat-menu-item [routerLink]="[ './question']">
-          <button mat-icon-button>
-            <mat-icon>grain</mat-icon>
-            <span>show Question</span>
-          </button>
         </a>
+    </div>
+</div>
+<div class="container d-flex justify-content-center padding_top_down">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="d-flex justify-content-start">
+            <a [routerLink]="['../tpg']">
+            <div class="">
+                    <button mat-raised-button color="accent" type="button" >Template Gallery       
+                    </button>
+                </div>
+            </a>
+        </div>
+        </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+        <div class="col-md-4">
+            <mat-card class="card " style="width: 100%;">
+                <img class="card-img-top"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s"
+                    alt="Card image cap">
+                <div class="card_body">
+
+                    <div class="text-center">
+
+                        <h6 class="title text-primary">Cloud Computing</h6>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div class="col-md-4">
+            <mat-card class="card " style="width: 100%;">
+                <img class="card-img-top"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s"
+                    alt="Card image cap">
+                <div class="card_body">
+
+                    <div class="text-center">
+
+                        <h6 class="title text-primary">Cloud Computing</h6>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+     
+        <div class="col-md-4">
+            <mat-card class="card " style="width: 100%;">
+                <img class="card-img-top"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s"
+                    alt="Card image cap">
+                <div class="card_body">
+
+                    <div class="text-center">
+
+                        <h6 class="title text-primary">Cloud Computing</h6>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- recent document section -->
+<section class="d-flex justify-content-center">
+    <div class="row container d-flex justify-content-between ">
+        <div class="row  sub_menu ">
+            <div class="d-flex">
+                <div class="mr-auto pp-2  title "><button type="button" class="btn btn-light btn-sm">Recent
+                        Documents</button></div>
+                <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">Owner
+                        <i class="fa fa-angle-right"></i></button></div>
+                <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">
+                        <i class="material-icons">view_list</i></button></div>
+                <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">
+                        <i class="material-icons">
+                            sort_by_alpha
+                        </i>
+                    </button></div>
+
+            </div>
+        </div>
+        <div class="row container d-flex justify-content-between document">
 
 
-        
-      
 
 
-        
-    </mat-menu>
-    <!-- dropdown menu ends here -->
-    
-  
-                        </div>  
-                    </div>
-                </div>
-            </div>
-  
-            <div class="col-md-3">
-                <div class="card card2" style="width: 100%;">
-                    <img class="card-img-top" src="https://ssl.gstatic.com/docs/templates/thumbnails/1XykI9TfWo4IoUqGLjQ-D8NIU4jZ1Ml9OI8-Euj5FrA0_400_3.png" alt="Card image cap">
+            <div class="col-md-6">
+                <mat-card class="card " style="width: 100%;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s"
+                        alt="Card image cap">
                     <div class="card2_body">
-                      <h5 class="title">Document Name</h5>
-                        <div class="d-flex justify-content-between" >
+                        <h5 class="title">Document Name</h5>
+                        <div class="d-flex justify-content-between">
+                            <a class="card-link">25 NOV 2019</a>
+                            <a class="card-link"><i class="material-icons">more_vert</i></a>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+
+            <div class="col-md-6">
+                <mat-card class="card " style="width: 100%;">
+                    <img class="card-img-top"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s"
+                        alt="Card image cap">
+                    <div class="card2_body">
+                        <h5 class="title">Document Name</h5>
+                        <div class="d-flex justify-content-between">
                             <a href="#" class="card-link">25 NOV 2019</a>
                             <a href="#" class="card-link"><i class="material-icons">more_vert</i></a>
-                        </div>  
+                        </div>
                     </div>
-                </div>
+                </mat-card>
             </div>
-  
-            <div class="col-md-3">
-                <div class="card card2" style="width: 100%;">
-                    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s" alt="Card image cap">
-                    <div class="card2_body">
-                      <h5 class="title">Document Name</h5>
-                        <div class="d-flex justify-content-between" >
-                            <a href="#" class="card-link">25 NOV 2019</a>
-                            <a href="#" class="card-link"><i class="material-icons">more_vert</i></a>
-                        </div>  
-                    </div>
-                </div>
-            </div>
-  
-            <div class="col-md-3">
-                <div class="card card2" style="width: 100%;">
-                    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s" alt="Card image cap">
-                    <div class="card2_body">
-                      <h5 class="title">Document Name</h5>
-                        <div class="d-flex justify-content-between" >
-                            <a href="#" class="card-link">25 NOV 2019</a>
-                            <a href="#" class="card-link"><i class="material-icons">more_vert</i></a>
-                        </div>  
-                    </div>
-                </div>
-            </div>
-  
-            <div class="col-md-3">
-                <div class="card card2" style="width: 100%;">
-                    <img class="card-img-top" src="https://dsqapj1lakrkc.cloudfront.net/media/institute/BurnisonSept4.19FeatureSized.jpg" alt="Card image cap">
-                    <div class="card2_body">
-                      <h5 class="title">Document Name</h5>
-                        <div class="d-flex justify-content-between" >
-                            <a href="#" class="card-link">25 NOV 2019</a>
-                            <a href="#" class="card-link"><i class="material-icons">more_vert</i></a>
-                        </div>  
-                    </div>
-                </div>
-            </div>
-            </div>
-            </div>
-           
-  </section>
-  
+
+
+        </div>
+    </div>
+
+</section>

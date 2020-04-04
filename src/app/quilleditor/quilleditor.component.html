@@ -1,35 +1,37 @@
-<section class="editor_container"
- 
- fxLayoutAlign="center">
+<!-- <section class="editor_container" fxLayoutAlign="center">
+    <div>
+        <form (ngSubmit)="onSubmit()" #demoForm="ngForm">
+            <ckeditor #editor [(ngModel)]="model.editorData" id="editorData" name="editorData">
+            </ckeditor>
+            <div class="d-flex justify-content-end editor_btn_container">
+                <div class="editor_btn">
+                <button  mat-raised-button color="accent" type="reset" (click)="reset()">Reset</button>
+                </div>
+                <button  mat-raised-button color="primary" type="submit">Save </button>
+                <div class="editor_btn">
 
-
-
-
-<div>
-
-<form (ngSubmit)="onSubmit()" #demoForm="ngForm">
-    
-   
-    <ckeditor
-        #editor
-        [config]="editorConfig"
-        [(ngModel)]="model.description"
-        id="description"
-        name="description"
-        type="divarea">
-    </ckeditor>
-
-    <p><button type="reset" (click)="reset()">Reset form</button></p>
-    <p><button type="submit">Submit this form</button></p>
-</form>
-
-
-
-<textarea #preview
-    (focus)="isPreviewActive = true; previewModel = model.description"
-    (change)="isPreviewActive = false; model.description = previewModel"
+                </div>
+            </div>
+        </form>
+        <textarea #preview
+    (focus)="isPreviewActive = true; previewModel = model.editorData"
+    (change)="isPreviewActive = false; model.editorData = previewModel"
     [(ngModel)]="previewModel">
 </textarea>
+<div id="styling">
 
 </div>
-</section>
+    </div>
+</section> -->
+<div class="document-editor">
+    <form (ngSubmit)="onSubmit()" #demoForm="ngForm">
+<ckeditor [editor]="Editor" id="editorData" name="editorData"
+
+          [(ngModel)]="model.editorData"  (ready)="onReady($event)" (change)="onChange($event)">
+</ckeditor>
+</form>
+
+</div>
+<div class="print_btn">
+    <button mat-raised-button color="primary" (click)="exportAsPDF()">print</button>
+</div>

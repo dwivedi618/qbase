@@ -1,93 +1,57 @@
-<!-- <section fxLayoutAlign="center center" class="login-section "> -->
-    
+<div class="container-fluid">
+  <div class="row pt-5">
+    <div class="col-md-4 offset-lg-4 ">
+<div class="card box_shadow">
+  <div class="text-center padding_top_down">
+    <h1 class="text-black">Sign Up</h1>
+  </div>
 
-    <mat-card   class="mat-card-login">
-        <div class="logo" fxLayoutAlign="center">
-            <img src="../assets/qbase48.png" alt="qbase">
-          </div>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()" class="login-form" >
 
-        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="login-form" #signupForm="ngForm" (ngSubmit)="onSignup(signupForm  )">      
+    <div >
+      <mat-form-field appearance="outline" class="container">
+        <mat-label>Full Name</mat-label>
+        <input type="text" matInput placeholder="Full Name" formControlName="name">
+          <mat-error *ngIf="f.password.hasError('required')">User Full Name Required</mat-error>
+      </mat-form-field>
+        <mat-form-field appearance="outline" class="container">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Example@gmail.com" formControlName="email" required>
+          <mat-error *ngIf="f.email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="container">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'"
+            required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="f.password.hasError('required')">Password Required</mat-error>
+        </mat-form-field>
+    </div>
+      <div class="container d-flex justify-content-around">
+        <button class="full_width" type="submit" mat-raised-button color="primary" >Sign Up
+        </button>
+      </div>
+      <div class="container text-center padding_top_down">
+        <small class="text-gray">OR</small>
+      </div>
+      <div class=" container justify-content-center">
+        <a [routerLink]="['/login']">
+          <button class="full_width" mat-raised-button color="accent" >Sign In</button>
           
-          <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0px"><!--all input field container-->
-          <!-- name input field -->
-          <div class="input-email">
-            <mat-form-field appearance="outline" class="login-input ">
-              
-               <input type="text"  matInput placeholder="shivam dwivedi" ngModel name="name">
-               
-            </mat-form-field>
-          </div>
-            <!-- email input field -->
-          <div class="input-email">
-            <mat-form-field appearance="outline" class="login-input ">
-              
-               <input type="email"  matInput placeholder="youemail@mail.com " ngModel name="email">
-               <!-- <mat-error *ngIf="emailInput.invalid">Please enter valid Email</mat-error> -->
-               <!-- <mat-icon matPreffix>sentiment_very_satisfied</mat-icon> -->
-               <!-- <mat-hint>Hint</mat-hint> -->
-            </mat-form-field>
-          </div>
+        </a>
+      </div>
+      
+      <div class="container text-center padding_top_down">
+        <small class="text-black-50">By continuing, you agree to Terms of Service, Privacy Policy</small>
+      </div>
 
-          <!-- password input field -->
-          <div >
-            <mat-form-field appearance="outline" class="login-input">
-                <input matInput placeholder="Password" ngModel name="password" [type]="hide ? 'password' : 'text'" #password="ngModel">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-          </div>
-              <!-- ---------------------- -->
-            
-                    <!-- ---------------------- -->
-             
-          </div><!--all input field ends here-->
-            
+  </form>
+</div>
+</div>
+</div>
 
-    
-
-      <div >
-       <button type="submit" mat-icon-button class="custom-btn btn-black" mat-stroked-button (click)="openSnackBar()">Sign Up  
-       </button> 
-      </div>  
-
-       
-    
-            <!-- api login button -->
-             <div class="api-login" fxFlex fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px">
-
-
-              <!-- facebook api button -->
-                <div >
-                    <button type="submit" mat-mini-fab class="btn-black">f 
-                    </button> 
-                </div>
-
-                <!-- google api button -->
-                <div >
-                    <button type="submit" mat-mini-fab class=" btn-black">G 
-                    </button> 
-                </div>
-
-                <!-- linkedIn api button -->
-                <div >
-                    <button type="submit" mat-mini-fab class=" btn-black">L 
-                    </button> 
-                </div>
-
-
-
-             </div>
-            <!---------------------->
-
-            <!-- back to login -->
-            <div fxLayoutAlign="center" >
-              <a [routerLink]="['/login']" routerLinkActive="router-link-active">
-                <span class="shadow-text">Login</span>
-              </a> 
-           </div>
-        </form>
-          
-
-      </mat-card>
+</div>
 <!-- </section> -->
