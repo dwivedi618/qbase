@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 
   returnUrl: string;
   loading: boolean;
+  submitted = false;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -58,6 +59,13 @@ export class LoginComponent implements OnInit {
   
   
   onLoginSubmit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+     this.messageService.openSnackBar('Please ! Provide Required Data',null);
+     return;
+     console.log("form Invalid");
+ }
     console.log(this.form.email.value);
 
     this.loading = true;

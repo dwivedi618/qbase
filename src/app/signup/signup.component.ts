@@ -47,6 +47,12 @@ export class SignupComponent implements OnInit {
 
   onSignUp() {
     this.submitted = true;
+       // stop here if form is invalid
+       if (this.signUpForm.invalid) {
+        this.messageService.openSnackBar('please ! Provide Required Data',null);
+        return;
+        console.log("form Invalid");
+    }
     console.log("--------------->>>>>>>>>>>",this.f.email.value);
     this.user.email = this.f.email.value;
     this.user.password = this.f.password.value;

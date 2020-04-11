@@ -25,3 +25,7 @@
     
     width: 80%;
 }
+.question_textarea textarea{
+    width: 100%;
+min-height: 200px;
+}

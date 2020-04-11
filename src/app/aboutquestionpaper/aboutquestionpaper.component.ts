@@ -34,7 +34,7 @@ export class AboutquestionpaperComponent implements OnInit {
     addOnBlur = true;
     readonly separatorKeysCodes: number[] = [ENTER, COMMA];
     sessions: Session[] = [
-      {name: '2019-20'},
+      
       
     ];
     subjects: Subject[] = [
@@ -117,6 +117,27 @@ toggleChip = (chip: any) => {
   this.chips.has(chip) ? removeChip() : addChip();
 }
 
-get chips() { return this.forthcntrl.value; }
+get chips() { 
+  console.log("chip value",this.forthcntrl.value)
+  return this.forthcntrl.value; }
+
+get f1() { return this.firstFormGroup.controls; }
+get f2() { return this.secondFormGroup.controls; }
+get f3() { return this.thirdFormGroup.controls; }
+get f4() { return this.forthFormGroup.controls; }
+get f5() { return this.difficultyLevelFormGroup.controls; }
+
+onDocumentNameSubmit(){
+  console.log("Document name :",this.f1.firstCtrl.value);
+}
+onSessionSubmit(){
+  console.log("Session :",this.f2.secondCtrl.value);
+}
+onSubjectSubmit(){
+  console.log("subject :",this.f3.thirdCtrl.value);
+}
+onTopicsSubmit(){
+  console.log("topics :",this.chips.forthCtrl.value);
+}
 
 }

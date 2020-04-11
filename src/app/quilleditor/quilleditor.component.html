@@ -23,15 +23,22 @@
 </div>
     </div>
 </section> -->
+<form (ngSubmit)="onTemplateSubmit()" #demoForm="ngForm">
 <div class="document-editor">
-    <form (ngSubmit)="onSubmit()" #demoForm="ngForm">
+    
 <ckeditor [editor]="Editor" id="editorData" name="editorData"
 
-          [(ngModel)]="model.editorData"  (ready)="onReady($event)" (change)="onChange($event)">
+          [(ngModel)]="model.editorData"  (ready)="onReady($event)" >
 </ckeditor>
-</form>
+
 
 </div>
-<div class="print_btn">
-    <button mat-raised-button color="primary" (click)="exportAsPDF()">print</button>
+<div class="d-flex justify-content-end action_buttons ">
+<div class="pl-1 pr-1">
+    <button id="cmd" mat-raised-button type="button" color="primary" (click)="exportAsPDF()">print</button>
 </div>
+<div class="pl-1 pr-1">
+    <button id="upload-template" stype="submit" mat-raised-button color="primary" >Save Template</button>
+</div>
+</div>
+</form>

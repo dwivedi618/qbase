@@ -32,6 +32,9 @@ mat-toolbar{
   height: 100%;
   
 }
+.logout-btn{
+  cursor: pointer;
+}
 .brand_name{
   position: relative;
   font-size: 1rem;

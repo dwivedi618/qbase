@@ -1,57 +1,59 @@
-<section class="profile">
-<mat-card  class="mat-no-effect">
-  <div class="background-image" fxLayoutAlign="center center">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyhLTxoUNGS2IMMIvQ8rMZNYVXnaQnVfVOXPlaGqYYK8Wjh8NG" alt="background">
-    <mat-icon matTooltip="upload cover"  class="upload-cover-icon" 
-    (click)="fileUpload.click()">camera_alt</mat-icon>
-  </div>
-  <div class="profile-image-container profile-image-container-size"  fxLayout="column" fxLayoutAlign="center center">
-      <div >
-          <!-- this mat-card-avatar only works wthin mat-card -->
-              <img mat-card-avatar  class="avatar-big" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyhLTxoUNGS2IMMIvQ8rMZNYVXnaQnVfVOXPlaGqYYK8Wjh8NG" 
-              alt="shivam dwivedi">
+<div class="layout">
 
-              <!-- fileUplaod input for profile -->
-              <mat-icon matTooltip="upload profile"class="upload-profile-icon" 
-              (click)="fileUpload.click()">camera_alt</mat-icon>
-              <input type="file" #fileUpload>
+  <mat-card class="card border-0 profile my_shadow_1">
+      <div class="row">
+          <div class="col-md-4">
+              <div class="profile__picture box_shadow_1"><img src="https://lh3.googleusercontent.com/-uWjOwF19m-0/XdeYugpDq0I/AAAAAAAAaBY/2q6r8zdnhhAG1i1jV8u6HkYSPWjBfpupACEwYBhgLKs4DAMBZVoC9wYUpn-gi6BEMpqPyaUxZit9Xk7Ca6OUptyrVIgUT7-lGVqx79hLXTOaWcg7wf15Vw0yC3y-Mn0AZRpECtigSs4sl0028hhziQfI3dz8yN0N2TYWM3lWXMRCaj2O7ngXfUtXRQ3eqoOk5nwuayXRbe09HxS0zMbYNM0_yh0tAH3naRx-wejObUpkubEIZs-HfzYF-5TDoNrdG4HZNffJnlW9O4mChF45O_lOGWjwv8z2KbN1n0-IGH3SKgP0-T89PV7y2rhMDwqz7CdDOujGlr7kbKrEs5OoA5pSVXjwa2ZUkn2NNRP_8_z8yjH_kXoKN3w41zDvI38gAW9YDM8XJFJ5QiWdEPbolnCO-e2DkP1N-rc7oK-2C5HAP00VYbzYbHUzTyyQp35MSL3GUU4XY09fbg1pgYRtsDwAgU7TkzkdP3gOVtyQ36u90Bw9x1EnjO-Ddv4RsnifbUMnEBX4SuMMlTa_dcg0OZ5t-6SRf3APDgos4l8HcJgk0ouVMVgzZGu-MHHoVA-jjbtLCbSEuIzvdvFRUgli6Ei1UalwCAn7AWFYjfOtny3uJcq9aIWIp7dNkb7CexjU_iISCFyO3WkMOLb8OJtywMMuPqfQF/w140-h140-p/2019-11-22.jpg" /></div>
+          </div>
+          <div class="col-md-8">
+              <div class="col-sm-12">
+                  <div class="row profile__header">
+                      <div class="col-sm-12 col-md-6 col-lg-6">
+                          <div class="profile__account">
+                              <h5 class="profile__username">{{name}}</h5>
+                          </div>
+                          <div class="profile__account">
+                            <small class="profile__username">{{email}}</small>
+                        </div>
 
-        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-6 col-lg-6">
+                          <div class="profile__edit">
+                              <!-- <a routerLink="" class="profile__button" > -->
+                              <a routerLink="">
 
-  </div>
+                                  <button mat-icon-button>update
+                                      <mat-icon>edit</mat-icon>
+                                  </button> </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-12">
+                  <div class="profile__stats">
+                      <div class="profile__stat">
+                          <div class="profile__icon profile__icon--gold"><i class="fas fa-wallet"></i></div>
+                          <div class="profile__value">Mon 2:27 , 6 April 2020
+                              <div class="profile__key">Last Login</div>
+                          </div>
+                      </div>
+                      <div class="profile__stat">
+                          <div class="profile__icon profile__icon--blue"><i class='fas fa-user-graduate'></i></div>
+                          <div class="profile__value">Admin
+                              <div class="profile__key">Role</div>
+                          </div>
+                      </div>
+                      <!-- <div class="profile__stat">
+                          <div class="profile__icon profile__icon--pink"><i class="fas fa-eart"></i></div>
+                          <div class="profile__value">2020
+                              <div class="profile__key">Student Id</div>
+                          </div>
+                      </div> -->
+                  </div>
+              </div>
+          </div>
+      </div>
 
-</mat-card >
-<mat-card class="mat-no-effect" >
-  <div  class="menu-container" fxLayout="row" fxLayoutAlign="space-around center">
+  </mat-card>
 
-    <div class="menu">
-      <span >Overview</span>
-    </div>
-
-    <div class="menu">
-        <span>Collections</span>
-    </div>
-    
-    <div class="menu">
-          <span>Cources</span>
-    </div>
-
-    <div class="menu">
-            <span>All</span>
-    </div>
-
-  </div>
-
-</mat-card>
-<mat-card fxLayoutAlign="center center">
-  <mat-list>
-    <mat-divider></mat-divider>
-    <mat-list-item> username </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item> Email</mat-list-item>
-    <mat-divider></mat-divider>
-    
-   </mat-list>
-</mat-card>
-
-</section>
+</div>

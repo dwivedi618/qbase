@@ -22,7 +22,7 @@ app.use((req,res,next) => {
     );
     next();
 });
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:'1024kb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
@@ -42,7 +42,7 @@ if (sequelize) {
     console.log("Database connected");
 }
 
-//models
+//------------------------------*Models*----------------------------------
 const User = sequelize.define("user",{
     name: {
         type: Sequelize.STRING
@@ -68,16 +68,38 @@ const Question = sequelize.define("question",{
         type: Sequelize.STRING
     },
     type: {
-        type: Sequelize.TINYINT
+        type: Sequelize.STRING
     },
-    unit: Sequelize.TINYINT,
+    unit: Sequelize.STRING,
     subject: Sequelize.STRING,
     topic: Sequelize.STRING,
-    image: Sequelize.BLOB,
-    difficultyLevel: Sequelize.ENUM('LOW','MEDIUM','HIGH'),
+    // image: Sequelize.BLOB,
+    difficultyLevel: Sequelize.STRING,
+    courseOutcome: {
+        type: Sequelize.STRING
+    },
+    answerType: {
+        type: Sequelize.STRING
+    }
+    
 });
 
-sequelize.sync();
+const Template = sequelize.define("template",{
+    name: {
+        type: Sequelize.STRING
+    },
+    string: {
+        type: Sequelize.TEXT
+    },
+    thumbnail: {
+        type: Sequelize.TEXT
+    }
+    
+});
+
+//------------------------------*Models End Here*----------------------------------
+
+sequelize.sync({alter: false});
 
 
 app.use((req, res, next) => {
@@ -86,7 +108,7 @@ app.use((req, res, next) => {
 });
 
 
-//routes
+//---------------------------------routes------------------------------------
 app.post("/login", async (req,res) => {
     console.log(req.body.email);
     
@@ -114,6 +136,8 @@ app.post("/login", async (req,res) => {
 
 app.post("/signup", async (req,res) => {
     console.log("inside sign up",req.body);
+    if(!req.body.name || !req.body.email || !req.body.password) 
+        return res.json({message: "Please use proper Data"});
     await User.create({
         name: req.body.name,
         email: req.body.email,
@@ -124,10 +148,82 @@ app.post("/signup", async (req,res) => {
     });
 });
 
-app.use((req,res,next) => {
-    res.send('hello t')
+app.post("/upload-question", async (req,res) => {
+    console.log("inside sign up",req.body);
+    let params = req.body;
+    if(!req.body) 
+        return res.json({message: "Please use proper Data"});
+    await Question.create({
+        question: params.question,
+        type: params.type,
+        subject: params.subject,
+        unit: params.unit,
+        topic: params.topic,
+        answerType: params.answerType,
+        courseOutcome: params.courseOutcome,
+        difficultyLevel: params.difficultyLevel
+
+    });
+    res.status(200).json({
+        message: "Questoin uploaded" ,
+    });
 });
 
+app.get("/get-question", async (req,res) => {
+    console.log("from backend question")
+    let params = req.body;
+    let query = {
+        raw: true
+    };
+    if(params.subject) query.where.subject = params.subject;
+    if(params.topic) query.where.topic = params.topic;
+    if(params.unit) query.where.unit = params.unit;
+    if(params.courseOutcome) query.where.courseOutcome = params.courseOutcome;
+    if(params.answerType) query.where.answerType = params.answerType;
+    if(params.type) query.where.type = params.type;
+    if(params.difficultyLevel) query.where.difficultyLevel = params.difficultyLevel;
 
+    let questions = await Question.findAll(query);
+    res.status(200).json({
+        message: "user created" ,
+        questions: questions
+    });
+    console.log("questions",questions)
+});
+
+app.post("/upload-template", async (req,res) => {
+    let params = req.body;
+    console.log("editor data---",params.thumbnail);
+    if(!req.body) 
+        return res.json({message: "Please use proper Data"});
+    await Template.create({
+        name: params.name,
+        string: params.editorData,
+        thumbnail: params.thumbnail
+    });
+    res.status(200).json({
+        message: "template created" ,
+    });
+});
+
+app.get("/get-template", async (req,res) => {
+    let params = req.query;
+    let query = {
+        raw: true
+
+    };
+    if(params.id) query.where.id = params.id;
+    // if(params.name) query.where.subject = params.subject;
+
+    let templates = await Template.findAll(query);
+    res.status(200).json({
+        message: "successful" ,
+        templates: templates
+    });
+});
+//------------------Routes End Here-------------------------
+app.use((req,res)=>{
+    res.send("backend ruuning well")
+})
 module.exports.app = app;
 

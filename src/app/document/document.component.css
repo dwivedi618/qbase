@@ -19,8 +19,30 @@ a{
     min-width: 60vw;
     min-height: 5rem;
 }
+.mat_card{
+    max-height: 80vh!important;
+    height:  80vh!important;
+    padding-bottom: 1rem;
+    overflow: hidden;
 
-
+    
+}
+.card_action{
+    
+    width: 100%;
+    background: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+mat-card img{
+    height: 80vh;
+    overflow: hidden;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
 .card1{
 width: 100%;
 max-width: 133px;

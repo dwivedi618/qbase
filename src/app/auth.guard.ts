@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from './services/authentication.service';
+import { MessageService } from './services/message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { AuthenticationService } from './services/authentication.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private messageServices : MessageService,
 ) { }
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -17,7 +19,8 @@ export class AuthGuard implements CanActivate {
       if (localStorage.getItem('currentUser')) {  
         return true;  
     }  
-    this.router.navigate(['']);  
+    this.router.navigate(['/login']); 
+     this.messageServices.openSnackBar("please! login first",null)
     return false; 
     
   }

@@ -2,7 +2,7 @@
         <div class="special-button-1"  fxLayoutAlign="center center"
         (click)="openBottomSheet()" >
                 <button mat-icon-button >
-                <i class="material-icons add-icon">add</i>  
+                <i class="material-icons add-icon text-primary">add</i>  
                 </button>
         </div>
 </div>
@@ -10,27 +10,33 @@
 <mat-list>
         <a [routerLink] = "['/document']" router-Link-Active="myactive">
         <mat-list-item routerLinkActive = "active">
-                <mat-icon mat-list-icon>subject</mat-icon>
+                <mat-icon mat-list-icon class="text-primary">subject</mat-icon>
                 <span mat-line>Document</span>    
         </mat-list-item>
         </a>
 
         <a [routerLink] = "['/quilleditor']" router-Link-Active="myactive" >
                 <mat-list-item>
-                        <mat-icon mat-list-icon>create</mat-icon>
+                        <mat-icon mat-list-icon class="text-primary">create</mat-icon>
                         <span mat-line>Editor</span>    
                 </mat-list-item>
         </a>
         <a [routerLink] = "['/aboutquestionpaper']" router-Link-Active="myactive">
                 <mat-list-item>
-                        <mat-icon mat-list-icon>launch</mat-icon>
-                        <span mat-line>Basic data</span>    
+                        <mat-icon mat-list-icon class="text-primary">launch</mat-icon>
+                        <span mat-line>General Instructions</span>    
                 </mat-list-item>
         </a>
         <a  [routerLink]="[ '/question']" routerLinkActive="myactive">
                 <mat-list-item>
-                  <mat-icon mat-list-icon>grain</mat-icon>
-                  <span mat-line>show Question</span>
+                  <mat-icon mat-list-icon class="text-primary">grain</mat-icon>
+                  <span mat-line>All Questions</span>
+                </mat-list-item> 
+        </a>
+        <a  [routerLink]="[ '/uploadquestion']" routerLinkActive="myactive">
+                <mat-list-item>
+                  <mat-icon mat-list-icon class="text-info">cloud</mat-icon>
+                  <span mat-line>Upload Questions</span>
                 </mat-list-item> 
         </a>
 </mat-list>

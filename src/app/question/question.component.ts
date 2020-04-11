@@ -1,28 +1,21 @@
 import {SelectionModel} from '@angular/cdk/collections';
 import {Component,OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
+import { CommonService } from '../services/common.service';
 
-export interface PeriodicElement {
+export interface Question {
   question: string;
   subject: string;
-  level: string;
+  unit:string;
   topic: string;
+  courseOutcome:string;
+  difficultyLevel: string;
+  type:string;
+  answerType:string;
+  action:any;
+
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'medium', topic: 'B'},
-  {subject: 'Data structure', question: 'Differentiate between file and structure storage structure.', level: 'high', topic: 'He'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'medium', topic: 'B'},
-  {subject: 'Data structure', question: 'When is a binary search best applied?', level: 'medium', topic: 'Li'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
-  {subject: 'Data structure', question: 'How do you reference all the elements in a one-dimension array?', level: 'high', topic: 'Be'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
-  {subject: 'Data structure', question: 'Which data structures are applied when dealing with a recursive function?', level: 'high', topic: 'C'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
-  {subject: 'Data structure', question: 'What is data structure?', level: 'low', topic: 'H'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
-];
 
 @Component({
   selector: 'app-question',
@@ -31,10 +24,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class QuestionComponent implements OnInit {
 
+  questions: Question[];
+  displayedColumns: string[] = ['select','question','subject','unit','topic','courseOutcome','difficultyLevel','type', 'answerType','action'];
+  // columnsToDisplay: string[] = this.displayedColumns.slice();
+  dataSource = new MatTableDataSource<Question>(this.questions);
+  selection = new SelectionModel<Question>(true, []);
+  isLoading=  true;
 
-  displayedColumns: string[] = ['select', 'subject', 'question', 'level', 'topic'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  
+
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -51,16 +49,16 @@ export class QuestionComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: Question): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.subject + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.question + 1}`;
   }
 
   // filtering
 
-  3
+  
   public doFilter = (value: string) => {
       this.dataSource.filter = value.trim().toLocaleLowerCase();
     }
@@ -69,13 +67,25 @@ export class QuestionComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     
-  constructor() {}
+  constructor(
+    private commonService: CommonService
+  ) {}
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
   ngOnInit() {
+    this.commonService.getData('get-question')
+    .subscribe((result) => {
+      this.questions = result.questions;
+      let temp : any[];
+      this.isLoading= false;
+     
+      console.log("INSIDE question resssuullt",this.questions);
 
+    },(error) => {
+      console.log("INSIDE question eerroor",error);
+    })
   }
 
   

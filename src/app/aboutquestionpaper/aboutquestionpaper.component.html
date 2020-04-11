@@ -3,7 +3,7 @@
   <div class="container padding_top_down mx-auto">
 
   <mat-step [stepControl]="firstFormGroup" >
-    <form [formGroup]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" (ngSubmit)="onDocumentNameSubmit()">
       <ng-template matStepLabel>Document Name</ng-template>
 
       <div class="row" >
@@ -20,7 +20,7 @@
           <div class="d-flex justify-content-center">
             
             <div class="p-1">
-              <button color="primary" mat-raised-button matStepperNext>Next</button>
+              <button color="primary" type="submit" mat-raised-button matStepperNext>Next</button>
             </div>
           </div>
           </div>
@@ -30,7 +30,7 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
+    <form [formGroup]="secondFormGroup" (ngSubmit)="onSessionSubmit()">
       <ng-template matStepLabel>Session</ng-template>
       <div class="row" >
         <div class="col-lg-12  p-5">
@@ -42,7 +42,7 @@
                 {{session.name}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
-              <input placeholder="2019-20" formControlName="secondCtrl" required type="text"
+              <input  formControlName="secondCtrl" required type="text"
                 [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
@@ -54,20 +54,20 @@
           <button color="accent" mat-raised-button matStepperPrevious>Back</button>
         </div>
         <div class="p-1">
-          <button color="primary" mat-raised-button matStepperNext>Next</button>
+          <button color="primary" type="submit" mat-raised-button matStepperNext>Next</button>
         </div>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
+  <mat-step [stepControl]="thirdFormGroup" >
+    <form [formGroup]="thirdFormGroup" (ngSubmit)="onSubjectSubmit()">
       <ng-template matStepLabel>Subject</ng-template>
       <div class="row">
         <div class="col-lg-12  p-5">
           <h1 class="">Subject</h1>
           <mat-form-field class="container">
             <mat-label>Select a Subject</mat-label>
-            <mat-select [(value)]="selectedSubject" name="subject">
+            <mat-select [(value)]="selectedSubject" name="subject" formControlName="thirdCtrl">
               <mat-option *ngFor="let subject of subjects" [value]="subject.value" required>{{subject.viewSubject}}
               </mat-option>
             </mat-select>
@@ -80,7 +80,7 @@
           <button color="accent" mat-raised-button matStepperPrevious>Back</button>
         </div>
         <div class="p-1">
-          <button color="primary" mat-raised-button matStepperNext>Next</button>
+          <button color="primary" type="submit" mat-raised-button matStepperNext>Next</button>
         </div>
       </div>
     </form>
@@ -89,7 +89,7 @@
   <!-- --------- -->
   <!-- forth steper for slybus and topic from units-->
   <mat-step [stepControl]="forthFormGroup">
-    <form [formGroup]="forthFormGroup">
+    <form [formGroup]="forthFormGroup" (ngSubmit)="onTopicsSubmit()">
       <ng-template matStepLabel>Syllabus for {{selectedSubject}}</ng-template>
 
       <div class="row">
@@ -98,14 +98,32 @@
           <p class="secondary_paragraph">{{selectedSubject}}</p>
           <mat-tab-group animationDuration="0ms" mat-align-tabs="center">
             <mat-tab label="Unit 1">
-              <mat-form-field class="container">
-                <mat-chip-list [multiple]="true" selectable>
+             <mat-form-field class="container">
+            <mat-chip-list #chipUnit1>
+              <mat-chip *ngFor="let i of topicsOfUnit1" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(session)">
+                {{i}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input  formControlName="forthCtrl" required type="text"
+                [matChipInputFor]="chipUnit1" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+          </mat-form-field>
+              <!-- <mat-form-field class="container">
+                <mat-chip-list #chipUnit1 [multiple]="true" selectable >
                   <mat-chip *ngFor="let i of topicsOfUnit1" (click)="toggleChip(i)" [selected]="chips.has(i)">{{i}}
                   </mat-chip>
+                 <input 
+                 formControlName="forthCtrl"
+           [matChipInputFor]="chipUnit1"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
                 </mat-chip-list>
-              </mat-form-field>
+              </mat-form-field> -->
             </mat-tab>
-            <mat-tab label="Unit 2">
+            <!-- <mat-tab label="Unit 2">
               <mat-form-field class="container">
                 <mat-chip-list [multiple]="true" selectable>
                   <mat-chip *ngFor="let i of topicsOfUnit2" (click)="toggleChip(i)" [selected]="chips.has(i)">{{i}}
@@ -136,7 +154,7 @@
                   </mat-chip>
                 </mat-chip-list>
               </mat-form-field>
-            </mat-tab>
+            </mat-tab> -->
 
 
           </mat-tab-group>
@@ -150,7 +168,7 @@
           <button color="accent" mat-raised-button matStepperPrevious>Back</button>
         </div>
         <div class="p-1">
-          <button color="primary" mat-raised-button matStepperNext>Next</button>
+          <button color="primary" type="submit" mat-raised-button matStepperNext>Next</button>
         </div>
       </div>
     </form>

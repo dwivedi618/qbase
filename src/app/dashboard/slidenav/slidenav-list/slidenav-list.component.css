@@ -32,8 +32,8 @@ mat-list-item:visited{
     color:  #673ab7;
 }
 mat-list-item:hover{
-    background: #ccc;
-    color:#00adff;
+    background: rgba(158, 181, 245, 0.466);
+    color:#101111;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
 }
