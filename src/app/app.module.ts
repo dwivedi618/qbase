@@ -42,7 +42,7 @@ import { AboutComponent } from './about/about.component';
 
 import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionpaper.component';
 import { TemplategalleryComponent } from './templategallery/templategallery.component';
-import { DocumentComponent } from './document/document.component';
+import { DocumentComponent, Rename, Delete } from './document/document.component';
 import { QuilleditorComponent } from './quilleditor/quilleditor.component';
 import { ResumeComponent } from './resume/resume.component';
 
@@ -52,12 +52,13 @@ import { AuthenticationService } from './services/authentication.service';
 import { AlertService } from './services/alert.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
+import { PaperInfoDetailedComponent } from './paper-info-detailed/paper-info-detailed.component';
 
 
 
 
 @NgModule({
-  entryComponents: [UploadComponent],
+  entryComponents: [UploadComponent,Rename,Delete,PaperInfoDetailedComponent],
 
   declarations: [
     AppComponent,
@@ -77,12 +78,15 @@ import { AuthGuard } from './auth.guard';
     UploadquestionComponent,
     
     DocumentComponent,
+    Rename,
+    Delete,
     QuilleditorComponent,
     ResumeComponent,
     AboutComponent,
     AboutquestionpaperComponent,
     TemplategalleryComponent,
     PasswordrecoveryComponent,
+    PaperInfoDetailedComponent,
     // HomeComponent,
     
     

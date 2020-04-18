@@ -10,13 +10,24 @@ import {
 	AfterViewInit,
 	ElementRef
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
+import { NgForm, FormBuilder } from '@angular/forms';
+import{ActivatedRoute} from '@angular/router'
 import { FormGroup, FormControl } from '@angular/forms';
 import { CommonService } from '../services/common.service';
 import { MessageService } from '../services/message.service';
 
 // import { editorConfig } from '../../../src/';
+export interface QuestionSectionA {
+	question: string;
+	// subject: string;
+	// unit:string;
+	// topic: string;
+	// courseOutcome:string;
+	// difficultyLevel: string;
+	// type:string;
+	// answerType:string;
+	// action:any;
+  }
 
 @Component({
 	selector: 'app-quilleditor',
@@ -24,11 +35,21 @@ import { MessageService } from '../services/message.service';
 	styleUrls: ['./quilleditor.component.css']
 })
 export class QuilleditorComponent implements AfterViewInit {
+
+isLoading = false;
+action : string;
 	 data : string;
 	// public config: ;
+	
+
+
 	@ViewChild('demoForm') demoForm?: NgForm;
 	@ViewChild('editor') editor;
+	step = 0;
+	isQuestionLoading= true;
+	isOpen = true;
 
+	
 	// public Editor = ClassicEditor;
 	public Editor = DecoupledEditor;
 
@@ -60,12 +81,19 @@ export class QuilleditorComponent implements AfterViewInit {
 		 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 		   Times: 60 Minutes</span></p>
-		<p style="text-align:center;"><span style="background-color:transparent;color:#00000a;"><strong>
-		<u>SECTION- A</u>
-		</strong></span></p><p>
-		<span style="background-color:transparent;color:#00000a;"
-		><strong>Q1. Attempt all parts. Write answer of each part in short. (10*2.5=25)</strong>
-		&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+		<p style="text-align:center;">
+		<span style="background-color:transparent;color:#00000a;">
+		<strong id="section-A">
+		<u>SECTION-A</u>
+		</strong>
+		</span>
+		</p>
+		<p>
+		<span style="background-color:transparent;color:#00000a;">
+		<strong>Q1. Attempt all parts. Write answer of each part in short. (10*2.5=25)</strong>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+		</p>
 		<ol>
 		<li>
 		<span style="background-color:transparent;color:#00000a;">
@@ -112,7 +140,23 @@ export class QuilleditorComponent implements AfterViewInit {
 		<ol>
 		<li>
 		<span style="background-color:transparent;color:#00000a;">
-		Explain Supervised Learning with example.</span></li></ol><p style="text-align:center;"><span style="background-color:transparent;color:#00000a;"><strong><u>SECTION- B</u></strong></span></p><p><span style="background-color:transparent;color:#00000a;"><strong>Q1. Attempt all parts. Write answer of each part in short. (10*2=20)</strong> &nbsp;&nbsp;&nbsp;&nbsp;</span></p><ol><li><span style="background-color:transparent;color:#00000a;">Differentiate deep learning with machine learning by an example.</span></li><li><span style="background-color:transparent;color:#00000a;">Differentiate PCA, LDA and manifolds dimensional reduction techniques.</span></li><li><span style="background-color:transparent;color:#00000a;">Explain why dropout in a neural network act as a regularizer.</span></li><li><span style="background-color:transparent;color:#00000a;">Define VC Dimension with an example.</span></li><li><span style="background-color:transparent;color:#00000a;">Explain Semi Supervised Learning.&nbsp;</span></li></ol><p style="margin-left:3pt;">&nbsp;</p><p>&nbsp;</p>
+		Explain Supervised Learning with example.</span>
+		</li>
+		</ol>
+		<p style="text-align:center;">
+		<span style="background-color:transparent;color:#00000a;">
+		<strong><u>SECTION- B</u></strong>
+		</span>
+		</p>
+		<p><span style="background-color:transparent;color:#00000a;">
+		<strong>Q1. Attempt all parts. Write answer of each part in short. (10*2=20)</strong>
+		 &nbsp;&nbsp;&nbsp;&nbsp;</span>
+		 </p>
+		 <ol>
+		 <li>
+		 <span style="background-color:transparent;color:#00000a;">
+		 Differentiate deep learning with machine learning by an example.</span>
+		 </li><li><span style="background-color:transparent;color:#00000a;">Differentiate PCA, LDA and manifolds dimensional reduction techniques.</span></li><li><span style="background-color:transparent;color:#00000a;">Explain why dropout in a neural network act as a regularizer.</span></li><li><span style="background-color:transparent;color:#00000a;">Define VC Dimension with an example.</span></li><li><span style="background-color:transparent;color:#00000a;">Explain Semi Supervised Learning.&nbsp;</span></li></ol><p style="margin-left:3pt;">&nbsp;</p><p>&nbsp;</p>
 		</span></li></ol><p style="text-align:center;"><span style="background-color:transparent;color:#00000a;"><strong><u>SECTION- C</u></strong></span></p><p><span style="background-color:transparent;color:#00000a;"><strong>Q3. Attempt any Three parts. Write answer of each part in ling. (10*2=20)</strong> &nbsp;&nbsp;&nbsp;&nbsp;</span></p><ol><li><span style="background-color:transparent;color:#00000a;">Differentiate deep learning with machine learning by an example.</span></li><li><span style="background-color:transparent;color:#00000a;">Differentiate PCA, LDA and manifolds dimensional reduction techniques.</span></li><li><span style="background-color:transparent;color:#00000a;">Explain why dropout in a neural network act as a regularizer.</span></li><li><span style="background-color:transparent;color:#00000a;">Define VC Dimension with an example.</span></li><li><span style="background-color:transparent;color:#00000a;">Explain Semi Supervised Learning.&nbsp;</span></li></ol><p>&nbsp;</p>`
     };
 
@@ -146,7 +190,7 @@ export class QuilleditorComponent implements AfterViewInit {
 			this.demoForm.value.thumbnail = canvas.toDataURL();
 			console.log("---canvas-------->>>>>>>>>>>>",this.demoForm.value.thumbnail);
 			// document.body.appendChild(canvas)
-			console.log("before template upload",this.demoForm.value);
+			// console.log("before template upload",this.demoForm.value);
 			this.commonService.postData("upload-template",this.demoForm.value)
 		.subscribe((result) => {
 		  console.log("result",result);
@@ -163,8 +207,12 @@ export class QuilleditorComponent implements AfterViewInit {
 	get form() {return this.demoForm!.controls.editorData}
 
 	ngAfterViewInit() {
+		// console.log("hjjjjjjjjjjjjjjjjjjjjj--------------",this.model.editorData)
 		var doc = new jspdf();
 		  $('#cmd').click(function(){
+			// html2canvas(document.querySelector(".ck-content"),{backgroundColor: '#FFFFFF'}).then(canvas => {
+			
+			// 	this.demoForm.value.thumbnail = canvas.toDataURL();})
 			var html=$(".ck-content").html();
 			console.log("html-----------------",html)
 			   doc.fromHTML(html,15,15, {
@@ -176,15 +224,31 @@ export class QuilleditorComponent implements AfterViewInit {
 	}
 
 	constructor(
+		private route: ActivatedRoute,
 		private commonService : CommonService,
 		private messageService : MessageService
 	){}
 	ngOnInit() {
-
 		
+		let templateId = this.route.snapshot.paramMap.get('id');
+		this.action = this.route.snapshot.paramMap.get('edit');
+		console.log("id:---->action------>",templateId,this.action);
+
+		this.commonService.getData('get-template',{id: templateId})
+    .subscribe((result) => {
+	//   console.log("---------------from editor--------------",result.templates[0].string);
+	  this.model.editorData = result.templates[0].string;
+    },(error) => {
+      console.log(error);
+    });
 
 	}
 
 
+	
 
+toggle(){
+	this.isOpen = !this.isOpen
+	console.log("isOpen",this.isOpen)
+}
 }

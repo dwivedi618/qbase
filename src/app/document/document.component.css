@@ -27,6 +27,13 @@ a{
 
     
 }
+.template_thumbnail{
+    cursor: pointer;
+}
+.add{
+    font-size:3rem;
+    font-weight: bold;
+}
 .card_action{
     
     width: 100%;

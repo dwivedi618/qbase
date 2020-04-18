@@ -11,11 +11,14 @@ export class CommonService {
     private http: HttpClient
   ) { }
 
-  getData(route){
-    return this.http.get<any>(`${environment.apiUrl}/${route}`);
+  getData(route,params){
+    console.log(params);
+    return this.http.get<any>(`${environment.apiUrl}/${route}`,{
+      params: params
+    });
   }
 
-  getDataById(){
+  getDataById(route){
     return this.http.get<any>(`${environment.apiUrl}/student/get-student-details`);
   }
 

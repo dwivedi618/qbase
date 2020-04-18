@@ -60,7 +60,6 @@ export class UploadquestionComponent implements OnInit {
     {value: 'Analysis',viewValue: 'Analysis'},
     {value: 'Synthesis',viewValue: 'Synthesis'}, 
     {value: 'Evaluation',viewValue: 'Evaluation'}, 
-
   ];
 
   answerTypes: AnswerType[] = [

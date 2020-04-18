@@ -15,6 +15,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { UploadquestionComponent } from './uploadquestion/uploadquestion.component';
 import { SlidenavComponent } from './dashboard/slidenav/slidenav.component';
 import { AuthGuard } from './auth.guard';
+import { EditorComponent } from './editor/editor.component';
 
 
 
@@ -26,8 +27,9 @@ const routes: Routes = [
     { path: 'document' , component : DocumentComponent },
     { path : 'tpg', component :TemplategalleryComponent },
     { path : 'home', loadChildren: './home/home.module#HomeModule'},
-
-    { path: 'quilleditor' , component : QuilleditorComponent },
+    { path: 'editor' , loadChildren: './editor/editor.module#EditorModule' },
+    { path: 'quilleditor/:id' , component : QuilleditorComponent },
+    { path: 'quilleditor/:id/:edit' , component : QuilleditorComponent },
     { path: 'question', loadChildren: './question/question.module#QuestionModule'},
     { path: 'aboutquestionpaper' ,component : AboutquestionpaperComponent},
     

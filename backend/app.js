@@ -209,6 +209,9 @@ app.post("/upload-template", async (req,res) => {
 app.get("/get-template", async (req,res) => {
     let params = req.query;
     let query = {
+        where: {
+
+        },
         raw: true
 
     };

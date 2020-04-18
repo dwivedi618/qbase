@@ -1,15 +1,123 @@
+
+.example-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* top: 64px; */
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    /* z-index: -100; */
+    /* background: #42424242; */
+    
+    
+  
+  }
+  
+  .example-sidenav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    background: #33333333;
+  
+  }
+  
+  
+    .example-events {
+      width: 300px;
+      height: 200px;
+      overflow: auto;
+      border: 1px solid #555;
+    }
+  
+    mat-sidenav{    
+  position: absolute;
+  top:3rem;
+    /* background-color:#161616; */
+    /* overflow-y: none; */
+    /* background: #33333333!important; */
+    border-right: none!important;
+    }
+  
+.toggle_btn{
+position: fixed;
+display: block;
+}
+  
+    .sidenav-half-open{
+  
+      width: 2.7rem;
+      height: 2.5rem;
+      
+      overflow: none;
+  border-radius: 60px;
+  /* transition: .2s all ease-in; */
+      
+      
+      /* box-shadow: 2px 1px 5px #666666; */
+      /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
+    }
+    /* .sidenav-half-open:hover{
+      width: 16rem;
+      transition: .2s all;
+  
+    } */
+    
+    .sidenav-full-open{
+     width:20rem; 
+    }
+    @media only screen and (max-width: 320px) {
+      mat-sidenav{
+        
+          width: 70vw;
+        }
+    }
+    @media only screen and (max-width: 420px) {
+      mat-sidenav{
+        
+          width: 70vw;
+        }
+    }
+  
+  
+  
+
+/* ------------------------------------------ */
+.pannel{
+    max-width: 350px;
+    /* min-height: 80vh; */
+    /* position: absolute; */
+    z-index: 1;
+    width: inherit;
+    /* height: 100%; */
+    /* overflow-y: auto; */
+}
+.pannel:hover{
+    box-shadow: 0 0 7px hsla( 0,0%,0%,.3 )!;
+}
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
 .document-editor {
-    border: 1px solid var(--ck-color-base-border);
+    /* border: 1px solid var(--ck-color-base-border);
     border-radius: var(--ck-border-radius);
 width: 100%;
-height: 100%;
+height: 100%; */
     /* Set vertical boundaries for the document editor. */
     /* max-height: 700px; */
 
     /* This element is a flex container for easier rendering. */
     /* display: flex;
-    flex-flow: column nowrap; */
-    clear: both;
+    flex-flow: column nowrap;
+    clear: both; */
 }
 
 /* Make the editable container look like the inside of a native word processor application. */
@@ -30,12 +138,18 @@ height: 100%;
  width: 100%;
  display: block;
  clear: both;
+ top: 4rem;
+ right: 0;
+ left: 0;
 
  /* Create the illusion of the toolbar floating over the editable. */
  box-shadow: 0 0 5px hsla( 0,0%,0%,.2 );
 
  /* Use the CKEditor CSS variables to keep the UI consistent. */
  border-bottom: 1px solid var(--ck-color-toolbar-border);
+}
+:host ::ng-deep .ck-editor__editable_inline:hover{
+    box-shadow: 0 0 7px hsla( 0,0%,0%,.3 )!important;
 }
 :host ::ng-deep .ck-editor__editable_inline {
     
@@ -48,6 +162,8 @@ width: 100%;
     /* Set the dimensions of the "page". */
     width: 21.0cm;
     min-height: 29.7cm;
+    /* width: 595px;
+    min-height: 842px; */
     /* width: 595px;
     min-height: 882px; */
 
@@ -66,8 +182,8 @@ padding-bottom: 1rem;
 }
 
 .action_buttons{
-    position: fixed;
-    z-index: 5;
-    
+    position: absolute;
+    z-index: 5000000;
+    /* top: -1rem; */
     right: 1rem;
 }

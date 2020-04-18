@@ -75,7 +75,7 @@ export class QuestionComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
   ngOnInit() {
-    this.commonService.getData('get-question')
+    this.commonService.getData('get-question',{})
     .subscribe((result) => {
       this.questions = result.questions;
       let temp : any[];

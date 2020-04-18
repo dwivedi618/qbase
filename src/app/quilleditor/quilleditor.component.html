@@ -1,44 +1,49 @@
-<!-- <section class="editor_container" fxLayoutAlign="center">
-    <div>
-        <form (ngSubmit)="onSubmit()" #demoForm="ngForm">
-            <ckeditor #editor [(ngModel)]="model.editorData" id="editorData" name="editorData">
-            </ckeditor>
-            <div class="d-flex justify-content-end editor_btn_container">
-                <div class="editor_btn">
-                <button  mat-raised-button color="accent" type="reset" (click)="reset()">Reset</button>
-                </div>
-                <button  mat-raised-button color="primary" type="submit">Save </button>
-                <div class="editor_btn">
+<mat-sidenav-container class="example-container box_shadow_1" autosize>
+  <mat-sidenav position="start" mode="side" #sidenav *ngIf="action != 'edit'"
+  [class.sidenav-full-open]="isOpen"
+  [class.sidenav-half-open]="!isOpen"
+  class="0-2 m-2 box_shadow_1" opened>
+ <div class="pb-3 toggle_btn">
+   <button mat-icon-button (click)="toggle()"class="" >
+     <mat-icon *ngIf="isOpen">keyboard_backspace</mat-icon>
+     <mat-icon *ngIf="!isOpen">trending_flat</mat-icon>
 
-                </div>
-            </div>
-        </form>
-        <textarea #preview
-    (focus)="isPreviewActive = true; previewModel = model.editorData"
-    (change)="isPreviewActive = false; model.editorData = previewModel"
-    [(ngModel)]="previewModel">
-</textarea>
-<div id="styling">
+   </button>
+ </div>
+   <app-paper-info-detailed></app-paper-info-detailed>
+  </mat-sidenav>
+  <mat-sidenav-content>
+   <div class="container">
+    <form (ngSubmit)="onTemplateSubmit()" #demoForm="ngForm">
+      <div class="document-editor">
+          
+      <ckeditor [editor]="Editor" id="editorData" name="editorData" tagName="bakwas"
+                [(ngModel)]="model.editorData"  (ready)="onReady($event)" >
+      </ckeditor>
+      
+      
+      </div>
+      
+      </form>
+   </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- 
+<div class="row">
+    <div  class="col-lg-3 col-md-3 p-5">
 
-</div>
+       
     </div>
-</section> -->
-<form (ngSubmit)="onTemplateSubmit()" #demoForm="ngForm">
-<div class="document-editor">
-    
-<ckeditor [editor]="Editor" id="editorData" name="editorData"
-
-          [(ngModel)]="model.editorData"  (ready)="onReady($event)" >
-</ckeditor>
-
+<div class="col-lg-12">
 
 </div>
+
 <div class="d-flex justify-content-end action_buttons ">
-<div class="pl-1 pr-1">
-    <button id="cmd" mat-raised-button type="button" color="primary" (click)="exportAsPDF()">print</button>
-</div>
-<div class="pl-1 pr-1">
-    <button id="upload-template" stype="submit" mat-raised-button color="primary" >Save Template</button>
-</div>
-</div>
-</form>
+  <div class="pl-1 pr-1">
+      <button id="cmd" mat-stroked-button type="button" color="accent" (click)="exportAsPDF()">print</button>
+  </div>
+  <div class="pl-1 pr-1">
+      <button id="upload-template" stype="submit" mat-stroked-button color="primary" >Save Template</button>
+  </div>
+  </div>
+  </div> -->
