@@ -168,13 +168,39 @@ action : string;
 	exportAsPDF()
       {
 		  
-		console.log("fromdf", this.data );
-		let pdata = document.getElementById('editorData') ;  
-		console.log("editor data from pdf :",pdata.innerHTML);
-		let pdf = new jspdf('p', 'cm', 'a4');
-		pdf.save('Filename.pdf');   
+		// const div = document.querySelector(".ck-content");
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+
+    html2canvas(document.querySelector(".ck-content"), options).then((canvas) => {
+
+	  var img = canvas.toDataURL("image/PNG");
+	  console.log("img from export Fuction",img);
+      var doc = new jspdf("p", "mm", "a4","2");
+	  var imgWidth = 210;
+		var pageHeight = 295;
+		var imgHeight = canvas.height * imgWidth / canvas.width;
+		var heightLeft = imgHeight;
+		const imgData = canvas.toDataURL('image/png')
+		var position = 0;
+
+doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight+15);
+heightLeft -= pageHeight;
+
+while (heightLeft >= 0) {
+  position = heightLeft - imgHeight;
+  doc.addPage();
+  doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight + 15);
+  heightLeft -= pageHeight;
+}
+      return doc;
+    }).then((doc) => {
 		
-        
+      doc.save('paper.pdf');  
+    });
+  
       }
 
 	public isPreviewActive: boolean;
@@ -185,10 +211,15 @@ action : string;
 	onTemplateSubmit() {
 
 		// alert(`Form submit, model: ${JSON.stringify(this.model.editorData)}`);
-		html2canvas(document.querySelector(".ck-content"),{backgroundColor: '#FFFFFF'}).then(canvas => {
+		const options = {
+			background: 'white',
+			scale: 3
+		  };
+	  
+		  html2canvas(document.querySelector(".ck-content"), options).then(canvas => {
 			
 			this.demoForm.value.thumbnail = canvas.toDataURL();
-			console.log("---canvas-------->>>>>>>>>>>>",this.demoForm.value.thumbnail);
+			// console.log("---canvas-------->>>>>>>>>>>>",this.demoForm.value.thumbnail);
 			// document.body.appendChild(canvas)
 			// console.log("before template upload",this.demoForm.value);
 			this.commonService.postData("upload-template",this.demoForm.value)
@@ -210,9 +241,7 @@ action : string;
 		// console.log("hjjjjjjjjjjjjjjjjjjjjj--------------",this.model.editorData)
 		var doc = new jspdf();
 		  $('#cmd').click(function(){
-			// html2canvas(document.querySelector(".ck-content"),{backgroundColor: '#FFFFFF'}).then(canvas => {
 			
-			// 	this.demoForm.value.thumbnail = canvas.toDataURL();})
 			var html=$(".ck-content").html();
 			console.log("html-----------------",html)
 			   doc.fromHTML(html,15,15, {
@@ -231,7 +260,10 @@ action : string;
 	ngOnInit() {
 		
 		let templateId = this.route.snapshot.paramMap.get('id');
-		this.action = this.route.snapshot.paramMap.get('edit');
+		// this.action = this.route.snapshot.paramMap.get('edit');
+		 this.action = this.route.snapshot.paramMap.get('action');
+
+
 		console.log("id:---->action------>",templateId,this.action);
 
 		this.commonService.getData('get-template',{id: templateId})

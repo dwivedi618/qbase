@@ -184,6 +184,6 @@ padding-bottom: 1rem;
 .action_buttons{
     position: absolute;
     z-index: 5000000;
-    /* top: -1rem; */
+    bottom: 1rem;
     right: 1rem;
 }

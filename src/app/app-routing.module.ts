@@ -28,8 +28,11 @@ const routes: Routes = [
     { path : 'tpg', component :TemplategalleryComponent },
     { path : 'home', loadChildren: './home/home.module#HomeModule'},
     { path: 'editor' , loadChildren: './editor/editor.module#EditorModule' },
-    { path: 'quilleditor/:id' , component : QuilleditorComponent },
-    { path: 'quilleditor/:id/:edit' , component : QuilleditorComponent },
+   
+    { path: 'quilleditor/:action' , component : QuilleditorComponent },
+    
+    { path: 'quilleditor/:id/:action' , component : QuilleditorComponent },
+
     { path: 'question', loadChildren: './question/question.module#QuestionModule'},
     { path: 'aboutquestionpaper' ,component : AboutquestionpaperComponent},
     

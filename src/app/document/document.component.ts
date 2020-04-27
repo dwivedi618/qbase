@@ -10,9 +10,21 @@ import { Router } from '@angular/router';
 import { template } from '@angular/core/src/render3';
 import { AboutquestionpaperComponent } from '../aboutquestionpaper/aboutquestionpaper.component';
 import { PaperInfoDetailedComponent } from '../paper-info-detailed/paper-info-detailed.component';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 export interface RenameData {
   templateName: string;
+}
+export interface Template {
+  name:string;
+  thumbnail: any;
+  string: any;
+}
+export interface PreviewById {
+  id: any;
+  name:string;
+  thumbnail: any;
+  string: any;
 }
 
 @Component({
@@ -22,13 +34,16 @@ export interface RenameData {
 })
 export class DocumentComponent implements OnInit {
   [x: string]: any;
-  templates: any;
+  templates: Template[];
+  previewbyid: PreviewById[];
+
+  thumbnail : any;
   templateName : string;
   constructor(
     private router : Router,
     public dialog: MatDialog,
     private dialogService : DialogService,
-    private commonService: CommonService
+    public commonService: CommonService
   ) { }
 
   ngOnInit() {
@@ -36,16 +51,16 @@ export class DocumentComponent implements OnInit {
     .subscribe((result) => {
       console.log("templates",result.templates[1]);
       this.templates = result.templates;
-      html2canvas(this.templates[1].string).then((canvas) => {});
+      // html2canvas(this.templates[1].string).then((canvas) => {});
     },(error) => {
       console.log(error);
     });
   }
-  onTemplateSelect(templateId){
+  onTemplateSelect(templateId,action){
     // this.dialogService.openDialog(AboutquestionpaperComponent);
-    this.dialogService.openDialog(PaperInfoDetailedComponent);
+    this.dialogService.openDialog(PaperInfoDetailedComponent,{});
 
-    this.router.navigate(['/quilleditor',templateId])
+    this.router.navigate(['/quilleditor',templateId,action])
     
   }
   onEditSelect(templateId,action){
@@ -60,6 +75,13 @@ export class DocumentComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         this.templateName = result;
+        if(this.templateName !=undefined){
+          this.commonService.putData('update-template',{ name:this.templateName,id:templateId })
+          .subscribe((result)=>{
+
+            console.log("rename successfull",result);
+          })
+        }
         console.log('The dialog was closed-----> New name',this.templateName,templateId);
       });
     }
@@ -67,16 +89,51 @@ export class DocumentComponent implements OnInit {
     
       const dialogRef = this.dialog.open(Delete, {
         width: '350px',
+        data : {templateId:templateId,}
         
       });
-      // dialogRef.afterClosed().subscribe(result => {
-      //   this.templateId = result;
-      //   console.log('The dialog was closed----->Delete:',templateId);
-      // });
+      dialogRef.afterClosed().subscribe(result => {
+        this.confirmation = result;
+        console.log('The dialog was closed----->Delete:',this.confirmation,templateId);
+if(this.confirmation ==true){
+        console.log("delete granted",this.confirmation);
+        this.commonService.deleteData('delete-template',{id : templateId})
+        .subscribe((result)=>{
+          const afterDelete = result;
+          console.log("delete result",afterDelete);
+        },
+        )
+
+}
+else {console.log("delete canceled");}
+      });
+    }
+    
+    onTemplatePreview(templateId){
+      this.commonService.getData('get-template',{id: templateId})
+      .subscribe((result)=>{
+        this.previewbyid = result.templates;
+        console.log("result from Preview",this.preview)
+        const dialogRef = this.dialog.open(Preview, {
+          width: '100vw',height:'100vh',
+          data: {
+            id:this.previewbyid[0].id,
+            name:this.previewbyid[0].name,
+            thumbnail:this.previewbyid[0].thumbnail}
+          
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          //this.templates = result;
+          console.log('The dialog was closed-----> thumbnail',result);
+        });
+      },
+      (error)=>{
+        console.log("error during Image Priview")
+      })
+     
+      
     }
   }
- 
-
   
 
 
@@ -117,4 +174,38 @@ export class Delete {
   }
 
  
+}
+
+@Component({
+  selector: 'preview',
+  templateUrl: 'preview.html',
+})
+export class Preview  {
+  isFitToScreen: boolean;
+
+  constructor(  
+    private logServices : DialogService,
+    private router : Router,
+    public dialogRef: MatDialogRef<Preview>,
+    @Inject(MAT_DIALOG_DATA) public data: PreviewById
+    ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  onProceed(templateId,action){
+   console.log(templateId,action);
+   this.logServices.openDialog(PaperInfoDetailedComponent,{
+     width:'100vw',height:'80vh'
+   })
+   
+
+    this.router.navigate(['/quilleditor',templateId,action])
+    this.dialogRef.close();
+  }
+  
+  fitToScreen(){
+    this.isFitToScreen = !this.isFitToScreen
+    console.log("isFitToScreen",this.isFitToScreen)
+  }
 }

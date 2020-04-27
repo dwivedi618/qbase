@@ -42,7 +42,7 @@ import { AboutComponent } from './about/about.component';
 
 import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionpaper.component';
 import { TemplategalleryComponent } from './templategallery/templategallery.component';
-import { DocumentComponent, Rename, Delete } from './document/document.component';
+import { DocumentComponent, Rename, Delete, Preview } from './document/document.component';
 import { QuilleditorComponent } from './quilleditor/quilleditor.component';
 import { ResumeComponent } from './resume/resume.component';
 
@@ -58,7 +58,7 @@ import { PaperInfoDetailedComponent } from './paper-info-detailed/paper-info-det
 
 
 @NgModule({
-  entryComponents: [UploadComponent,Rename,Delete,PaperInfoDetailedComponent],
+  entryComponents: [UploadComponent,Rename,Delete,Preview,PaperInfoDetailedComponent],
 
   declarations: [
     AppComponent,
@@ -80,6 +80,7 @@ import { PaperInfoDetailedComponent } from './paper-info-detailed/paper-info-det
     DocumentComponent,
     Rename,
     Delete,
+    Preview,
     QuilleditorComponent,
     ResumeComponent,
     AboutComponent,

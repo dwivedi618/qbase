@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-md-4 pb-5" *ngFor="let template of templates">
                 <mat-card class="card mat_card text-center" style="width: 100%;" >
-                    <img mat-card-image class="template_thumbnail" (click)="onTemplateSelect(template.id)"
+                    <img mat-card-image class="template_thumbnail" (click)="onTemplateSelect(template.id,'paper-generation')"
                         src="{{ template.thumbnail }}" 
                         matTooltip="Click To Use This Template"
                         matTooltipPosition="below">
@@ -41,10 +41,10 @@
                         <div class="card_action pt-1 pb-1">
                             <mat-toolbar>
                             <mat-toolbar-row>
-                                <small class="text-muted">Sessional</small>
+                                <small class="text-muted">{{template.name}}</small>
                         <div class="example-spacer"></div>
-                                <button mat-icon-button color="primary" >
-                                    <mat-icon aria-hidden="false" matTooltip="Preview">pageview</mat-icon>
+                                <button mat-icon-button color="primary" (click)="onTemplatePreview(template.id)">
+                                    <mat-icon aria-hidden="false" matTooltip="Preview">visibility</mat-icon>
                                 </button>
                                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                                     <mat-icon>more_vert</mat-icon>

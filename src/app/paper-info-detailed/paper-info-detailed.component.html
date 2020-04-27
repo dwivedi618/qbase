@@ -79,7 +79,9 @@
             <mat-list-item *ngFor="let i of questionInSectionA">
               <p mat-line>{{i.question}}</p>
               <div class="d-flex justify-content-center">
-              <mat-icon mat-list-icon matTooltip="Replace" matRipple>loop</mat-icon>
+                <button mat-icon-button (click)="onReplace(i.id)">
+              <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop</mat-icon>
+            </button>
               </div>
             </mat-list-item>
           </mat-list>

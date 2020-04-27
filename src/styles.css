@@ -143,3 +143,16 @@ button:visited,button:active,button:focus{
 .padding-left-right-1{
   padding: 0 1rem;
 }
+
+.loading {
+  animation: rotation 2s reverse linear infinite ;
+}
+
+@keyframes rotation {
+  from {
+      -webkit-transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(359deg);
+  }
+}

@@ -19,7 +19,7 @@ export class CommonService {
   }
 
   getDataById(route){
-    return this.http.get<any>(`${environment.apiUrl}/student/get-student-details`);
+    return this.http.get<any>(`${environment.apiUrl}/${route}`);
   }
 
   postData(route,data){
@@ -27,15 +27,16 @@ export class CommonService {
 
   }
 
-  putData(){
+  putData(route,data){
+    return this.http.put<any>(`${environment.apiUrl}/${route}`,data);
 
   }
 
-  patchData(){
-
+  patchData(route,data){
+    return this.http.patch<any>(`${environment.apiUrl}/${route}`,data);
   }
 
-  deleteData(){
-
+  deleteData(route,data){
+    return this.http.delete<any>(`${environment.apiUrl}/${route}`,data);
   }
 }

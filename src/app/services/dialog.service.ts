@@ -9,8 +9,8 @@ export class DialogService {
 
   constructor(public dialog: MatDialog) {}
 
-  openDialog(component) {
-    const dialogRef = this.dialog.open(component);
+  openDialog(component,config) {
+    const dialogRef = this.dialog.open(component,config);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

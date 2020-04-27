@@ -18,7 +18,7 @@ app.use((req,res,next) => {
     );
     res.setHeader(
         'Access-Control-Allow-Methods',
-        'GET,POST'   
+        'GET,POST,DELETE,PATCH,PUT'   
     );
     next();
 });
@@ -224,6 +224,88 @@ app.get("/get-template", async (req,res) => {
         templates: templates
     });
 });
+
+
+app.put("/update-template", async (req,res) => {
+    let params = req.body;
+    let query = {
+        where: {
+
+        },
+        raw: true
+
+    };
+    if(params.id) query.where.id = params.id;
+    // if(params.name) query.where.subject = params.subject;
+
+    let result = await Template.update(params,query);
+    res.status(200).json({
+        message: "successful" ,
+        result: result
+    });
+});
+
+app.put("/update-question", async (req,res) => {
+    let params = req.body;
+    let query = {
+        where: {
+
+        },
+        raw: true
+
+    };
+    if(params.id) query.where.id = params.id;
+    // if(params.name) query.where.subject = params.subject;
+
+    let result = await Question.update(params,query);
+    res.status(200).json({
+        message: "successful" ,
+        result: result
+    });
+});
+
+app.delete("/delete-template", async (req,res) => {
+    let params = req.body;
+    let query = {
+        where: {
+
+        },
+        raw: true
+
+    };
+    if(params.id) query.where.id = params.id;
+    // if(params.name) query.where.subject = params.subject;
+
+    let result = await Template.destroy(query);
+    res.status(200).json({
+        message: "successful" ,
+        result: result
+    });
+});
+
+app.delete("/delete-question", async (req,res) => {
+    let params = req.body;
+    let query = {
+        where: {
+
+        },
+        raw: true
+
+    };
+    if(params.id) query.where.id = params.id;
+    // if(params.name) query.where.subject = params.subject;
+
+    let result = await Template.destroy(query);
+    res.status(200).json({
+        message: "successful" ,
+        result: result
+    });
+});
+
+
+
+
+
 //------------------Routes End Here-------------------------
 app.use((req,res)=>{
     res.send("backend ruuning well")

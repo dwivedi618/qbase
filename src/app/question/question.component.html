@@ -1,18 +1,35 @@
 <!-- filtering field -->
-<!-- <div class="container filter_field">
-<div class="d-flex justify-content-center">
-  <mat-form-field class="container" appearance="outline">
-    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
-</div>
 
-</div> -->
-<h6 class="text-success pl-5 pt-3">All Questions</h6>
+<!-- <h6 class="text-success pl-5 pt-3">All Questions</h6> -->
 <div *ngIf="isLoading" class="d-flex justify-content-center p-5 ">
 <mat-spinner  class="p-5 mx-auto"></mat-spinner>
 </div>
 
 <div class="p-5 " *ngIf="!isLoading">
+  <div class="fixed">
+  <form [formGroup]="chipForm" >
+  <mat-toolbar class="bg-white box_shadow_1">
+    <mat-toolbar-row>   
+          <mat-form-field class="container" >
+            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="search...">
+            <mat-icon matSuffix>filter_list</mat-icon>
+          </mat-form-field>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+     
+ 
+
+
+      <mat-form-field class="container ">
+        <mat-chip-list [multiple]="true" selectable>
+          <mat-chip   *ngFor="let i of displayedColumns" (click)="toggleChip(i)" [selected]="chips.has(i)" >{{i}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-form-field>
+    
+  </mat-toolbar-row>
+</mat-toolbar>
+</form>
 <mat-toolbar  class="bg-white box_shadow_1">
   <mat-toolbar-row>
     <div class="pr-1"></div>
@@ -30,36 +47,36 @@
 
 <!-- <button mat-raised-button (click)="shuffle()"> Shuffle </button> -->
     <div class="pr-1">
-      <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+      <mat-paginator [pageSize]="20" [pageSizeOptions]="[10, 20,25 ,30, 20]">
       </mat-paginator>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
-<table mat-table [dataSource]="questions" class=" mat-elevation-z8" matSort>
+</div>
+<table class="table_" mat-table [dataSource]="questions" class=" mat-elevation-z8" matSort>
 
    <!-- Checkbox Column -->
    <ng-container matColumnDef="select">
      <th mat-header-cell *matHeaderCellDef >
-       <mat-checkbox (change)="$event ? masterToggle() : null"
+       <mat-checkbox (change)="$event ? masterToggle(row) : null" 
                      [checked]="selection.hasValue() && isAllSelected()"
+                     
                      [indeterminate]="selection.hasValue() && !isAllSelected()"
-                     [aria-label]="checkboxLabel()">
+                     >
        </mat-checkbox>
        
        
      </th>
      <td mat-cell *matCellDef="let row" >
-       <div class="d-flex justify-content-center">
-       
-       <mat-checkbox (click)="$event.stopPropagation()"
-                     (change)="$event ? selection.toggle(row) : null"
-                     [checked]="selection.isSelected(row)"
-                     [aria-label]="checkboxLabel(row)">
-       </mat-checkbox>
-       
-       
-
-</div>
+      <div class="d-flex justify-content-center checkbox">
+      
+        <mat-checkbox (click)="$event.stopPropagation()" 
+          [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      
+      
+      
+      </div>
      </td>
      
  
@@ -128,7 +145,7 @@
 
    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-       (click)="selection.toggle(row)">
+       (click)="selectedRow(row)">
       
    </tr>
    <tr mat-footer-row *matFooterRowDef="columnsToDisplay"></tr>

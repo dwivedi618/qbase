@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container box_shadow_1" autosize>
-  <mat-sidenav position="start" mode="side" #sidenav *ngIf="action != 'edit'"
+  <mat-sidenav position="start" mode="side" #sidenav *ngIf="action == 'paper-generation'"
   [class.sidenav-full-open]="isOpen"
   [class.sidenav-half-open]="!isOpen"
   class="0-2 m-2 box_shadow_1" opened>
@@ -28,22 +28,23 @@
    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-<!-- 
-<div class="row">
-    <div  class="col-lg-3 col-md-3 p-5">
 
-       
-    </div>
-<div class="col-lg-12">
 
+<div class="action_buttons ">
+  <div class="p-2">
+      <button  matTooltip="print" mat-mini-fab type="button" aria-label="" color="arn" (click)="exportAsPDF()">
+        <mat-icon>print</mat-icon>
+      </button>
+  </div>
+  <div class="p-2" *ngIf="action  != 'new' ">
+      <button mat-mini-fab color="arn" (click)="onTemplateSubmit(template.id)" matTooltip="Update">
+        <mat-icon>save</mat-icon>
+      </button>
+  </div>
+  <div class="p-2">
+    <button  mat-mini-fab color="arn" (click)="onTemplateSubmit()" matTooltip="save as">
+      <mat-icon>add_circle</mat-icon>
+    </button>
 </div>
-
-<div class="d-flex justify-content-end action_buttons ">
-  <div class="pl-1 pr-1">
-      <button id="cmd" mat-stroked-button type="button" color="accent" (click)="exportAsPDF()">print</button>
   </div>
-  <div class="pl-1 pr-1">
-      <button id="upload-template" stype="submit" mat-stroked-button color="primary" >Save Template</button>
-  </div>
-  </div>
-  </div> -->
+  

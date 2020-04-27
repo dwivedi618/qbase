@@ -1,0 +1,20 @@
+<style>
+  .fit_screen{
+    max-height: 70vh!important;
+  }
+</style>
+<h2 mat-dialog-title>{{data.name}}</h2>
+<mat-dialog-content style="max-height: 80vh;padding: 2rem;">
+
+ <img [class.mat-card-image]="!isFitToScreen" [class.fit_screen]="isFitToScreen"
+                      src="{{data.thumbnail}}"
+                        [alt]="data.name"
+                        >
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="fitToScreen()">Fit Screen</button>
+
+  <button mat-button (click)="onNoClick()">Cancel</button>
+
+  <button mat-button (click)="onProceed(data.id,'paper-generate')" cdkFocusInitial>Proceed</button>
+</mat-dialog-actions>

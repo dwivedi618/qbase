@@ -4,16 +4,20 @@ import { QuestionComponent } from './question.component';
 
 import { QuestionRoutingModule } from './question-routing.module';
 import { MaterialModule } from '../material.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [QuestionComponent],
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     QuestionRoutingModule
   ],
   exports:[
-    QuestionRoutingModule
+    QuestionRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class QuestionModule { }

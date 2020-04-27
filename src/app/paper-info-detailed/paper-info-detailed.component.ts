@@ -22,6 +22,7 @@ export class PaperInfoDetailedComponent implements OnInit {
 	sectionB : FormGroup;
 	sectionC : FormGroup;
   isLoading = false;
+  isReplacing = false;
   questionInSectionA : QuestionSectionA[] =[
 		{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
 		{ question:"what is data"},
@@ -79,5 +80,9 @@ onSubmitSectionC(){
  // this.isLoading = false;//set false again when question Loaded inside subscribe result
 
 
+}
+onReplace(id){
+	this.isReplacing = !this.isReplacing;
+	console.log("id",id);
 }
 }
