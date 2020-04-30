@@ -36,7 +36,7 @@ export class CommonService {
     return this.http.patch<any>(`${environment.apiUrl}/${route}`,data);
   }
 
-  deleteData(route,data){
-    return this.http.delete<any>(`${environment.apiUrl}/${route}`,data);
+  deleteData(route,templateId){
+    return this.http.delete<any>(`${environment.apiUrl}/${route}`, templateId);
   }
 }

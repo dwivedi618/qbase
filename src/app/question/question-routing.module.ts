@@ -6,7 +6,8 @@ import { QuestionComponent } from './question.component';
 
 
  const questionRoutes : Routes = [
- { path:'',component:QuestionComponent}
+ { path:'',component:QuestionComponent},
+ 
 ]
 @NgModule({
   declarations: [],

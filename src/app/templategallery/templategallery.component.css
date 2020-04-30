@@ -1,82 +1,135 @@
-body, html,li,ol,ul,div,section{
-    font-family: 'Open Sans', sans-serif !important;
-}
-.center{
-    position:absolute;
-    top: 0px;
-    left: 0;
-    transform: translate(-50%,-50%); 
 
+  
+  /* .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } */
+  .skeleton_card{
+     
+    display: flex;
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  align-items: center; 
+}
+.skeleton_card{
+    
+}
+.post {
+  flex-direction: column;
+  align-items: center; 
+  display: flex;
+
+
+    position: relative;
+  width: 300px;
+  height: 70vh;
+  border-radius: 4px;
+  box-shadow: 0 0 1px 10px #8d8d8d17;
+  /* animation: shine-lines 1.6s infinite linear; */
+  background-color: rgb(204, 204, 204);
+  background-image: linear-gradient(270deg, rgba(221, 221, 221, 0.096) 0px, #e8e8e81a 40px, rgba(221, 221, 221, 0.096) 80px);
+}
+.post .avatar {
+ 
+  width: 52px;
+  height: 52px;
+  background-color: #ccc;
+  border-radius: 25%;
+  margin: 8px;
+  background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+  background-size: 600px;
+  animation: shine-avatar 1.6s infinite linear;
+}
+.post .header {
+ 
+  width: 80%;
+  height: px;
+  background-color: #ccc;
+  border-radius: 4px;
+  margin: 8px;
+  background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+  background-size: 600px;
+  animation: shine-avatar 1.6s infinite linear;
+}
+.post .line {
+  
+  width: 100%;
+  height: 12px;
+  margin-top: 6px;
+  border-radius: 7px;
+  background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+  background-size: 600px;
+  animation: shine-lines 1.6s infinite linear;
+}
+.post .section{
+  
+  width: 20%;
+  height: 16px;
+  margin-top: 12px;
+  border-radius: 7px;
+  background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+  background-size: 600px;
+  animation: shine-lines 1.6s infinite linear;
+}
+ 
+.post .action{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 40px;
+  background-color: white!important;
+  /* margin-top: 12px; */
+  /* border-radius: 7px; */
+  background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+  background-size: 600px;
+  animation: shine-lines 1.6s infinite linear;
+}
+.post .avatar + .line {
+  margin-top: 11px;
+  width: 100px;
+}
+.post .line ~ .line {
+  background-color: #ddd;
 }
 
-.card1{
-width: 100%;
-max-width: 200px;
-min-width: 200px;
-min-height: 400px;
-max-height: 400px;
-overflow: hidden;
-background: #cccccc;
-border-radius: 4px;
-box-sizing: border-box;
+@keyframes shine-lines {
+  0% {
+    background-position: -100px;
+  }
+  40% {
+    background-position: 140px;
+  }
+  100% {
+      background-position: 300px;
+    }
 }
-.card1_image{
-position: relative;
-width: 100%;
-border-radius: inherit;
+@keyframes shine-avatar {
+  0% {
+    background-position: -32px;
+  }
+  40%, 100% {
+    background-position: 208px;
+  }
+ 
 }
-.card1:hover
-{
-border: 1px solid #3ba7e6;
-}
-
-.card2{
-width: 100%;
-
-min-width: 280px;
-min-height: 400px;
-max-height: 400px;
-overflow: hidden;
-margin-bottom: 1rem;
-box-sizing: border-box;
-}
-/* this used for padding for card 2 link and document name postioning */
-.card2_body{
-padding: .3rem 1rem!important;
-}
-.card2_image{
-position: relative;
-width: 100%;
-border-radius: inherit;
-}
-.card2:hover
-{
-border: 1px solid #3ba7e6;
+@keyframes loading {
+  0% {
+    background-position: 32px;
+  }
+  40%{
+    background-position: 208px;
+  }
+  100% {
+      background-position: 300px;
+    }
 }
 
-.title{
-color: #222222;;
-position: relative;
-font-size:14px;
-line-height: 80%;
 
-}
-.sub_title{
-position: relative;
-font-size:12px;
- color:#b6adad; 
-}
-.sub_menu{
-display: block;
-width: 100%;
-position: relative;
-}
-div.document{
-padding: 0px;
-margin: 0px;
-}
-/* overriding bootstrap css */
-.pp-2{
-padding: 20px 20px 20px 30px !important;
 
-}
+

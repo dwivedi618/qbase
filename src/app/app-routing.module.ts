@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -11,11 +10,9 @@ import { QuilleditorComponent } from './quilleditor/quilleditor.component';
 import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionpaper.component';
 
 
-import { ResumeComponent } from './resume/resume.component';
 import { UploadquestionComponent } from './uploadquestion/uploadquestion.component';
-import { SlidenavComponent } from './dashboard/slidenav/slidenav.component';
+import { SlidenavComponent } from './slidenav/slidenav.component';
 import { AuthGuard } from './auth.guard';
-import { EditorComponent } from './editor/editor.component';
 
 
 
@@ -27,7 +24,7 @@ const routes: Routes = [
     { path: 'document' , component : DocumentComponent },
     { path : 'tpg', component :TemplategalleryComponent },
     { path : 'home', loadChildren: './home/home.module#HomeModule'},
-    { path: 'editor' , loadChildren: './editor/editor.module#EditorModule' },
+   
    
     { path: 'quilleditor/:action' , component : QuilleditorComponent },
     
@@ -40,6 +37,8 @@ const routes: Routes = [
     { path : 'profile',loadChildren: './profile/profile.module#ProfileModule'},
     
     { path : 'uploadquestion' , component : UploadquestionComponent},
+    { path : 'edit/:id' , component : UploadquestionComponent},
+
   ]
   },
   { path: 'about' , component : AboutComponent },

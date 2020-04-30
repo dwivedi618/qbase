@@ -20,13 +20,13 @@ a{
     min-height: 5rem;
 }
 .mat_card{
+ 
     max-height: 80vh!important;
     height:  80vh!important;
     padding-bottom: 1rem;
-    overflow: hidden;
-
-    
+    overflow: hidden;   
 }
+
 .template_thumbnail{
     cursor: pointer;
 }
@@ -120,4 +120,27 @@ margin: 0px;
 .pp-2{
 padding: 20px 20px 20px 30px !important;
 
+}
+
+
+
+.skeleton{
+background-image: no-repeat;
+background-image: linear-gradient(white 40px,transparent 0),
+linear-gradient(gray 100%,transparent 0);
+}
+.skeleton{
+    background-size: 32px 32px,/*avatar*/
+    200px 40px,/*title*/
+    100% 100%;/*card bg*/
+}
+.skeleton{
+    background-position: 24px 24px,
+    24px 200px,
+    0 0 /*card bg*/;
+}
+.skeleton{
+    --card-height:340px;
+    --card-padding:24px;
+    --card-skeleton:  
 }

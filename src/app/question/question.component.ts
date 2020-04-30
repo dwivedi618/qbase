@@ -1,9 +1,10 @@
 import {SelectionModel} from '@angular/cdk/collections';
 import {Component,OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
+import {MatTableDataSource, MatSort, MatPaginator, MatDialog} from '@angular/material';
 import { CommonService } from '../services/common.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { UploadquestionComponent } from '../uploadquestion/uploadquestion.component';
 export interface Question {
   question: string;
   subject: string;
@@ -40,6 +41,7 @@ export class QuestionComponent implements OnInit {
   selection: any;
   dataSource: any;
 
+
   
 
 
@@ -75,6 +77,7 @@ export class QuestionComponent implements OnInit {
 
   
   public doFilter = (value: string) => {
+    console.log("value in search:",this.dataSource);
       this.dataSource.filter = value.trim().toLocaleLowerCase();
     }
 
@@ -83,6 +86,8 @@ export class QuestionComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     
   constructor(
+    public dialog: MatDialog,
+    private router: Router,
     private fB: FormBuilder,
     private commonService: CommonService
   ) {}
@@ -99,7 +104,7 @@ export class QuestionComponent implements OnInit {
       this.questions = result.questions;
       this.dataSource = new MatTableDataSource<Question>(this.questions);
       this.selection = new SelectionModel<Question>(true, []);
-      console.log("datasource======: ",this.dataSource);
+       console.log("datasource======: ",this.dataSource.data);
       let temp : any[];
       this.isLoading= false;
      
@@ -125,12 +130,47 @@ toggleChip = (chip:any) => {
 selectedRow(row){
   this.selection.toggle(row);
   
+
   const addQuestion = () => { this.selectedQuestion.add(row); console.log("add Called")};
   const removeQuestion = () => { this.selectedQuestion.delete(row); console.log("remove Called") };
   
   this.selectedQuestion.has(row.id) ? removeQuestion() : addQuestion();
   console.log("selected Question : " ,Array.from(this.selectedQuestion));
+  // if( action !='select'){
+  //   console.log("action edit ------->",row.id,action)
+  //   this.router.navigate(['/edit',row.id])
+  // }
   
+}
+openDialog(action,data){
+  console.log("action and data--->",action,data);
+  const dialogRef = this.dialog.open(UploadquestionComponent, {
+    width: '100vw',height:'80vh',
+    data:data
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    
+    if(result.event == 'Update'){
+      this.updateRowData(result.data);
+    }else if(result.event == 'Delete'){
+      this.deleteRowData(result.data);
+    }
+  });
+
+  
+}
+updateRowData(row_obj){
+  this.dataSource = this.dataSource.filter((value,key)=>{
+    if(value.id == row_obj.id){
+      value.name = row_obj.name;
+    }
+    return true;
+  });
+}
+deleteRowData(row_obj){
+  this.dataSource = this.dataSource.filter((value,key)=>{
+    return value.id != row_obj.id;
+  });
 }
 
 }

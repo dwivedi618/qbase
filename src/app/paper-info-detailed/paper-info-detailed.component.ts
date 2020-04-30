@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CommonService } from '../services/common.service';
 
 export interface QuestionSectionA {
 	question: string;
@@ -21,17 +22,41 @@ export class PaperInfoDetailedComponent implements OnInit {
   sectionA : FormGroup;
 	sectionB : FormGroup;
 	sectionC : FormGroup;
-  isLoading = false;
+  isLoadingA = false;
+  isLoadingB = false;
+  isLoadingC = false;
+
   isReplacing = false;
   questionInSectionA : QuestionSectionA[] =[
 		{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
-		{ question:"what is data"},
-		{ question:"what is information"},
-		{ question:"what is linkedList"},
+		{ question:"Differentiate deep learning with machine learning by an example."},
+		{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
+		{ question:"Explain why dropout in a neural network act as a regularizer"},
 
   ];
+
+  questionInSectionB : QuestionSectionA[] =[
+	{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
+	{ question:"Differentiate deep learning with machine learning by an example."},
+	{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
+	{ question:"Explain why dropout in a neural network act as a regularizer"},
+
+];
+
+
+questionInSectionC : QuestionSectionA[] =[
+	{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
+	{ question:"Differentiate deep learning with machine learning by an example."},
+	{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
+	{ question:"Explain why dropout in a neural network act as a regularizer"},
+
+];
   step = 0;
-  isQuestionLoading = true;
+
+  fetchingQuestionA = true;
+  fetchingQuestionB = true;
+  fetchingQuestionC = true;
+
   setStep(index: number) {
 	  this.step = index;
 	}
@@ -45,7 +70,8 @@ export class PaperInfoDetailedComponent implements OnInit {
 	}
   
   constructor(
-    private fb : FormBuilder,
+	private fb : FormBuilder,
+	private commonServices : CommonService
 
   ) { }
 
@@ -66,17 +92,50 @@ export class PaperInfoDetailedComponent implements OnInit {
   get formA() {return this.sectionA.controls}
   get formB() {return this.sectionB.controls}
   get formC() {return this.sectionB.controls}
-
+  
   onSubmitSectionA(){
-    console.log("Section A",this.sectionA.value);
-}
-onSubmitSectionB(){
- console.log("Section B",this.sectionB.value);
+	  console.log("Section A",this.sectionA.value);
+	  this.isLoadingA = true;//set false again when question Loaded
+	  this.fetchingQuestionA = false;
+	  console.log("this.sectionA.value.questionInA: ",this.sectionA.value.questionInA);
+	  this.commonServices.getData("get-section-question",{section: "SECTION-A", templateId:5,
+	  count: this.sectionA.value.questionInA})
+	  .subscribe((result)=>{
+		this.isLoadingA = false;
+		  console.log("result from section",result);
+		  this.questionInSectionA = result.queList;
+		  console.log("questionInSectionA",this.questionInSectionA);
+		})
+		
+		
+	}
+	onSubmitSectionB(){
+		console.log("Section B",this.sectionB.value);
+ this.isLoadingB = true;//set false again when question Loaded
+ this.fetchingQuestionB = false;
+ console.log("this.sectionB.value.questionInB: ",this.sectionB.value.questionInB);
+	this.commonServices.getData("get-section-question",{section: "SECTION-B", templateId:5,
+    count: this.sectionB.value.questionInB})
+	.subscribe((result)=>{
+		console.log("result from section",result);
+		this.questionInSectionB = result.queList;
+
+	})
+	
 }
 onSubmitSectionC(){
  console.log("Section C",this.sectionC.value);
- this.isLoading = true;//set false again when question Loaded
- this.isQuestionLoading = false
+ this.isLoadingC = true;//set false again when question Loaded
+ this.fetchingQuestionC = false;
+ console.log("this.sectionC.value.questionInC: ",this.sectionC.value.questionInC);
+	this.commonServices.getData("get-section-question",{section: "SECTION-C", templateId:5,
+    count: this.sectionC.value.questionInC})
+	.subscribe((result)=>{
+		console.log("result from section",result);
+		this.questionInSectionC = result.queList;
+
+	})
+
  // this.isLoading = false;//set false again when question Loaded inside subscribe result
 
 

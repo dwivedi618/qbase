@@ -10,3 +10,7 @@
 .pannel:hover{
     box-shadow: 0 0 7px hsla( 0,0%,0%,.3 )!;
 }
+mat-spinner{
+    width: 32px;
+    height: 32px;
+}

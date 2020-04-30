@@ -1,162 +1,77 @@
-<section  class=" jumbotron  d-flex justify-content-center  ">
-        
-  <!-- <div class="row container d-flex justify-content-between ">
-   <div class="row  sub_menu ">
-       
-         
-   </div>
-
-   <div class="row container d-flex justify-content-between document">
-      <div class="col-md-2">
-          <div class="card1">
-              <img src="https://ssl.gstatic.com/docs/templates/thumbnails/docs-blank-googlecolors.png" class="card1_image"> 
-          </div>
-         <span class="title" >Blank</span>  <br>
-         <span class="sub_title" >New Document</span>
-      </div>
-      <div class="col-md-2">
-          <div class="card1">
-                  <img src="https://ssl.gstatic.com/docs/templates/thumbnails/1XykI9TfWo4IoUqGLjQ-D8NIU4jZ1Ml9OI8-Euj5FrA0_400_3.png" class="card1_image"> 
-          </div>
-          <span class="title" >Computer Science</span>  <br>
-          <span class="sub_title" >Microprocessor</span>
-      </div>
-       <div class="col-md-2">
-          <div class="card1">
-              <img src="https://ssl.gstatic.com/docs/templates/thumbnails/1sU-PkDNWXs52qVV_ujI2lk-S370udkGd5E5SNqZh2Wg_400_3.png" class="card1_image"> 
-          </div>
-         <span class="title" >Information Technology</span>  <br>
-         <span class="sub_title" >Data Structure</span>
-      </div>
-      <div class="col-md-2">
-          <div class="card1">
-              <img src="https://ssl.gstatic.com/docs/templates/thumbnails/1Kt_YsonekD4k0eXrVqdcDEOkv08MQXBa_wlEHGV02Xs_400_3.png" class="card1_image"> 
-          </div>
-          <span class="title" >Electrical Engineering</span>  <br>
-          <span class="sub_title" >Digital Logic Design</span>
-      </div>    
-      <div class="col-md-2">
-          <div class="card1">
-              <img src="https://ssl.gstatic.com/docs/templates/thumbnails/10e8_E36oj6_LuCRzckBFX_9oqbCHntmYB-jxB5U9gsw_400_2.png" class="card1_image"> 
-           </div>
-          <span class="title" >Computer Science</span>  <br>
-          <span class="sub_title" >Distributed System</span>
-      </div>  
-      <div class="col-md-2">
-           <div class="card1">
-              <img src="https://ssl.gstatic.com/docs/templates/thumbnails/1TojfPV3jurwEV2RpmVqnCCCR4z9g2eQBZ40XTHPBqk8_400_3.png" class="card1_image"> 
-          </div>
-          <span class="title" >Information Technology</span>  <br>
-          <span class="sub_title" >Cloud Computing</span>
-       </div>  
-      </div>
-      
-  </div>
-</section> -->
-
-
-<!-- recent document section -->
-<section class="d-flex justify-content-center">
-    <div class="row container d-flex justify-content-between ">
-        <div class="row  sub_menu ">
-                <div class="d-flex">
-                        
+<div class="container ">
+    <div class="row">
+        <div class="col-md-4 pb-5" *ngIf="isLoading">
+        <div class="post box_shadow_1 p-2 ">
+            <!-- <div class="avatar"></div> -->
+            <div class="header"></div>
+            <div class="section"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="section"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="section"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="action"></div>
+        </div>
+        </div>
+        <div class="col-md-4 pb-5" *ngFor="let template of templates" >
+            <mat-card class="card mat_card text-center" style="width: 100%;" >
+                <img mat-card-image class="template_thumbnail" (click)="onTemplateSelect(template.id,'paper-generation')"
+                    src="{{ template.thumbnail }}" 
+                    matTooltip="Click To Use This Template"
+                    matTooltipPosition="below">
+                   
+                    <div class="card_action pt-1 pb-1">
+                        <mat-toolbar >
+                        <mat-toolbar-row>
+                            <div>
+                            <small class="text-black-50">{{template.name}}</small>
                             
-                 </div>
-         </div>
-        <div class="row container d-flex justify-content-between document">
-          <div class="col-md-4">
-              <div class="card card2" style="width: 100%;">
-                  <img class="card-img-top" src="https://i.pinimg.com/originals/00/56/f1/0056f1ff4530f07ad6ecdc002e7e2864.jpg" alt="Card image cap">
-                  <div class="card2_body">
-                    <h5 class="title">Document Name</h5>
-                      <div class="d-flex justify-content-between" >
-                          <a href="#" class="card-link">25 NOV 2019</a>
-                          
-                             <!-- button for acoount navigation -->
+                            </div>
 
-    <button mat-icon-button [matMenuTriggerFor]="account">
-      <!-- avatar module inserted -->
-      <i  class="card-link" class="material-icons">more_vert</i>
-      <!-- ---------------- -->
-    </button>
+                    <div class="example-spacer"></div>
+                            <button mat-icon-button color="primary" (click)="onTemplatePreview(template.id)">
+                                <mat-icon aria-hidden="false" matTooltip="Preview">visibility</mat-icon>
+                            </button>
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                              </button>
+                              <mat-menu #menu="matMenu">
+                                  <button mat-menu-item (click)="onEditSelect(template.id,'edit')">
+                                    <mat-icon mat-menu-icon>create</mat-icon>
+                                    <span>Edit</span>
+                                  </button>
+                                <button mat-menu-item (click)="onRenameSelect(template.id)">
+                                  <mat-icon mat-menu-icon>text_fields</mat-icon>
+                                  <span>Rename</span>
+                                </button>
+                                <button mat-menu-item (click)="onDeleteSelect(template.id)">
+                                  <mat-icon mat-menu-icon>delete</mat-icon>
+                                  <span>Delete</span>
+                                </button>
+                              </mat-menu>
+                           
+                          </mat-toolbar-row>
+                        </mat-toolbar>
+                        
+                        
+                   
+                      
+                    </div>
+            
+            </mat-card>
+        </div>
+       
+    </div>
+</div>
 
-    <!-- when profile button trigerd dropdown will show -->
-  <mat-menu #account="matMenu" class="mat-menu-account">
+       
 
-
-<!-- option 2 for login button if not logged in -->
-      <a mat-menu-item [routerLink]="[ './login']">
-        <button mat-icon-button >
-          <mat-icon>account_circle</mat-icon>
-          <span >login</span>
-        </button>
-     </a>
-<!-- option 3 for displaying questions -->
-      
-      <a mat-menu-item [routerLink]="[ './question']">
-        <button mat-icon-button>
-          <mat-icon>grain</mat-icon>
-          <span>show Question</span>
-        </button>
-      </a>
-
-
-      
-    
-
-
-      
-  </mat-menu>
-  <!-- dropdown menu ends here -->
-  
-
-                      </div>  
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-md-4">
-              <div class="card card2" style="width: 100%;">
-                  <img class="card-img-top" src="https://ssl.gstatic.com/docs/templates/thumbnails/1XykI9TfWo4IoUqGLjQ-D8NIU4jZ1Ml9OI8-Euj5FrA0_400_3.png" alt="Card image cap">
-                  <div class="card2_body">
-                    <h5 class="title">Document Name</h5>
-                      <div class="d-flex justify-content-between" >
-                          <a href="#" class="card-link">25 NOV 2019</a>
-                          <a href="#" class="card-link"><i class="material-icons">more_vert</i></a>
-                      </div>  
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-md-4">
-              <div class="card card2" style="width: 100%;">
-                  <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s" alt="Card image cap">
-                  <div class="card2_body">
-                    <h5 class="title">Document Name</h5>
-                      <div class="d-flex justify-content-between" >
-                          <a href="#" class="card-link">25 NOV 2019</a>
-                          <a href="#" class="card-link"><i class="material-icons">more_vert</i></a>
-                      </div>  
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-md-4">
-              <div class="card card2" style="width: 100%;">
-                  <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s" alt="Card image cap">
-                  <div class="card2_body">
-                    <h5 class="title">Document Name</h5>
-                      <div class="d-flex justify-content-between" >
-                          <a href="#" class="card-link">25 NOV 2019</a>
-                          <a href="#" class="card-link"><i class="material-icons">more_vert</i></a>
-                      </div>  
-                  </div>
-              </div>
-          </div>
-
-          
-          </div>
-          </div>
-         
-</section>

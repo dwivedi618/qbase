@@ -1,0 +1,131 @@
+
+  
+  /* .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } */
+  .skeleton_card{
+     
+      display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center; 
+  }
+  .skeleton_card{
+      
+  }
+  .post {
+      position: relative;
+    width: 300px;
+    height: 70vh;
+    border-radius: 4px;
+    box-shadow: 0 0 1px 10px #8d8d8d17;
+    /* animation: shine-lines 1.6s infinite linear; */
+    background-color: rgb(204, 204, 204);
+    background-image: linear-gradient(270deg, rgba(221, 221, 221, 0.096) 0px, #e8e8e81a 40px, rgba(221, 221, 221, 0.096) 80px);
+  }
+  .post .avatar {
+   
+    width: 52px;
+    height: 52px;
+    background-color: #ccc;
+    border-radius: 25%;
+    margin: 8px;
+    background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+    background-size: 600px;
+    animation: shine-avatar 1.6s infinite linear;
+  }
+  .post .header {
+   
+    width: 80%;
+    height: px;
+    background-color: #ccc;
+    border-radius: 4px;
+    margin: 8px;
+    background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+    background-size: 600px;
+    animation: shine-avatar 1.6s infinite linear;
+  }
+  .post .line {
+    
+    width: 100%;
+    height: 12px;
+    margin-top: 6px;
+    border-radius: 7px;
+    background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+    background-size: 600px;
+    animation: shine-lines 1.6s infinite linear;
+  }
+  .post .section{
+    
+    width: 20%;
+    height: 16px;
+    margin-top: 12px;
+    border-radius: 7px;
+    background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+    background-size: 600px;
+    animation: shine-lines 1.6s infinite linear;
+  }
+   
+  .post .action{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 40px;
+    background-color: white!important;
+    /* margin-top: 12px; */
+    /* border-radius: 7px; */
+    background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+    background-size: 600px;
+    animation: shine-lines 1.6s infinite linear;
+  }
+  .post .avatar + .line {
+    margin-top: 11px;
+    width: 100px;
+  }
+  .post .line ~ .line {
+    background-color: #ddd;
+  }
+  
+  @keyframes shine-lines {
+    0% {
+      background-position: -100px;
+    }
+    40% {
+      background-position: 140px;
+    }
+    100% {
+        background-position: 300px;
+      }
+  }
+  @keyframes shine-avatar {
+    0% {
+      background-position: -32px;
+    }
+    40%, 100% {
+      background-position: 208px;
+    }
+   
+  }
+  @keyframes loading {
+    0% {
+      background-position: 32px;
+    }
+    40%{
+      background-position: 208px;
+    }
+    100% {
+        background-position: 300px;
+      }
+  }
+  
+
+
+
+  

@@ -3,7 +3,8 @@ import * as $ from "jquery";
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import {
 	Component,
 	ViewChild,
@@ -52,6 +53,8 @@ action : string;
 	
 	// public Editor = ClassicEditor;
 	public Editor = DecoupledEditor;
+	templateName: any;
+	templateId: string;
 
     public onReady( editor ) {
         editor.ui.getEditableElement().parentElement.insertBefore(
@@ -165,8 +168,9 @@ action : string;
 	// 	console.log( this.data );
 		
     // }
-	exportAsPDF()
+	exportAsPDF(templateName)
       {
+		  console.log("name->",templateName)
 		  
 		// const div = document.querySelector(".ck-content");
     const options = {
@@ -197,8 +201,8 @@ while (heightLeft >= 0) {
 }
       return doc;
     }).then((doc) => {
-		
-      doc.save('paper.pdf');  
+		const fileName = this.templateName
+      doc.save(fileName+'_qbase'+'.pdf');  
     });
   
       }
@@ -210,7 +214,6 @@ while (heightLeft >= 0) {
 
 	onTemplateSubmit() {
 
-		// alert(`Form submit, model: ${JSON.stringify(this.model.editorData)}`);
 		const options = {
 			background: 'white',
 			scale: 3
@@ -226,7 +229,7 @@ while (heightLeft >= 0) {
 		.subscribe((result) => {
 		  console.log("result",result);
 		  //html2canvas();
-		  this.messageService.openSnackBar("Template  Added SuccessFully",null)
+		  this.messageService.openSnackBar("Template  Added Successfully",null)
 		},(error) => {
 		  console.log("error",error);
 		});
@@ -257,18 +260,23 @@ while (heightLeft >= 0) {
 		private commonService : CommonService,
 		private messageService : MessageService
 	){}
+
+	getTemplateId
+
 	ngOnInit() {
 		
-		let templateId = this.route.snapshot.paramMap.get('id');
+		this.templateId = this.route.snapshot.paramMap.get('id');
 		// this.action = this.route.snapshot.paramMap.get('edit');
 		 this.action = this.route.snapshot.paramMap.get('action');
 
 
-		console.log("id:---->action------>",templateId,this.action);
+		console.log("id:---->action------>",this.templateId,this.action);
 
-		this.commonService.getData('get-template',{id: templateId})
+		this.commonService.getData('get-template',{id: this.templateId})
     .subscribe((result) => {
 	//   console.log("---------------from editor--------------",result.templates[0].string);
+	this.templateName = result.templates[0].name;
+	console.log("templateName from----->get template editor",this.templateName)
 	  this.model.editorData = result.templates[0].string;
     },(error) => {
       console.log(error);

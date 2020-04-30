@@ -18,13 +18,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavigationComponent } from './dashboard/navigation/navigation.component';
-import { SlidenavComponent } from './dashboard/slidenav/slidenav.component';
-import { AvatarComponent } from './dashboard/avatar/avatar.component';
-import { SlidenavListComponent } from './dashboard/slidenav/slidenav-list/slidenav-list.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { SlidenavComponent } from './slidenav/slidenav.component';
+import { SlidenavListComponent } from './slidenav/slidenav-list/slidenav-list.component';
 
-import { SearchComponent } from './dashboard/navigation/search/search.component';
 import { PandoraBoxComponent } from './pandora-box/pandora-box.component';
 
 
@@ -35,7 +32,6 @@ import { SignupComponent } from './signup/signup.component';
 import { PasswordrecoveryComponent } from './login/passwordrecovery/passwordrecovery.component';
 
 
-import { UploadComponent } from './upload/upload.component';
 import { UploadquestionComponent } from './uploadquestion/uploadquestion.component';
 
 import { AboutComponent } from './about/about.component';
@@ -44,7 +40,6 @@ import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionp
 import { TemplategalleryComponent } from './templategallery/templategallery.component';
 import { DocumentComponent, Rename, Delete, Preview } from './document/document.component';
 import { QuilleditorComponent } from './quilleditor/quilleditor.component';
-import { ResumeComponent } from './resume/resume.component';
 
 // services
 import { UserService } from './services/user.service';
@@ -58,23 +53,19 @@ import { PaperInfoDetailedComponent } from './paper-info-detailed/paper-info-det
 
 
 @NgModule({
-  entryComponents: [UploadComponent,Rename,Delete,Preview,PaperInfoDetailedComponent],
+  entryComponents: [Rename,Delete,Preview,PaperInfoDetailedComponent],
 
   declarations: [
     AppComponent,
-    DashboardComponent,
     NavigationComponent,
     SlidenavComponent,
     
-    AvatarComponent,
     SlidenavListComponent,
    
-    SearchComponent,
     PandoraBoxComponent,
 
     LoginComponent,
     SignupComponent,
-    UploadComponent,
     UploadquestionComponent,
     
     DocumentComponent,
@@ -82,7 +73,6 @@ import { PaperInfoDetailedComponent } from './paper-info-detailed/paper-info-det
     Delete,
     Preview,
     QuilleditorComponent,
-    ResumeComponent,
     AboutComponent,
     AboutquestionpaperComponent,
     TemplategalleryComponent,

@@ -49,8 +49,8 @@ export class DocumentComponent implements OnInit {
   ngOnInit() {
     this.commonService.getData('get-template',{})
     .subscribe((result) => {
-      console.log("templates",result.templates[1]);
       this.templates = result.templates;
+      console.log("templates",this.templates);
       // html2canvas(this.templates[1].string).then((canvas) => {});
     },(error) => {
       console.log(error);
@@ -97,7 +97,7 @@ export class DocumentComponent implements OnInit {
         console.log('The dialog was closed----->Delete:',this.confirmation,templateId);
 if(this.confirmation ==true){
         console.log("delete granted",this.confirmation);
-        this.commonService.deleteData('delete-template',{id : templateId})
+        this.commonService.deleteData('delete-template',templateId)
         .subscribe((result)=>{
           const afterDelete = result;
           console.log("delete result",afterDelete);

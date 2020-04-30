@@ -39,9 +39,13 @@
                         matTooltipPosition="below">
                        
                         <div class="card_action pt-1 pb-1">
-                            <mat-toolbar>
+                            <mat-toolbar >
                             <mat-toolbar-row>
-                                <small class="text-muted">{{template.name}}</small>
+                                <div>
+                                <small class="text-black-50">{{template.name}}</small>
+                                
+                                </div>
+
                         <div class="example-spacer"></div>
                                 <button mat-icon-button color="primary" (click)="onTemplatePreview(template.id)">
                                     <mat-icon aria-hidden="false" matTooltip="Preview">visibility</mat-icon>
