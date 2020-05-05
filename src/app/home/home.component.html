@@ -1,65 +1,23 @@
 
-<div class="d-flex justify-content-start m-auto p-5">
-  <div class=" skeleton_card post box_shadow_1 p-2">
-    <!-- <div class="avatar"></div> -->
-    <div class="header"></div>
-    <div class="section"></div>   
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="section"></div>   
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="section"></div>   
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="action"></div>
-  </div>
-
-  <div class=" skeleton_card post box_shadow_1 p-2">
-    <!-- <div class="avatar"></div> -->
-    <div class="header"></div>
-    <div class="section"></div>   
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="section"></div>   
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="section"></div>   
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="action"></div>
-  </div>
-
-  <div class=" skeleton_card post box_shadow_1 p-2">
-    <!-- <div class="avatar"></div> -->
-    <div class="header"></div>
-    <div class="section"></div>   
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="section"></div>   
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="section"></div>   
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="action"></div>
-  </div>
+<div class="container  p-5">
+  
+<h1>TinyMCE 5 Angular Demo</h1>
+<editor 
+  initialValue="<p>Initial content of the editor</p>"
+  [init]="{
+    height: 500,
+    menubar: true,
+    plugins: [
+      'advlist autolink lists link image charmap print',
+      'preview anchor searchreplace visualblocks code',
+      'fullscreen insertdatetime media table paste',
+      'help wordcount'
+    ],
+    toolbar:
+      'undo redo | formatselect | bold italic | \
+      alignleft aligncenter alignright alignjustify | \
+      bullist numlist outdent indent | help'
+  }"
+>
+</editor>
 </div>

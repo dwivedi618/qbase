@@ -14,15 +14,48 @@ section{
 a{
     text-decoration: none!important;
 }
+button:focus{
+    border: none !important;
+    outline: none!important; 
+}
+
+.group_button{
+    background: rgba(223, 225, 230, 0.103) !important;
+    
+}
+.group_button:hover{
+    background: rgb(223, 225, 230) !important;
+    box-shadow: 0 0 1px .5px #00000025;
+}
+mat-button-toggle-group{
+    
+    height: 2.5rem!important;
+}
+::ng-deep div.mat-button-toggle-label-content {
+    line-height: 36px!important;
+ 
+}
+.mat-menu-content:not(:empty) {
+    width: 100vw;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+button:active:focus,input:focus,a:focus{
+    border: none !important;
+    outline: none!important;
+}
+button.mat-icon-button:focus{
+    border: none !important;
+    outline: none!important; 
+}
 .new_template{
     width: 100%;
     min-width: 60vw;
     min-height: 5rem;
 }
 .mat_card{
- 
-    max-height: 80vh!important;
-    height:  80vh!important;
+    max-width: 300px;
+    max-height: 70vh;
     padding-bottom: 1rem;
     overflow: hidden;   
 }
@@ -30,6 +63,34 @@ a{
 .template_thumbnail{
     cursor: pointer;
 }
+.fixed_button{
+    overflow: hidden;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 5;
+    height: 2.5rem;
+    max-width: 5rem;
+    border-radius: 6rem;
+}
+.fixed_button:hover{
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.25)!important;
+}
+.special_btn{
+    position: relative;
+    width: 100%;
+    min-width: 3rem;
+    height: 2.5rem;
+    border-radius: 6rem;
+
+
+}
+.position_sticky{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
 .add{
     font-size:3rem;
     font-weight: bold;

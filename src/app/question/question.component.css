@@ -1,14 +1,72 @@
 
+.position_sticky{
+  position: sticky;
+  z-index: 5;
+  top: 0rem;
+}
+.chip_scroll{
+  width: 100vw;
+  overflow: auto;
+  /* overflow-y: auto; */
+}
+
 .table_container {
   min-height: 441px;
   max-height: 441px;
   overflow: auto;
+}
+mat-chip{
+  min-width: 4rem;
+}
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-button {
+  width: 1px;
+  height: 1px;
+}
+
+.horizontal-scroll-wrapper > div {
+  display: block;
+  padding: 5px;
+  background: #cab;
+ 
+}
+
+.single_row{
+  
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap !important;
+  overflow-y: auto;
+}
+::ng-deep div.mat-chip-list-wrapper {
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap!important;
+  
+}
+
+.squares > div {
+  width: 250px;
+  height: 250px;
+  margin: 10px 0;
 }
 
 table {
   
   width: 100%;
   box-shadow: 0px 1px 4px rgba(0,0,0,0.25)!important;
+  overflow-y: auto;
+}
+table td, table th {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  
 }
 
 .filter_field{
@@ -54,7 +112,7 @@ table tr:hover .action{
 .action .action_on_hover:hover mat-icon{
   color: rgb(167, 10, 10)!important
   ;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   
 }
 .action mat-icon:hover{

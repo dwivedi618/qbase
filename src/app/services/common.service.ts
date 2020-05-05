@@ -37,6 +37,6 @@ export class CommonService {
   }
 
   deleteData(route,templateId){
-    return this.http.delete<any>(`${environment.apiUrl}/${route}`, templateId);
+    return this.http.delete<any>(`${environment.apiUrl}/${route}/` + templateId);
   }
 }

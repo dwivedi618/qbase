@@ -10,7 +10,7 @@
 
    </button>
  </div>
-   <app-paper-info-detailed></app-paper-info-detailed>
+   <app-paper-info-detailed [id]="templateId"></app-paper-info-detailed>
   </mat-sidenav>
   <mat-sidenav-content>
    <div class="container">
@@ -42,7 +42,7 @@
       </button>
   </div>
   <div class="p-2">
-    <button  mat-mini-fab color="arn" (click)="onTemplateSubmit()" matTooltip="save as">
+    <button  mat-mini-fab color="arn" (click)="onTemplateSubmit()" matTooltip="save as new">
       <mat-icon>add_circle</mat-icon>
     </button>
 </div>

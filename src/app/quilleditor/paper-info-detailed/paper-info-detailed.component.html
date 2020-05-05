@@ -1,0 +1,131 @@
+<div class="pannel pt-5 box_shadow_1">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Section A
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="sectionA" (ngSubmit)="onSubmitSectionA()">
+        <!-- <mat-form-field class="container">
+          <input formControlName="generalInstructionA"matInput placeholder="General Instructon " autocomplete="off">
+        </mat-form-field> -->
+
+        <mat-form-field class="container">
+          <input formControlName="questionInA" matInput type="number" min="1" placeholder="Question In Section"
+            autocomplete="off">
+        </mat-form-field>
+        <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingA">
+          <mat-spinner diameter="30"></mat-spinner>
+          <div class="pl-1 pt-1 text-primary">Fetching...</div>
+        </div>
+        <mat-list class="example-full-width" *ngIf="fetchingQuestionA">
+          <mat-list-item *ngFor="let i of questionInSectionA">
+            <p mat-line>{{i.question}}</p>
+            <div class="d-flex justify-content-center">
+              <button mat-icon-button (click)="onReplace(i.id)">
+                <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
+                </mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+        </mat-list>
+
+
+        <mat-action-row>
+          <button mat-button color="accent" type="submit">Fetch</button>
+          <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
+
+        </mat-action-row>
+      </form>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Section B
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+            Type the country name
+            <mat-icon>map</mat-icon>
+          </mat-panel-description> -->
+      </mat-expansion-panel-header>
+
+      <form [formGroup]="sectionB" (ngSubmit)="onSubmitSectionB()">
+        <!-- <mat-form-field class="container">
+            <input formControlName="generalInstructionB"matInput placeholder="General Instructon " autocomplete="off">
+          </mat-form-field> -->
+
+        <mat-form-field class="container">
+          <input formControlName="questionInB" matInput type="number" min="1" placeholder="Question In Section"
+            autocomplete="off">
+        </mat-form-field>
+        <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingB">
+          <mat-spinner diameter="30"></mat-spinner>
+          <div class="pl-1 pt-1 text-primary">Fetching...</div>
+        </div>
+        <mat-list class="example-full-width" *ngIf="!fetchingQuestionB">
+          <mat-list-item *ngFor="let i of questionInSectionB">
+            <p mat-line>{{i.question}}</p>
+            <div class="d-flex justify-content-center">
+              <button mat-icon-button (click)="onReplace(i.id)">
+                <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
+                </mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+        </mat-list>
+
+        <mat-action-row>
+          <button mat-button color="accent" type="submit">Fetch</button>
+          <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
+
+          <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
+
+        </mat-action-row>
+      </form>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Section C
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+            Inform the date you wish to travel
+            <mat-icon>date_range</mat-icon>
+          </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <form [formGroup]="sectionC" (ngSubmit)="onSubmitSectionC()">
+        <!-- <mat-form-field class="container">
+            <input formControlName="generalInstructionC"matInput placeholder="General Instructon " autocomplete="off">
+          </mat-form-field> -->
+
+        <mat-form-field class="container">
+          <input formControlName="questionInC" matInput type="number" min="1" placeholder="Question In Section"
+            autocomplete="off">
+        </mat-form-field>
+        <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingC">
+          <mat-spinner diameter="30"></mat-spinner>
+          <div class="pl-1 pt-1 text-primary">Fetching...</div>
+        </div>
+        <mat-list class="example-full-width" *ngIf="!fetchingQuestionC">
+          <mat-list-item *ngFor="let i of questionInSectionC">
+            <p mat-line>{{i.question}}</p>
+            <div class="d-flex justify-content-center">
+              <button mat-icon-button (click)="onReplace(i.id)">
+                <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
+                </mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+        </mat-list>
+        <mat-action-row>
+          <button mat-button color="accent" type="submit">Fetch</button>
+          <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

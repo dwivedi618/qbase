@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'material-design-icons/iconfont/material-icons.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-@import 'material-design-icons/iconfont/material-icons.css';
 
 .brand_name32{
   font-size: 32px;
@@ -36,7 +36,21 @@ div{
     padding: 0;
     box-sizing: border-box;
 }
-
+.box_shadow_2{
+  box-sizing: border-box;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
+  margin: 0px auto 16px;
+  padding: 24px;
+  transition: box-shadow 0.25s ease 0s;
+}
+*button:focus{
+  border: none !important;
+  outline: none!important;
+}
+button.mat-icon-button:focus{
+  border: none !important;
+  outline: none!important; 
+}
 
 .custom-center{
   position: absolute;
@@ -79,41 +93,7 @@ div{
 
 
   }
-.material-icons {
-    font-family: 'Material Icons';
-    color: #666666;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 2em;  /* Preferred icon size */
-    display: inline-block;
-    line-height: normal;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    
-  
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-  
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-  
-    /* Support for IE. */
-    font-feature-settings: 'liga';
-  }
 
-  @media only screen and (max-width: 420px) {
-    .material-icons{
-        font-size: 1.5rem;  /* Preferred icon size */
-        
-
-    }
-
-}
 
 /* styling global scroler */
 *::-webkit-scrollbar-track

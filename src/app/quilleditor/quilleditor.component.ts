@@ -271,7 +271,7 @@ while (heightLeft >= 0) {
 
 
 		console.log("id:---->action------>",this.templateId,this.action);
-
+if( this.action != "new"){
 		this.commonService.getData('get-template',{id: this.templateId})
     .subscribe((result) => {
 	//   console.log("---------------from editor--------------",result.templates[0].string);
@@ -280,7 +280,8 @@ while (heightLeft >= 0) {
 	  this.model.editorData = result.templates[0].string;
     },(error) => {
       console.log(error);
-    });
+	});
+}
 
 	}
 

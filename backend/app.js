@@ -92,7 +92,7 @@ const Template = sequelize.define("template",{
         type: Sequelize.TEXT
     },
     thumbnail: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT('MEDIUM')
     }
     
 });
@@ -264,14 +264,14 @@ app.put("/update-question", async (req,res) => {
     });
 });
 
-app.delete("/delete-template", async (req,res) => {
-    let params = req.body;
-    console.log("deeeeeeelletteee teamplae",req);
+app.delete("/delete-template/:templateId", async (req,res) => {
+    let params = req.params;
+    console.log("deeeeeeelletteee templateId",req.params.templateId);
 
-    if(!params.template_id) return res.status(412);
+    if(!params.templateId) return res.status(412);
     let query = {
         where: {
-            id: params.id
+            id: params.templateId
         },
         raw: true
 
@@ -288,7 +288,8 @@ app.delete("/delete-template", async (req,res) => {
 
 app.delete("/delete-question", async (req,res) => {
     let params = req.body;
-    console.log("deeeeeeelletteee teamplae",params);
+    //console.log("deeeeeeelletteee teamplae",params);
+    console.log("hellllloooooo")
     if(!params.template_id) return res.status(412);
     let query = {
         where: {

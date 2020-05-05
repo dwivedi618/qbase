@@ -1,6 +1,7 @@
 import {SelectionModel} from '@angular/cdk/collections';
+import {MatTableDataSource} from '@angular/material/table';
 import {Component,OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource, MatSort, MatPaginator, MatDialog} from '@angular/material';
+import { MatSort, MatPaginator, MatDialog} from '@angular/material';
 import { CommonService } from '../services/common.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -92,8 +93,8 @@ export class QuestionComponent implements OnInit {
     private commonService: CommonService
   ) {}
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
   }
   ngOnInit() {
     this.chipForm = this.fB.group({

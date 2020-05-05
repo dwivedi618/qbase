@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { CommonService } from '../services/common.service';
+import { CommonService } from '../../services/common.service';
 
 export interface QuestionSectionA {
 	question: string;
@@ -19,6 +19,8 @@ export interface QuestionSectionA {
   styleUrls: ['./paper-info-detailed.component.css']
 })
 export class PaperInfoDetailedComponent implements OnInit {
+	@Input('id') templateId : any;
+	
   sectionA : FormGroup;
 	sectionB : FormGroup;
 	sectionC : FormGroup;
@@ -88,6 +90,7 @@ questionInSectionC : QuestionSectionA[] =[
 			generalInstructionC : [''],
 			questionInC : [''],
 		});
+		console.log("from parent",this.templateId);
   }
   get formA() {return this.sectionA.controls}
   get formB() {return this.sectionB.controls}
@@ -98,9 +101,12 @@ questionInSectionC : QuestionSectionA[] =[
 	  this.isLoadingA = true;//set false again when question Loaded
 	  this.fetchingQuestionA = false;
 	  console.log("this.sectionA.value.questionInA: ",this.sectionA.value.questionInA);
-	  this.commonServices.getData("get-section-question",{section: "SECTION-A", templateId:5,
-	  count: this.sectionA.value.questionInA})
-	  .subscribe((result)=>{
+	  this.commonServices.getData("get-section-question",{
+		  section: "SECTION-A", 
+		  templateId:this.templateId,
+		  count: this.sectionA.value.questionInA
+		})
+	  	.subscribe((result)=>{
 		this.isLoadingA = false;
 		  console.log("result from section",result);
 		  this.questionInSectionA = result.queList;
@@ -114,9 +120,13 @@ questionInSectionC : QuestionSectionA[] =[
  this.isLoadingB = true;//set false again when question Loaded
  this.fetchingQuestionB = false;
  console.log("this.sectionB.value.questionInB: ",this.sectionB.value.questionInB);
-	this.commonServices.getData("get-section-question",{section: "SECTION-B", templateId:5,
-    count: this.sectionB.value.questionInB})
+	this.commonServices.getData("get-section-question",{
+		section: "SECTION-B",
+		templateId:this.templateId,
+		count: this.sectionB.value.questionInB
+	})
 	.subscribe((result)=>{
+		this.isLoadingB = false;
 		console.log("result from section",result);
 		this.questionInSectionB = result.queList;
 
@@ -128,9 +138,12 @@ onSubmitSectionC(){
  this.isLoadingC = true;//set false again when question Loaded
  this.fetchingQuestionC = false;
  console.log("this.sectionC.value.questionInC: ",this.sectionC.value.questionInC);
-	this.commonServices.getData("get-section-question",{section: "SECTION-C", templateId:5,
-    count: this.sectionC.value.questionInC})
+	this.commonServices.getData("get-section-question",{section: "SECTION-C",
+	templateId:this.templateId,
+	count: this.sectionC.value.questionInC
+})
 	.subscribe((result)=>{
+		this.isLoadingC = false;
 		console.log("result from section",result);
 		this.questionInSectionC = result.queList;
 

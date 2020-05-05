@@ -16,7 +16,42 @@
   </a>
   
     <span class="example-spacer"></span>
-        
+        <button mat-icon-button [matMenuTriggerFor]="apps">
+          <mat-icon>apps</mat-icon>
+        </button>
+        <mat-menu #apps="matMenu" class="mat_menu">
+          
+          <div class="container">
+            <a [routerLink] = "['/document']" routerLinkActive="app_active">
+            <div class="app_item p-4  m-1 box_shadow_1">
+              <mat-icon mat-list-icon >subject</mat-icon>
+              <small mat-line>Document</small>    
+
+            </div>
+            </a>
+    
+            <a [routerLink] = "['/aboutquestionpaper']" routerLinkActive="app_active">
+              <div class="app_item p-4 m-1 box_shadow_1">
+                            <mat-icon mat-list-icon >launch</mat-icon>
+                            <small>General Instructions</small>    
+              </div>
+            </a>
+            <a  [routerLink]="[ '/question']" routerLinkActive="app_active">
+              <div class="app_item p-4 m-1 box_shadow_1">
+                      <mat-icon mat-list-icon >grain</mat-icon>
+                      <small mat-line>All Questions</small>
+              </div>
+            </a>
+            <a  [routerLink]="[ '/uploadquestion']" routerLinkActive="app_active">
+              <div class="app_item p-4 m-1 box_shadow_1 title">
+                      <mat-icon mat-list-icon >cloud_queue</mat-icon>
+                      <small class="title">Upload Questions</small>
+              </div>
+            </a>
+    </div>
+          
+
+        </mat-menu>
     <div >
       <button *ngIf="show_fullscreen" mat-icon-button (click)="openFullscreen()"
       matTooltip="Fullscreen" >

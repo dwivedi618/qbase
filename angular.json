@@ -19,21 +19,28 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
+              { "glob": "**/*", "input": "node_modules/tinymce", "output": "/tinymce/" },
               "src/favicon.ico",
               "src/assets"
             ],
+            
+           
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css",
-              "./node_modules/quill/dist/quill.core.css",
-              "./node_modules/quill/dist/quill.snow.css"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/tinymce/skins/ui/oxide/skin.min.css",
+         
+             
               
               
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
-              "./node_modules/quill/dist/quill.js"
+          
+              "node_modules/tinymce/tinymce.min.js",
+              "node_modules/tinymce/themes/silver/theme.min.js",
+
             ]
           },
           "configurations": {

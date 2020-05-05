@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 //CKEditorModule
 // import {CKEditorModule} from 'ckeditor4-angular';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+// import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 
 
@@ -47,7 +48,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { AlertService } from './services/alert.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
-import { PaperInfoDetailedComponent } from './paper-info-detailed/paper-info-detailed.component';
+import { PaperInfoDetailedComponent } from './quilleditor/paper-info-detailed/paper-info-detailed.component';
 
 
 
@@ -92,6 +93,7 @@ import { PaperInfoDetailedComponent } from './paper-info-detailed/paper-info-det
     FlexLayoutModule,
     HttpClientModule,
     CKEditorModule,
+    // EditorModule,
    
     
     
@@ -104,7 +106,8 @@ import { PaperInfoDetailedComponent } from './paper-info-detailed/paper-info-det
     UserService,
     AuthenticationService,
     AlertService,
-    AuthGuard
+    AuthGuard,
+    // { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
   ],
   bootstrap: [AppComponent]
 })

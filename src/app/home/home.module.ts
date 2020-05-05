@@ -1,8 +1,10 @@
+import { MaterialModule } from '../material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { MaterialModule } from '../material.module';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+
 
 
 @NgModule({
@@ -10,7 +12,8 @@ import { MaterialModule } from '../material.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MaterialModule
+    MaterialModule,
+    EditorModule
   ],
   exports: [
     HomeRoutingModule
