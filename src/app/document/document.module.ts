@@ -20,7 +20,7 @@ import { PaperGalleryComponent } from './paper-gallery/paper-gallery.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule,
+    MaterialModule,gu
     RouterModule,
     FormsModule,ReactiveFormsModule,
     DocumentRoutingModule
