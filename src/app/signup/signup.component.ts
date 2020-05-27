@@ -11,7 +11,7 @@ import { MessageService } from '../services/message.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
   hide = true;//this variable resposible for hide and show password on userend

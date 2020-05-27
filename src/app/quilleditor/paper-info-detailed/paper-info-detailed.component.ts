@@ -16,7 +16,7 @@ export interface QuestionSectionA {
 @Component({
   selector: 'app-paper-info-detailed',
   templateUrl: './paper-info-detailed.component.html',
-  styleUrls: ['./paper-info-detailed.component.css']
+  styleUrls: ['./paper-info-detailed.component.scss']
 })
 export class PaperInfoDetailedComponent implements OnInit {
 	@Input('id') templateId : any;

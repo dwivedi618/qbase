@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material';
+
 import { AboutquestionpaperComponent } from '../aboutquestionpaper/aboutquestionpaper.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'

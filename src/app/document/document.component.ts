@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AboutquestionpaperComponent } from '../aboutquestionpaper/aboutquestionpaper.component';
 import { PaperInfoDetailedComponent } from '../quilleditor/paper-info-detailed/paper-info-detailed.component';
 import { Action } from 'rxjs/internal/scheduler/Action';
-import { template } from '@angular/core/src/render3';
+// import { template } from '@angular/core/src/render3';
 import { SearchService } from '../services/search.service';
 
 export interface RenameData {
@@ -32,7 +32,7 @@ export interface PreviewById {
 @Component({
   selector: 'app-document',
   templateUrl: './document.component.html',
-  styleUrls: ['./document.component.css']
+  styleUrls: ['./document.component.scss']
 })
 export class DocumentComponent implements OnInit {
   [x: string]: any;

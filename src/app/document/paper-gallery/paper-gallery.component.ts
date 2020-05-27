@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+
 import { DialogService } from 'src/app/services/dialog.service';
 import { SearchService } from 'src/app/services/search.service';
 import { Rename, Delete } from '../document.component';
 import { PaperInfoDetailedComponent } from 'src/app/quilleditor/paper-info-detailed/paper-info-detailed.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface RenameData {
   templateName: string;
@@ -26,7 +27,7 @@ export interface PreviewById {
 @Component({
   selector: 'app-paper-gallery',
   templateUrl: './paper-gallery.component.html',
-  styleUrls: ['./paper-gallery.component.css']
+  styleUrls: ['./paper-gallery.component.scss']
 })
 export class PaperGalleryComponent implements OnInit {
   [x: string]: any;

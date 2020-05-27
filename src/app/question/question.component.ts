@@ -1,13 +1,16 @@
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
 import {Component,OnInit, ViewChild} from '@angular/core';
-import { MatSort, MatPaginator, MatDialog} from '@angular/material';
+
 import { CommonService } from '../services/common.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UploadquestionComponent } from '../uploadquestion/uploadquestion.component';
 import { SearchComponent } from '../search/search.component';
 import { SearchService } from '../services/search.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 export interface Question {
   question: string;
   subject: string;
@@ -25,7 +28,7 @@ export interface Question {
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
   visible = true;

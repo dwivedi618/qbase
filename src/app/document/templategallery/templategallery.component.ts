@@ -18,7 +18,7 @@ export interface PreviewById {
 @Component({
   selector: 'app-templategallery',
   templateUrl: './templategallery.component.html',
-  styleUrls: ['./templategallery.component.css']
+  styleUrls: ['./templategallery.component.scss']
 })
 export class TemplategalleryComponent implements OnInit {
 isLoading = true;

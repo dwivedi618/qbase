@@ -34,7 +34,7 @@ export interface QuestionSectionA {
 @Component({
 	selector: 'app-quilleditor',
 	templateUrl: './quilleditor.component.html',
-	styleUrls: ['./quilleditor.component.css']
+	styleUrls: ['./quilleditor.component.scss']
 })
 export class QuilleditorComponent implements AfterViewInit {
 

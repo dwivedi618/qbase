@@ -3,7 +3,7 @@ import { Component, OnInit , AfterViewInit} from '@angular/core';
 @Component({
   selector: 'app-slidenav',
   templateUrl: './slidenav.component.html',
-  styleUrls: ['./slidenav.component.css']
+  styleUrls: ['./slidenav.component.scss']
 })
 export class SlidenavComponent implements OnInit {
 

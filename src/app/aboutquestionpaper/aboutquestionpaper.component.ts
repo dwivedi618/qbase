@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
-import {MatChipInputEvent} from '@angular/material';
+
 import {FormBuilder, FormGroup, FormControl,Validators} from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 export interface Session {
   name: string;
@@ -24,7 +25,7 @@ export interface DifficultyLevel{
 @Component({
   selector: 'app-aboutquestionpaper',
   templateUrl: './aboutquestionpaper.component.html',
-  styleUrls: ['./aboutquestionpaper.component.css']
+  styleUrls: ['./aboutquestionpaper.component.scss']
 })
 export class AboutquestionpaperComponent implements OnInit {
   selectedSubject : string;

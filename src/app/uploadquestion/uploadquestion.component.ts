@@ -28,7 +28,7 @@ export interface AnswerType {
 @Component({
   selector: 'app-uploadquestion',
   templateUrl: './uploadquestion.component.html',
-  styleUrls: ['./uploadquestion.component.css']
+  styleUrls: ['./uploadquestion.component.scss']
 })
 export class UploadquestionComponent implements OnInit {
   questionUploadForm: FormGroup;
