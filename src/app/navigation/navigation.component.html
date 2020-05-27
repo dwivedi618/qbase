@@ -1,108 +1,104 @@
-
 <mat-toolbar role="heading" class="example-header">
-  
   <mat-toolbar-row>
-    
-    <button mat-icon-button (click)="onToggleSidenav()" matTooltip="menu" >
-      <mat-icon >menu</mat-icon>
-    </button>     
-  <!-- ---------------------------------- -->
-  <a [routerLink]="['/home']" >
-  
+    <button mat-icon-button (click)="onToggleSidenav()" matTooltip="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a [routerLink]="['/home']">
       <!-- <div class="logo" fxLayoutAlign="center">
         <img src="../assets/qbase48.png" alt="qbase">
       </div> -->
-    <h1 class="text-dark ">Qbase</h1>    
-  </a>
-  
-    <span class="example-spacer"></span>
-        <button mat-icon-button [matMenuTriggerFor]="apps">
-          <mat-icon>apps</mat-icon>
-        </button>
-        <mat-menu #apps="matMenu" class="mat_menu">
-          
-          <div class="container">
-            <a [routerLink] = "['/document']" routerLinkActive="app_active">
-            <div class="app_item p-4  m-1 box_shadow_1">
-              <mat-icon mat-list-icon >subject</mat-icon>
-              <small mat-line>Document</small>    
-
-            </div>
-            </a>
-    
-            <a [routerLink] = "['/aboutquestionpaper']" routerLinkActive="app_active">
-              <div class="app_item p-4 m-1 box_shadow_1">
-                            <mat-icon mat-list-icon >launch</mat-icon>
-                            <small>General Instructions</small>    
-              </div>
-            </a>
-            <a  [routerLink]="[ '/question']" routerLinkActive="app_active">
-              <div class="app_item p-4 m-1 box_shadow_1">
-                      <mat-icon mat-list-icon >grain</mat-icon>
-                      <small mat-line>All Questions</small>
-              </div>
-            </a>
-            <a  [routerLink]="[ '/uploadquestion']" routerLinkActive="app_active">
-              <div class="app_item p-4 m-1 box_shadow_1 title">
-                      <mat-icon mat-list-icon >cloud_queue</mat-icon>
-                      <small class="title">Upload Questions</small>
-              </div>
-            </a>
+      <h1 class="text-dark ">Qbase</h1>
+    </a>
+    <div class="pr-5 pl-5 container">
+      <app-search></app-search>
     </div>
-          
-
-        </mat-menu>
-    <div >
-      <button *ngIf="show_fullscreen" mat-icon-button (click)="openFullscreen()"
-      matTooltip="Fullscreen" >
-      <mat-icon>fullscreen</mat-icon>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="apps">
+      <mat-icon>apps</mat-icon>
     </button>
-    <button *ngIf="close_fullscreen" mat-icon-button (click)="closeFullscreen()"
-    matTooltip="Exit Fullscreen" >
-    <mat-icon>fullscreen_exit</mat-icon>
-  </button>
-</div>
-<!-- --------- -->
-<!-- username beside the user icon in naviagtion bar -->
-<div  fxHide.xs="true">
-  <small class="text-black-50 ">{{name}}</small>
-</div>
-<div >
+    <mat-menu #apps="matMenu" class="mat_menu">
 
-<!-- button for acoount navigation -->
+      <div class="container">
+        <a [routerLink]="['/document']" routerLinkActive="app_active">
+          <div class="app_item p-4  m-1 box_shadow_1">
+            <mat-icon mat-list-icon>subject</mat-icon>
+            <small mat-line>Document</small>
 
-<button mat-icon-button [matMenuTriggerFor]="account" *ngIf="userActive">
-  <!-- avatar module inserted -->
-        <div > 
-          <img class="avatar_small box_shadow_1" id="avatar" src="https://lh3.googleusercontent.com/a-/AOh14GifJzkwrjCwM0mtNs7P7akXsxS2fBrbghePvHLl4aw=s96-cc-rg" >
+          </div>
+        </a>
+
+        <a [routerLink]="['/aboutquestionpaper']" routerLinkActive="app_active">
+          <div class="app_item p-4 m-1 box_shadow_1">
+            <mat-icon mat-list-icon>launch</mat-icon>
+            <small>General Instructions</small>
+          </div>
+        </a>
+        <a [routerLink]="[ '/question']" routerLinkActive="app_active">
+          <div class="app_item p-4 m-1 box_shadow_1">
+            <mat-icon mat-list-icon>grain</mat-icon>
+            <small mat-line>All Questions</small>
+          </div>
+        </a>
+        <a [routerLink]="[ '/uploadquestion']" routerLinkActive="app_active">
+          <div class="app_item p-4 m-1 box_shadow_1 title">
+            <mat-icon mat-list-icon>cloud_queue</mat-icon>
+            <small class="title">Upload Questions</small>
+          </div>
+        </a>
+      </div>
+
+
+    </mat-menu>
+    <div>
+      <button *ngIf="show_fullscreen" mat-icon-button (click)="openFullscreen()" matTooltip="Fullscreen">
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+      <button *ngIf="close_fullscreen" mat-icon-button (click)="closeFullscreen()" matTooltip="Exit Fullscreen">
+        <mat-icon>fullscreen_exit</mat-icon>
+      </button>
+    </div>
+    <!-- --------- -->
+    <!-- username beside the user icon in naviagtion bar -->
+    <div fxHide.xs="true">
+      <small class="text-black-50 ">{{name}}</small>
+    </div>
+    <div>
+
+      <!-- button for acoount navigation -->
+
+      <button mat-icon-button [matMenuTriggerFor]="account" *ngIf="userActive">
+        <!-- avatar module inserted -->
+        <div>
+          <img class="avatar_small box_shadow_1" id="avatar"
+            src="https://lh3.googleusercontent.com/a-/AOh14GifJzkwrjCwM0mtNs7P7akXsxS2fBrbghePvHLl4aw=s96-cc-rg">
 
         </div>
         <!-- ---------------- -->
       </button>
 
       <!-- when profile button trigerd dropdown will show -->
-    <mat-menu #account="matMenu" class="mat-menu-account">
-<!-- options 1 for mini profile -->
+      <mat-menu #account="matMenu" class="mat-menu-account">
+        <!-- options 1 for mini profile -->
         <button mat-menu-item id="mini-profile-container">
-            <a [routerLink]="[ '/profile']">
-              <div class="d-flex justify-content-center">
-                <div>
-                      <img class="avatar-big" id="avatar" 
-                      src="https://lh3.googleusercontent.com/a-/AOh14GifJzkwrjCwM0mtNs7P7akXsxS2fBrbghePvHLl4aw=s96-cc-rg" 
-                      alt="">
-                </div>
-                <div class="username-email-container">
-                  <div class="username"><strong> {{name}} </strong></div>
-                  <div class="email"><small class="text-dark-50">{{email}}</small></div>
-                </div>
+          <a [routerLink]="[ '/profile']">
+            <div class="d-flex justify-content-center">
+              <div>
+                <img class="avatar-big" id="avatar"
+                  src="https://lh3.googleusercontent.com/a-/AOh14GifJzkwrjCwM0mtNs7P7akXsxS2fBrbghePvHLl4aw=s96-cc-rg"
+                  alt="">
               </div>
-            </a>
-               
+              <div class="username-email-container">
+                <div class="username"><strong> {{name}} </strong></div>
+                <div class="email"><small class="text-dark-50">{{email}}</small></div>
+              </div>
+            </div>
+          </a>
+
         </button>
         <!-- option 2 for login button if not logged in -->
-        
-      
-<!-- option 3 for displaying questions -->
+
+
+        <!-- option 3 for displaying questions -->
         <a mat-menu-item [routerLink]="[ './settings']">
           <button mat-icon-button>
             <mat-icon>settings</mat-icon>
@@ -110,20 +106,19 @@
           </button>
         </a>
 
-        <a  mat-menu-item [routerLink]="[ './help']">
-          <button mat-icon-button>  
-              <mat-icon>help</mat-icon>
-              <span>Help</span>
+        <a mat-menu-item [routerLink]="[ './help']">
+          <button mat-icon-button>
+            <mat-icon>help</mat-icon>
+            <span>Help</span>
           </button>
-       </a>
-       <mat-list>
-       <mat-list-item (click)="logout()" class="logout-btn">
-         <mat-icon mat-list-icon>lock</mat-icon>
-         <span>Logout</span>
-       </mat-list-item>
-      </mat-list>
-    </mat-menu>
-  </div>
-</mat-toolbar-row>
+        </a>
+        <mat-list>
+          <mat-list-item (click)="logout()" class="logout-btn">
+            <mat-icon mat-list-icon>lock</mat-icon>
+            <span>Logout</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
-

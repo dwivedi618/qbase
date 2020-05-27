@@ -17,6 +17,9 @@ import { QuestionComponent } from './question.component';
 
     RouterModule.forChild(questionRoutes)
     
+  ],
+  exports:[
+    RouterModule
   ]
 })
 export class QuestionRoutingModule { }

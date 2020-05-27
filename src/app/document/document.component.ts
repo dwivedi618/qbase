@@ -6,11 +6,12 @@ import { CommonService } from '../services/common.service';
 import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
 // import { get } from 'http';
 import html2canvas from 'html2canvas';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AboutquestionpaperComponent } from '../aboutquestionpaper/aboutquestionpaper.component';
 import { PaperInfoDetailedComponent } from '../quilleditor/paper-info-detailed/paper-info-detailed.component';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { template } from '@angular/core/src/render3';
+import { SearchService } from '../services/search.service';
 
 export interface RenameData {
   templateName: string;
@@ -35,7 +36,9 @@ export interface PreviewById {
 })
 export class DocumentComponent implements OnInit {
   [x: string]: any;
+  selected = "Recents";
   onEmpty = false;
+  isLoading = true;
   templates: Template[];
   previewbyid: PreviewById[];
 
@@ -43,15 +46,19 @@ export class DocumentComponent implements OnInit {
   templateName: string;
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     public dialog: MatDialog,
     private dialogService: DialogService,
-    public commonService: CommonService
+    public commonService: CommonService,
+    private searchService: SearchService
   ) { }
 
   ngOnInit() {
 
+
     this.commonService.getData('get-template', [])
       .subscribe((result) => {
+        this.isLoading = false;
         this.templates = result.templates;
         console.log("templates", (this.templates));
         if (this.templates.length <= 0) {
@@ -63,6 +70,8 @@ export class DocumentComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
+    console.log("Inside DocumentComponent::path::", this.route.snapshot.url[0].path);
+    this.searchService.path.emit(this.route.snapshot.url[0].path);//sending path to searchService
   }
   onTemplateSelect(templateId, action) {
     // this.dialogService.openDialog(AboutquestionpaperComponent);
@@ -85,13 +94,13 @@ export class DocumentComponent implements OnInit {
       if (newName != undefined && newName != "") {
         this.commonService.putData('update-template', { name: newName, id: templateId })
           .subscribe((result) => {
-console.log("newName",newName)
+            console.log("newName", newName)
             var updatedTemplates = this.templates.filter(function (p) {
               return p.id == templateId;
             })
-            console.log("after rename length of template+++++++=>",this.templates.length)
-            for(let i = 0 ;i <this.templates.length;i++){
-              console.log("i======>>",i);
+            console.log("after rename length of template+++++++=>", this.templates.length)
+            for (let i = 0; i < this.templates.length; i++) {
+              console.log("i======>>", i);
             }
             // this.templates = updatedTemplates;
             console.log("rename successfull updated template::::>>>>after Rename", updatedTemplates);

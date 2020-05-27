@@ -16,6 +16,7 @@ import{ActivatedRoute} from '@angular/router'
 import { FormGroup, FormControl } from '@angular/forms';
 import { CommonService } from '../services/common.service';
 import { MessageService } from '../services/message.service';
+import { SearchService } from '../services/search.service';
 
 // import { editorConfig } from '../../../src/';
 export interface QuestionSectionA {
@@ -55,6 +56,7 @@ action : string;
 	public Editor = DecoupledEditor;
 	templateName: any;
 	templateId: string;
+	path: string;
 
     public onReady( editor ) {
         editor.ui.getEditableElement().parentElement.insertBefore(
@@ -258,6 +260,7 @@ while (heightLeft >= 0) {
 	constructor(
 		private route: ActivatedRoute,
 		private commonService : CommonService,
+		private searchService : SearchService,
 		private messageService : MessageService
 	){}
 
@@ -266,6 +269,9 @@ while (heightLeft >= 0) {
 	ngOnInit() {
 		
 		this.templateId = this.route.snapshot.paramMap.get('id');
+		console.log("Inside Quilleditor::path::",this.route.snapshot.url[0].path);
+		this.path = this.route.snapshot.url[0].path;
+		this.searchService.path.emit(this.path);
 		// this.action = this.route.snapshot.paramMap.get('edit');
 		 this.action = this.route.snapshot.paramMap.get('action');
 

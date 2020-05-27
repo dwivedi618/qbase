@@ -3,8 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { DocumentComponent } from './document/document.component';
-import { TemplategalleryComponent } from './templategallery/templategallery.component';
+
 import { QuilleditorComponent } from './quilleditor/quilleditor.component';
 
 import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionpaper.component';
@@ -17,12 +16,13 @@ import { AuthGuard } from './auth.guard';
 
 
 
+
 const routes: Routes = [
   
   { path: '' ,canActivate: [AuthGuard], component : SlidenavComponent,
   children:[
-    { path: 'document' , component : DocumentComponent },
-    { path : 'tpg', component :TemplategalleryComponent },
+    { path: 'document' , loadChildren : './document/document.module#DocumentModule' },
+    
     { path : 'home', loadChildren: './home/home.module#HomeModule'},
    
    

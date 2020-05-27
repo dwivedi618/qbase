@@ -14,20 +14,20 @@ section{
 a{
     text-decoration: none!important;
 }
-/* div.selection_form mat-form-field ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
   padding-bottom: 0em!important;
   padding-left: 4px;
   font-size: small;
 }
-div.selection_form mat-form-field ::ng-deep div.mat-form-field-infix {
+::ng-deep div.mat-form-field-infix {
   border-top: 0!important;
   padding: 0!important;
   min-width: 100px;
   width: auto;
 }
-div.selection_form mat-form-field  {
+mat-form-field {
   width:100%;
-} */
+}
 
 
 mat-select{
@@ -74,7 +74,7 @@ button.mat-icon-button:focus{
 }
 .mat_card{
     max-width: 300px;
-    max-height: 30vh;
+    max-height: 70vh;
     padding-bottom: 1rem;
     overflow: hidden;   
 }
@@ -123,11 +123,8 @@ button.mat-icon-button:focus{
     right: 0;
     left: 0;
 }
-.card_action mat-toolbar mat-toolbar-row{
-  padding-right: 0px!important;
-}
 mat-card img{
-    height: 30vh;
+    height: 80vh;
     overflow: hidden;
 }
 .example-spacer {

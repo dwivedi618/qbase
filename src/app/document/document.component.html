@@ -1,8 +1,19 @@
 <mat-toolbar class="position_sticky bg-white box_shadow_1" color="primary">
     <mat-toolbar-row>
-        <div>
-         
-<button mat-button type="button" class="group_button box_shadow_1"
+        <div class="box_shadow_0 selection_form">
+            
+                <mat-select [(value)]="selected">
+                    <mat-option value="Recents" selected class="text-success">Recents</mat-option>
+                    <mat-option value="Paper Gallery"> <a [routerLink]="['./paper-gallery']">Paper Gallery</a>
+                    </mat-option>
+                    <mat-option value="Template Gallery"><a [routerLink]="['./template-gallery']">Template Gallery</a>
+                    </mat-option>
+                </mat-select>
+           
+        </div>
+
+        <!-- <div>
+<button mat-button type="button" class="group_button box_shadow_0"
         [matMenuTriggerFor]="groupButton" 
         color="primary">
         <mat-icon>keyboard_arrow_down</mat-icon>{{group.value}}</button>
@@ -13,33 +24,27 @@
                     Recents
                 </mat-button-toggle>
                 <mat-button-toggle value="Paper" class="title " selected>
-                    <a [routerLink]="">Paper</a>
+                    <a [routerLink]="['./paper-gallery']">Paper</a>
                 </mat-button-toggle>
                 <mat-button-toggle value="Templates" class="title ">
-                    <a [routerLink]="">Templates</a>
+                    <a [routerLink]="['./template-gallery']">Templates</a>
                 </mat-button-toggle>
                 <mat-button-toggle value="All" class="title ">
                     All
                 </mat-button-toggle>
             </mat-button-toggle-group>
             </div>
-                <!-- <button mat-menu-item value="Recents">Recents</button>
-                <button mat-menu-item value="Template Gallery">Template Gallery</button>
-                <button mat-menu-item value="Paper">Paper</button>
-                <button mat-menu-item value="All">All</button> -->
             </mat-menu>
-            <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
-        </div>
-        <div class="mr-auto pp-2  title "></div><!--spacer-->
-        <!-- <div class="pp-2 title"><button type="button" mat-icon-button>{{group.value}}
-                <i class="fa fa-angle-right"></i></button></div> -->
-        <div class="pp-2 title">
-            <button type="button" 
-            mat-icon-button 
-            matTooltip="view">
+            
+        </div> -->
+        <div class="mr-auto pp-2  title "></div>
+        <!--spacer-->
+
+        <div class="pl-1 pr-1 title">
+            <button type="button" mat-icon-button matTooltip="view">
                 <mat-icon>view_list</mat-icon>
             </button></div>
-        <div class="pp-2 title">
+        <div class="pl-1 pr-1 title">
             <button type="button" mat-icon-button [matMenuTriggerFor]="sort" matTooltip="sort by">
                 <mat-icon>sort_by_alpha</mat-icon>
             </button>
@@ -53,34 +58,28 @@
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
-<section class="jumbotron">
-    <a [routerLink]="['/quilleditor','new']" routerLinkActive="router-link-active">
-        <div fxLayoutAlign="center center" class="fixed_button p-2 box_shadow_1 bg-light"
-            matTooltip="Create New Template">
-            <div class="special_btn special_btn_width " fxLayoutAlign="center center">
-                <mat-icon>add</mat-icon>
-            </div>
-        </div>
-    </a>
 
-    <div class="container ">
-        <div class="d-flex">
-            <h1 *ngIf="onEmpty" class="m-auto">{{onEmptyMessage}}</h1>
-       
-            <div class="p-4" *ngFor="let template of templates">
-                <mat-card class="card mat_card text-center">
+<!-- recent document section -->
+<section class="container">
+    <div class="title "><strong>Recent
+        Documents</strong></div>
+        <div class="">
+        <div class="row">
+            <div class="col-md-3 p-4" *ngFor="let template of templates">
+                <mat-card class="card mat_card ">
                     <img mat-card-image class="template_thumbnail"
                         (click)="onTemplateSelect(template.id,'paper-generation')" src="{{ template.thumbnail }}"
                         matTooltip="Click To Use This Template" matTooltipPosition="below">
                     <div class="card_action pt-1 pb-1">
                         <mat-toolbar>
                             <mat-toolbar-row>
-                                <div>
-                                    <small class="text-black-50">{{template.name}}</small>
+                                <div style="max-width: 240px;overflow: hidden;">
+                                    <small class="text-success">{{template.name}}</small>
                                 </div>
                                 <div class="example-spacer"></div>
-                                <button mat-button color="primary"class="box_shadow_1"(click)="onTemplatePreview(template.id)">
-                                   View
+                                <button mat-icon-button color="primary" 
+                                    (click)="onTemplatePreview(template.id)">
+                                    <mat-icon>fullscreen</mat-icon>
                                 </button>
                                 <button mat-icon-button [matMenuTriggerFor]="menu"
                                     aria-label="Example icon-button with a menu">
@@ -102,74 +101,19 @@
                                 </mat-menu>
                             </mat-toolbar-row>
                         </mat-toolbar>
-
-
-
-
                     </div>
 
                 </mat-card>
             </div>
-
         </div>
     </div>
+    <a [routerLink]="['/quilleditor','new']" routerLinkActive="router-link-active">
+        <div fxLayoutAlign="center center" class="fixed_button p-2 box_shadow_1 bg-light"
+            matTooltip="Create New Template">
+            <div class="special_btn special_btn_width " fxLayoutAlign="center center">
+                <mat-icon>add</mat-icon>
+            </div>
+        </div>
+    </a>
 </section>
-<!-- recent document section -->
-<!-- <section class="d-flex justify-content-center">
-    <div class="row container d-flex justify-content-between ">
-        <div class="row  sub_menu ">
-            <div class="d-flex">
-                <div class="mr-auto pp-2  title "><button type="button" class="btn btn-light btn-sm">Recent
-                        Documents</button></div>
-                <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">Owner
-                        <i class="fa fa-angle-right"></i></button></div>
-                <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">
-                        <i class="material-icons">view_list</i></button></div>
-                <div class="pp-2 title"><button type="button" class="btn btn-light btn-sm">
-                        <i class="material-icons">
-                            sort_by_alpha
-                        </i>
-                    </button></div>
-
-            </div>
-        </div>
-        <div class="row container d-flex justify-content-between document">
-
-
-
-
-            <div class="col-md-6">
-                <mat-card class="card " style="width: 100%;">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s"
-                        alt="Card image cap">
-                    <div class="card2_body">
-                        <h5 class="title">Document Name</h5>
-                        <div class="d-flex justify-content-between">
-                            <a class="card-link">25 NOV 2019</a>
-                            <a class="card-link"><i class="material-icons">more_vert</i></a>
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-
-            <div class="col-md-6">
-                <mat-card class="card " style="width: 100%;">
-                    <img class="card-img-top"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy-bR2BdDngGkckqwpuKPBqYNkuyaBxrEtDKbdnPfg_eR1-MsY_g&s"
-                        alt="Card image cap">
-                    <div class="card2_body">
-                        <h5 class="title">Document Name</h5>
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="card-link">25 NOV 2019</a>
-                            <a href="#" class="card-link"><i class="material-icons">more_vert</i></a>
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-
-
-        </div>
-    </div>
-
-</section> -->
+<router-outlet></router-outlet>

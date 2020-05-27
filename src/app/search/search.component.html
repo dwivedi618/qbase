@@ -1,0 +1,12 @@
+<form class="search_container box_shadow_0 pr-1">    
+    <input  type="search" 
+            class="bg-light search_query "
+            spellcheck="false"
+            (keyup)="doFilter($event.target.value)" 
+            placeholder="Type to search in {{pathOfOpenedComponent}}">
+            <mat-icon (click)=search($event.target.value)>search</mat-icon>
+</form>        
+        
+
+
+

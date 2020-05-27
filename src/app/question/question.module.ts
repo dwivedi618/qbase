@@ -19,7 +19,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports:[
     QuestionRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class QuestionModule { }

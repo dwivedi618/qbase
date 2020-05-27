@@ -4,8 +4,10 @@ import {Component,OnInit, ViewChild} from '@angular/core';
 import { MatSort, MatPaginator, MatDialog} from '@angular/material';
 import { CommonService } from '../services/common.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UploadquestionComponent } from '../uploadquestion/uploadquestion.component';
+import { SearchComponent } from '../search/search.component';
+import { SearchService } from '../services/search.service';
 export interface Question {
   question: string;
   subject: string;
@@ -41,6 +43,7 @@ export class QuestionComponent implements OnInit {
   isLoading=  true;
   selection: any;
   dataSource: any;
+  public path: any;
 
 
   
@@ -87,10 +90,12 @@ export class QuestionComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     
   constructor(
-    public dialog: MatDialog,
     private router: Router,
+    public route: ActivatedRoute,
+    public dialog: MatDialog,
     private fB: FormBuilder,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private searchService: SearchService,
   ) {}
   ngAfterViewInit(): void {
     // this.dataSource.sort = this.sort;
@@ -100,6 +105,13 @@ export class QuestionComponent implements OnInit {
     this.chipForm = this.fB.group({
       chipValue : ['']
     });
+    // send path to SearchComponent
+    console.log("Inside QuestionComponent::path::",this.route);
+    console.log("Inside QuestionComponent::path::",window.location);
+
+		this.path = this.route.url
+    // this.searchService.path.emit(this.path);//send path to SearchService
+    // gethhing all questio from database
     this.commonService.getData('get-question',{})
     .subscribe((result) => {
       this.questions = result.questions;

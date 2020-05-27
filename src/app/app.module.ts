@@ -38,8 +38,8 @@ import { UploadquestionComponent } from './uploadquestion/uploadquestion.compone
 import { AboutComponent } from './about/about.component';
 
 import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionpaper.component';
-import { TemplategalleryComponent } from './templategallery/templategallery.component';
-import { DocumentComponent, Rename, Delete, Preview } from './document/document.component';
+
+
 import { QuilleditorComponent } from './quilleditor/quilleditor.component';
 
 // services
@@ -49,36 +49,35 @@ import { AlertService } from './services/alert.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import { PaperInfoDetailedComponent } from './quilleditor/paper-info-detailed/paper-info-detailed.component';
+import { SearchComponent } from './search/search.component';
+import { SearchService } from './services/search.service';
+import { CommonService } from './services/common.service';
+import { MatTableResponsiveDirective } from './mat-table-responsive/mat-table-responsive.directive';
+
 
 
 
 
 @NgModule({
-  entryComponents: [Rename,Delete,Preview,PaperInfoDetailedComponent],
+  entryComponents: [PaperInfoDetailedComponent],
 
   declarations: [
     AppComponent,
     NavigationComponent,
     SlidenavComponent,
-    
     SlidenavListComponent,
-   
     PandoraBoxComponent,
-
     LoginComponent,
     SignupComponent,
     UploadquestionComponent,
-    
-    DocumentComponent,
-    Rename,
-    Delete,
-    Preview,
     QuilleditorComponent,
     AboutComponent,
     AboutquestionpaperComponent,
-    TemplategalleryComponent,
     PasswordrecoveryComponent,
     PaperInfoDetailedComponent,
+    SearchComponent,
+    MatTableResponsiveDirective,
+    
     // HomeComponent,
     
     
@@ -105,6 +104,8 @@ import { PaperInfoDetailedComponent } from './quilleditor/paper-info-detailed/pa
   providers: [
     UserService,
     AuthenticationService,
+    SearchService,
+    CommonService,
     AlertService,
     AuthGuard,
     // { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }

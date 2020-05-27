@@ -1,88 +1,113 @@
-<div class="jumbotron-fluid">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 card ">
-        <form [formGroup]="questionUploadForm" (ngSubmit)="onQuestionUpload()">
-          <div class="col-12 ">
-            <div class="p-4">
-            <mat-form-field appearance="outline" class="p-2">
-              <mat-label>Question Type</mat-label>
-              <mat-select formControlName="type">
-                <mat-option *ngFor="let type of types" [value]="type.value">
-                  {{type.viewValue}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="form.type.hasError('required')">Required</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="p-2">
-              <mat-label>Subject</mat-label>
-              <mat-select formControlName="subject">
-                <mat-option *ngFor="let subject of subjects" [value]="subject.value">
-                  {{subject.viewSubject}}
-                </mat-option>
+<form [formGroup]="questionUploadForm" (ngSubmit)="onQuestionUpload()">
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 ">
+          <mat-form-field appearance="outline" class="p-2 container">
+            <mat-label>Question Type</mat-label>
+            <mat-select formControlName="type">
+              <mat-option *ngFor="let type of types" [value]="type.value" required>
+                {{type.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.type.hasError('required')">Required</mat-error>
+          </mat-form-field>
+        </div>
 
-              </mat-select>
-              <mat-error *ngIf="form.subject.hasError('required')">Required</mat-error>
-            </mat-form-field>
-          
-            <mat-form-field appearance="outline" class="p-2">
-              <mat-label>Course Outcome</mat-label>
-              <mat-select formControlName="courseOutcome">
-                <mat-option *ngFor="let courseOutcome of courseOutcomes" [value]="courseOutcome.value">
-                  {{courseOutcome.viewValue}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="form.courseOutcome.hasError('required')">Required</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="p-2">
-              <mat-label>Answer Type</mat-label>
-              <mat-select formControlName="answerType">
-                <mat-option *ngFor="let answerType of answerTypes" [value]="answerType.value">
-                  {{answerType.viewValue}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="form.answerType.hasError('required')">Required</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="p-2">
-              <mat-label>Difficulty Level</mat-label>
-              <mat-select formControlName="difficultyLevel">
-                <mat-option *ngFor="let difficultyLevel of difficultyLevels" [value]="difficultyLevel.value">
-                  {{difficultyLevel.viewValue}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="form.difficultyLevel.hasError('required')">Required</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="p-2">
-              <mat-label>Unit</mat-label>
-              <input type="text" matInput formControlName="unit">
-              <mat-error *ngIf="form.unit.hasError('required')">Required</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="p-2">
-              <mat-label>Topic</mat-label>
-              <input type="text" matInput formControlName="topic">
-              <mat-error *ngIf="form.unit.hasError('required')">Required</mat-error>
-            </mat-form-field>
-            
-          </div>
-          </div>
-          <div class="card border-0">
-            <mat-form-field appearance="outline" class="container question_textarea">
-              <mat-label>Question</mat-label>
+        <div class="col-lg-3 col-md-3 ">
+          <mat-form-field appearance="outline" class="p-2 container">
+            <mat-label>Subject</mat-label>
+            <mat-select formControlName="subject">
+              <mat-option *ngFor="let subject of subjects" [value]="subject.value" required>
+                {{subject.viewSubject}}
+              </mat-option>
+
+            </mat-select>
+            <mat-error *ngIf="form.subject.hasError('required')">Required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-3 col-md-3 ">
+          <mat-form-field appearance="outline" class="p-2 container">
+            <mat-label>Course Outcome</mat-label>
+            <mat-select formControlName="courseOutcome">
+              <mat-option *ngFor="let courseOutcome of courseOutcomes" [value]="courseOutcome.value">
+                {{courseOutcome.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.courseOutcome.hasError('required')">Required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-3 col-md-3 ">
+          <mat-form-field appearance="outline" class="p-2 container">
+            <mat-label>Answer Type</mat-label>
+            <mat-select formControlName="answerType">
+              <mat-option *ngFor="let answerType of answerTypes" [value]="answerType.value">
+                {{answerType.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.answerType.hasError('required')">Required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-3 col-md-3 ">
+          <mat-form-field appearance="outline" class="p-2 container">
+            <mat-label>Difficulty Level</mat-label>
+            <mat-select formControlName="difficultyLevel">
+              <mat-option *ngFor="let difficultyLevel of difficultyLevels" [value]="difficultyLevel.value" required>
+                {{difficultyLevel.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.difficultyLevel.hasError('required')">Required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-3 col-md-3 ">
+          <mat-form-field appearance="outline" class="p-2 container">
+            <mat-label>Unit</mat-label>
+            <input type="text" matInput formControlName="unit" required>
+            <mat-error *ngIf="form.unit.hasError('required')">Required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-3 col-md-3 ">
+          <mat-form-field appearance="outline" class="p-2 container">
+            <mat-label>Topic</mat-label>
+            <input type="text" matInput formControlName="topic" required>
+            <mat-error *ngIf="form.unit.hasError('required')">Required</mat-error>
+          </mat-form-field>
+
+        </div>
+        <div class="col-lg-12">
+          <div class="card border-0 box_shadow_0">
+            <mat-form-field class="container question_textarea   pt-3">
+              <mat-label>Type your question...</mat-label>
               <textarea matInput formControlName="question"></textarea>
             </mat-form-field>
+            <div class="d-flex justify-content-start pb-1 pl-1">
+              <div class="pl-2 pr-1">
+                <button mat-raised-button color="warn" type="reset">Reset</button>
+              </div>
+              <div class="pl-2 pr-1">
+                <button mat-raised-button color="primary" type="submit" (click)="upload()">Upload</button>
+              </div>
+              <button mat-icon-button>
+                <mat-icon>attach_file</mat-icon>
+              </button>
+              <div *ngIf="isUploading" class="d-flex justify-content-center pt-2 pb-2">
+                <mat-spinner diameter="20"></mat-spinner>
+                <small class="pl-2 pr-2">saving...</small>
+              </div>
+            </div>
           </div>
-<div class="d-flex justify-content-end p-5">
-  <div class="pl-2 pr-1">
-    <button mat-raised-button color="warning" type="reset">Reset</button>
-  </div>
-  <div class="pl-2 pr-1">
-    <button mat-raised-button color="primary" type="submit">Upload</button>
-  </div>
-  
-</div>
-        </form>
+        </div>
+        
       </div>
-    </div>
-  </div>
+      <!-- <div class="d-flex justify-content-end p-5">
+        <div class="pl-2 pr-1">
+          <button mat-raised-button color="warn" type="reset">Reset</button>
+        </div>
+        <div class="pl-2 pr-1">
+          <button mat-raised-button color="primary" type="submit">Upload</button>
+        </div>
 
-</div>
+      </div> -->
+    </div>
+    </div>
+</form>

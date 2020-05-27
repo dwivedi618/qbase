@@ -32,6 +32,7 @@ export interface AnswerType {
 })
 export class UploadquestionComponent implements OnInit {
   questionUploadForm: FormGroup;
+  isUploading = false;
 
   types: Type[] = [
     {value: 'Subjective',viewValue: 'Subjective'},  
@@ -105,10 +106,21 @@ onQuestionUpload(){
   this.commonService.postData("upload-question",this.questionUploadForm.value)
     .subscribe((result) => {
       console.log("result",result);
-      this.messageService.openSnackBar("Question Added SuccessFully",null)
+      this.isUploading = false;
+      this.messageService.openSnackBar("Question Added SuccessFully",null);
+
     },(error) => {
+      this.isUploading = false;
       console.log("error",error);
       
     });
+}
+upload(){
+  if(this.questionUploadForm.invalid){
+    this.isUploading = false;
+    
+    return
+  }
+  this.isUploading = true;
 }
 }

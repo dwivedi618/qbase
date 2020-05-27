@@ -1,0 +1,89 @@
+<section class="jumbotron">
+ 
+  <div class="container ">
+    <div class="mr-auto pp-2  title "><strong>Paper
+      gallery</strong></div>
+      <div  *ngIf="isLoading" class="row">
+          <div class="col-md-4 pb-5">
+              <div class="post  p-2 ">
+                  <!-- <div class="avatar"></div> -->
+                  <div class="section"></div>
+                  <div class="header"></div>
+                  <div class="header"></div>
+
+                  <div class="line"></div>
+                  <div class="line"></div>
+
+                  <div class="line"></div>
+                  <div class="section"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+
+                  <div class="action d-flex ">
+                      <div class="header"></div>
+
+
+                      <div class="btn"></div>
+                      <div class="btn"></div>
+
+
+
+
+                  </div>
+              </div>
+          </div>
+
+          <div class="m-auto d-flex">
+              <mat-spinner diameter="30"></mat-spinner>
+              <small class="pl-2 pt-1">Loading...</small>
+          </div>
+      </div>
+      <div class="row" *ngIf="!isLoading">
+          <h1 *ngIf="onEmpty" class="m-auto">{{onEmptyMessage}}</h1>
+
+          <div class="p-4" *ngFor="let template of templates">
+              <mat-card class="card mat_card text-center box_shadow_2">
+                  <img mat-card-image class="template_thumbnail"
+                      (click)="onTemplateSelect(template.id,'paper-generation')" src="{{ template.thumbnail }}"
+                      matTooltip="Click To Use This Template" matTooltipPosition="below">
+                  <div class="card_action pt-1 pb-1">
+                      <mat-toolbar>
+                          <mat-toolbar-row>
+                              <div>
+                                  <small class="text-black-50">{{template.name}}</small>
+                              </div>
+                              <div class="example-spacer"></div>
+                              <button mat-button color="primary" class="box_shadow_1"
+                                  (click)="onTemplatePreview(template.id)">
+                                  View
+                              </button>
+                              <button mat-icon-button [matMenuTriggerFor]="menu"
+                                  aria-label="Example icon-button with a menu">
+                                  <mat-icon>more_vert</mat-icon>
+                              </button>
+                              <mat-menu #menu="matMenu">
+                                  <button mat-menu-item (click)="onEditSelect(template.id,'edit')">
+                                      <mat-icon mat-menu-icon>create</mat-icon>
+                                      <span>Edit</span>
+                                  </button>
+                                  <button mat-menu-item (click)="onRenameSelect(template.id,template.name)">
+                                      <mat-icon mat-menu-icon>text_fields</mat-icon>
+                                      <span>Rename</span>
+                                  </button>
+                                  <button mat-menu-item (click)="onDeleteSelect(template.id,template.name)">
+                                      <mat-icon mat-menu-icon>delete</mat-icon>
+                                      <span>Delete</span>
+                                  </button>
+                              </mat-menu>
+                          </mat-toolbar-row>
+                      </mat-toolbar>
+                  </div>
+
+              </mat-card>
+          </div>
+
+      </div>
+  </div>
+</section>
