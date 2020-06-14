@@ -1,0 +1,218 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.example-toolbar{
+  
+  z-index: 2;
+}
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+  mat-sidenav{
+      width: 70vw;
+  }
+}
+.nav_list_container{
+  width: 100%;
+  
+  .nav_list{
+    margin: 0 auto;
+  }
+}
+
+.use_nav_bar{
+  max-width: 0;
+  visibility: hidden;
+}
+.logo{
+    max-height: 3rem;
+    background: white;
+}
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+mat-sidenav{
+  // width: 294px;
+    width: 19rem; 
+}
+.primary_toolbar{
+  position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 4rem;
+    z-index: 1000;
+    background-color: rgb(31, 38, 49);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px 0px;
+   
+    
+}
+.links_container{
+  -webkit-box-flex: 1;
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+align-items: center;
+// align-self: center;
+
+}
+.links{
+  line-height: normal;
+display: flex;
+flex-direction: column;
+-webkit-box-align: center;
+align-items: center;
+padding: 0px;
+margin: 0px;
+list-style: none;
+}
+.primary_toolbar_option{
+  position: fixed;
+  left: 64px;
+  // width: 100%;
+    width: 15rem;
+    height: 100vh;
+    background-color: rgb(243, 245, 249);
+    flex-direction: column;
+    display: flex;
+    z-index: 1;
+}
+.text-link{
+  color: rgb(103, 111, 128);
+  cursor: pointer;
+  transition: color 0.15s ease-in 0s;
+}
+
+.example-is-mobile .example-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+.example-icon {
+  padding: 0 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+button{
+  outline: none;
+  // border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+// custom scrollbar for sidenav-content
+.mat-sidenav-content::-webkit-scrollbar {
+width: 10px;
+height: 10px;
+// background-color: rgba(146, 146, 146, 0.37);
+visibility: hidden;
+}
+.mat-sidenav-content:hover::-webkit-scrollbar{
+visibility: visible;
+}
+.mat-sidenav-content::-webkit-scrollbar-thumb {
+background-color: rgba(146, 146, 146, 0.404); 
+border-radius: 6rem;
+visibility: hidden;
+}
+.mat-sidenav-content:hover::-webkit-scrollbar-thumb {
+visibility: visible;
+}
+// custom scrollbar for sidenav
+.mat-sidenav.mat-drawer-inner-container ::-webkit-scrollbar {
+width: 10px;
+height: 10px;
+// background-color: rgba(146, 146, 146, 0.37);
+visibility: hidden;
+}
+.mat-sidenav.mat-drawer-inner-container :hover::-webkit-scrollbar{
+visibility: visible;
+}
+.mat-sidenav.mat-drawer-inner-container ::-webkit-scrollbar-thumb {
+background-color: rgba(146, 146, 146, 0.404); 
+visibility: hidden;
+}
+.mat-sidenav.mat-drawer-inner-container :hover::-webkit-scrollbar-thumb {
+visibility: visible;
+}
+.active{
+box-sizing: border-box;
+color: #007BFF!important;
+// border-bottom: 2px solid #007BFF!important;
+// border-radius: 0!important;
+transition: linear .1s;
+}
+.active:hover{
+color: #007BFF!important;
+// border-bottom: 2px solid #007BFF!important;
+background: transparent!important;
+
+// transition: ease-in-out .2s;
+}
+mat-nav-list a.mat-list-item:hover{
+box-sizing: content-box;
+color: black!important;
+transition: ease-in-out .4s;
+
+}
+button:hover{
+background-color: rgb(222, 235, 255);
+transition: ease-in-out .4s;
+}
+.avatar_container{
+width: 100%;
+justify-content: center;
+-webkit-box-align: center;
+}
+#profileImage1 {
+font-family: Arial, Helvetica, sans-serif;
+width: 100%;
+height: 100%;
+border-radius:3rem ;
+font-weight: bolder;
+
+
+text-align: center;
+// line-height: 10rem;
+
+}
+#profileImage2 {
+font-family: Arial, Helvetica, sans-serif;
+width: 100%;
+height: 100%;
+border-radius:3rem ;
+font-weight: bolder;
+
+
+text-align: center;
+// line-height: 10rem;
+
+}
+.avatar_small{
+width: 24px;
+height: 24px;
+border-radius:3rem ;
+}
+.avatar_large{
+width: 5rem;
+height: 5rem;
+border-radius:10rem ;
+margin: 0 auto;
+}
+.icon-popup{
+-webkit-animation: popUp ease-in-out 350ms;
+    animation: popUp ease-in-out 350ms;
+}

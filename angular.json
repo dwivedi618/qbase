@@ -8,7 +8,11 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "stylext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -146,7 +150,7 @@
   "defaultProject": "examportal",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "scss"
+      "stylext": "scss"
     }
   },
   "cli": {

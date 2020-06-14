@@ -1,0 +1,107 @@
+<ng-container>
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav" [fixedInViewport]="options.value.fixed"
+      [fixedTopGap]="options.value.top" [fixedBottomGap]="options.value.bottom">
+      <div class="primary_toolbar">
+        <div class="links_container ">
+          <div class="links text-white-50 ">
+
+            <div class="pb-4">
+              <button mat-button> <img src="../../../assets/qbase16.png"></button>
+            </div>
+            <button mat-icon-button (click)="openSubLinks('add')">
+              <mat-icon>add_circle</mat-icon>
+            </button>
+            <button mat-icon-button (click)="openSubLinks('search')">
+              <mat-icon>search</mat-icon>
+            </button>
+          </div>
+          <div class="spacer">
+          </div>
+          <div class="links text-white-50 ">
+            <button mat-icon-button (click)="openSubLinks('notifications')">
+              <mat-icon>notifications</mat-icon>
+            </button>
+            <div class="avatar_small">
+              <img class="avatar_small" src="../../../assets/qbase128.png" style="border: 2px solid #ccc;">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="primary_toolbar_option">
+        <div class="p-3">
+          <small><b>{{ primaryLink | uppercase }}</b></small>
+        </div>
+        <div [ngSwitch]="primaryLink">
+          <ng-template [ngSwitchCase]="'add'">
+            <nav>
+              <button mat-button routerLink="dashboard" class="w-100 text-left">
+                <mat-icon>camera</mat-icon>
+                <b class="text-link pl-4">option 1</b>
+              </button>
+              <button mat-button routerLink="dashboard" class="w-100 text-left">
+                <mat-icon>apps</mat-icon>
+                <b class="text-link pl-4">option 2</b>
+              </button>
+              <button mat-button routerLink="dashboard" class="w-100 text-left">
+                <mat-icon>shopping_kart</mat-icon>
+                <b class="text-link pl-4">option 3</b>
+              </button>
+
+            </nav>
+          </ng-template>
+          <ng-template [ngSwitchCase]="'search'">
+            <nav>
+              <button mat-button routerLink="dashboard" class="w-100 text-left">
+                <mat-icon>camera</mat-icon>
+                <b class="text-link pl-4">search 1</b>
+              </button>
+              <button mat-button routerLink="dashboard" class="w-100 text-left">
+                <mat-icon>apps</mat-icon>
+                <b class="text-link pl-4">search 2</b>
+              </button>
+              <button mat-button routerLink="dashboard" class="w-100 text-left">
+                <mat-icon>shopping_kart</mat-icon>
+                <b class="text-link pl-4">search 3</b>
+              </button>
+
+            </nav>
+          </ng-template>
+          <ng-template [ngSwitchCase]="'notifications'">
+            <nav>
+              <button mat-button routerLink="dashboard" class="w-100 text-left">
+                <mat-icon>camera</mat-icon>
+                <b class="text-link pl-4">notifications 1</b>
+              </button>
+              <button mat-button routerLink="dashboard" class="w-100 text-left">
+                <mat-icon>apps</mat-icon>
+                <b class="text-link pl-4">notifications 2</b>
+              </button>
+              <button mat-button routerLink="dashboard" class="w-100 text-left">
+                <mat-icon>shopping_kart</mat-icon>
+                <b class="text-link pl-4">notifications 3</b>
+              </button>
+
+            </nav>
+          </ng-template>
+        </div>
+      </div>
+      
+    </mat-sidenav>
+    <mat-sidenav-content [formGroup]="options" class="bg-white">
+      <mat-toolbar class="example-header bg-white pl-n4" >
+        <div class="toggle_icon" 
+        style="position: sticky; left:0rem;z-index: 4000;">
+          <button mat-icon-button (click)="sidenav.toggle()" (click)="toggleIcon()">
+              <mat-icon *ngIf="isOpened">keyboard_arrow_left</mat-icon>
+              <mat-icon *ngIf="!isOpened">keyboard_arrow_right</mat-icon>
+          </button>
+        </div>Header</mat-toolbar>
+      <mat-divider></mat-divider>
+      <div class="container">
+       
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>

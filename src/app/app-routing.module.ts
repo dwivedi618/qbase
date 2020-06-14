@@ -19,11 +19,11 @@ import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   
-  { path: '' ,canActivate: [AuthGuard], component : SlidenavComponent,
+  { path : '', loadChildren: './home/home.module#HomeModule'},
+  { path: 'sidenav' ,canActivate: [AuthGuard], component : SlidenavComponent,
   children:[
     { path: 'document' , loadChildren : './document/document.module#DocumentModule' },
     
-    { path : 'home', loadChildren: './home/home.module#HomeModule'},
    
    
     { path: 'quilleditor/:action' , component : QuilleditorComponent },
