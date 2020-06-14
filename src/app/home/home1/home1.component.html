@@ -36,20 +36,25 @@
         <div [ngSwitch]="primaryLink">
           <ng-template [ngSwitchCase]="'add'">
             <nav>
-              <button mat-button routerLink="dashboard" class="w-100 text-left">
+              <button mat-button routerLink = "document" class="w-100 text-left">
                 <mat-icon>camera</mat-icon>
                 <b class="text-link pl-4">option 1</b>
               </button>
-              <button mat-button routerLink="dashboard" class="w-100 text-left">
+              <button mat-button routerLink ="aboutquestionpaper" class="w-100 text-left">
                 <mat-icon>apps</mat-icon>
                 <b class="text-link pl-4">option 2</b>
               </button>
-              <button mat-button routerLink="dashboard" class="w-100 text-left">
+              <button mat-button routerLink="question" class="w-100 text-left">
+                <mat-icon>shopping_kart</mat-icon>
+                <b class="text-link pl-4">option 3</b>
+              </button>
+              <button mat-button [routerLink]="uploadquestion" class="w-100 text-left">
                 <mat-icon>shopping_kart</mat-icon>
                 <b class="text-link pl-4">option 3</b>
               </button>
 
             </nav>
+           
           </ng-template>
           <ng-template [ngSwitchCase]="'search'">
             <nav>
@@ -90,18 +95,19 @@
       
     </mat-sidenav>
     <mat-sidenav-content [formGroup]="options" class="bg-white">
-      <mat-toolbar class="example-header bg-white pl-n4" >
+      <!-- <mat-toolbar class="example-header bg-white pl-n4" >
         <div class="toggle_icon" 
         style="position: sticky; left:0rem;z-index: 4000;">
           <button mat-icon-button (click)="sidenav.toggle()" (click)="toggleIcon()">
               <mat-icon *ngIf="isOpened">keyboard_arrow_left</mat-icon>
               <mat-icon *ngIf="!isOpened">keyboard_arrow_right</mat-icon>
           </button>
-        </div>Header</mat-toolbar>
-      <mat-divider></mat-divider>
-      <div class="container">
-       
-      </div>
+        </div>Header</mat-toolbar> -->
+        <app-navigation (sidenavToggle)="sidenav.toggle()"></app-navigation>
+      <main>
+
+        <router-outlet></router-outlet>
+      </main>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </ng-container>

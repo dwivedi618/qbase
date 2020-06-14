@@ -1,23 +1,34 @@
-import { MaterialModule } from '../material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
-import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { Home1Component } from './home1/home1.component';
+import { HomeRoutingModule } from './home-routing.module';
+import { MaterialModule } from '../material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavigationComponent } from '../navigation/navigation.component';
+import { RouterModule } from '@angular/router';
+import { SearchComponent } from '../search/search.component';
+import { UploadquestionComponent } from '../uploadquestion/uploadquestion.component';
 
 
 
 @NgModule({
-  declarations: [ Home1Component],
+  declarations: [
+    Home1Component,
+    NavigationComponent,
+    SearchComponent,
+    UploadquestionComponent
+  ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     MaterialModule,
-    EditorModule
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
-  exports: [
-    HomeRoutingModule
+  exports:[
+    NavigationComponent,
+    SearchComponent
   ]
 })
 export class HomeModule { }

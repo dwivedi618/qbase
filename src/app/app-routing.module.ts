@@ -20,7 +20,9 @@ import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   
   { path : '', loadChildren: './home/home.module#HomeModule'},
-  { path: 'sidenav' ,canActivate: [AuthGuard], component : SlidenavComponent,
+  // { path: 'sidenav' ,canActivate: [AuthGuard], component : SlidenavComponent,
+  { path: 'sidenav' , component : SlidenavComponent,
+
   children:[
     { path: 'document' , loadChildren : './document/document.module#DocumentModule' },
     
@@ -36,7 +38,6 @@ const routes: Routes = [
     
     { path : 'profile',loadChildren: './profile/profile.module#ProfileModule'},
     
-    { path : 'uploadquestion' , component : UploadquestionComponent},
     { path : 'edit/:id' , component : UploadquestionComponent},
 
   ]

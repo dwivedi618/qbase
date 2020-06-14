@@ -63,19 +63,19 @@ import { MatTableResponsiveDirective } from './mat-table-responsive/mat-table-re
 
   declarations: [
     AppComponent,
-    NavigationComponent,
+    // NavigationComponent,
     SlidenavComponent,
     SlidenavListComponent,
     PandoraBoxComponent,
     LoginComponent,
     SignupComponent,
-    UploadquestionComponent,
+    // UploadquestionComponent,
     QuilleditorComponent,
     AboutComponent,
     AboutquestionpaperComponent,
     PasswordrecoveryComponent,
     PaperInfoDetailedComponent,
-    SearchComponent,
+   
     MatTableResponsiveDirective,
     
     // HomeComponent,
@@ -86,7 +86,7 @@ import { MatTableResponsiveDirective } from './mat-table-responsive/mat-table-re
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    
+
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
