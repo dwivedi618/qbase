@@ -12,6 +12,7 @@ import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionp
 import { UploadquestionComponent } from './uploadquestion/uploadquestion.component';
 import { SlidenavComponent } from './slidenav/slidenav.component';
 import { AuthGuard } from './auth.guard';
+import { QuestionComponent } from './question/question.component';
 
 
 
@@ -32,11 +33,10 @@ const routes: Routes = [
     
     { path: 'quilleditor/:id/:action' , component : QuilleditorComponent },
 
-    { path: 'question', loadChildren: './question/question.module#QuestionModule'},
     { path: 'aboutquestionpaper' ,component : AboutquestionpaperComponent},
     
     
-    { path : 'profile',loadChildren: './profile/profile.module#ProfileModule'},
+    // { path : 'profile',loadChildren: './profile/profile.module#ProfileModule'},
     
     { path : 'edit/:id' , component : UploadquestionComponent},
 

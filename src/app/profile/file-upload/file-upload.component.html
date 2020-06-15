@@ -1,0 +1,35 @@
+<header class="d-flex justify-content-start text-center mb-2">
+    <input type="file" #profileUpload (change)="fileChangeEvent($event)">
+    <button mat-stroked-button (click)="profileUpload.click()">Select Photo</button>
+    <div class="spacer"></div>
+</header>
+<mat-dialog-content>
+
+    <div class="row d-flex justify-content-center"
+        style=" min-height: 52vh;border: 1px dotted #ccc;border-radius: 4px; ">
+        <div class=" col-md-8 p-3 " style="max-height: 42vh;align-items: center;">
+            <div *ngIf="!croppedImage" (click)="profileUpload.click()" style="cursor: pointer;">
+                <mat-icon class="text-muted ml-auto" style="font-size: 1000%;cursor: pointer;">photo_library</mat-icon>
+                <br>
+                <p>Click To Select Photo</p>
+            </div>
+
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                [resizeToWidth]="256" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+        </div>
+        <!-- <div class="text-center col-md-3">
+            <h5>Preview</h5>
+            <img [src]="croppedImage" />
+        </div> -->
+    </div>
+</mat-dialog-content>
+<footer class="">
+    <div mat-dialog-actions class="d-flex justify-content-end">
+        <small mat-line class="text-muted pt-1 pl-3 pr-5 mb-1 text-justify" *ngIf="croppedImage">
+            To Crop Image,drag the region bellow and then click "Set as profile"</small>
+        <button mat-button class="box_shadow_1" (click)="onNoClick()">cancel</button>
+        <button mat-raised-button color="warn" class="box_shadow_1" (click)="setProfile()" cdkFocusInitial>Set as
+            profile</button>
+    </div>
+</footer>

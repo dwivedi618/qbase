@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router'
 
 import { Home1Component } from './home1/home1.component';
 import { UploadquestionComponent } from '../uploadquestion/uploadquestion.component';
+import { QuestionComponent } from '../question/question.component';
 
 
 const homeRoutes: Routes = [
@@ -12,12 +13,16 @@ const homeRoutes: Routes = [
   children : [
     
       { path : 'uploadquestion' , component : UploadquestionComponent},
+      { path: 'question', component:QuestionComponent},
+      { path: 'profile', loadChildren : '../profile/profile.module#ProfileModule'}
+
 
     
   ]
   
  
   },
+
  
 
   

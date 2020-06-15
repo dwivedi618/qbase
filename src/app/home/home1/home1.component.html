@@ -36,21 +36,21 @@
         <div [ngSwitch]="primaryLink">
           <ng-template [ngSwitchCase]="'add'">
             <nav>
-              <button mat-button routerLink = "document" class="w-100 text-left">
+              <!-- <button mat-button routerLink = "document" class="w-100 text-left">
                 <mat-icon>camera</mat-icon>
                 <b class="text-link pl-4">option 1</b>
               </button>
               <button mat-button routerLink ="aboutquestionpaper" class="w-100 text-left">
                 <mat-icon>apps</mat-icon>
                 <b class="text-link pl-4">option 2</b>
-              </button>
-              <button mat-button routerLink="question" class="w-100 text-left">
+              </button> -->
+              <button mat-button [routerLink]="['/question']" class="w-100 text-left">
                 <mat-icon>shopping_kart</mat-icon>
-                <b class="text-link pl-4">option 3</b>
+                <b class="text-link pl-4">All Questions</b>
               </button>
-              <button mat-button [routerLink]="uploadquestion" class="w-100 text-left">
+              <button mat-button [routerLink]="['/uploadquestion']" class="w-100 text-left">
                 <mat-icon>shopping_kart</mat-icon>
-                <b class="text-link pl-4">option 3</b>
+                <b class="text-link pl-4">Upload Question</b>
               </button>
 
             </nav>

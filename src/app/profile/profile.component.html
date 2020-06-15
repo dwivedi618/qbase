@@ -1,59 +1,161 @@
-<div class="layout">
-
-    <mat-card class="card border-0 profile my_shadow_1">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile__picture box_shadow_1"><img src="https://lh3.googleusercontent.com/-uWjOwF19m-0/XdeYugpDq0I/AAAAAAAAaBY/2q6r8zdnhhAG1i1jV8u6HkYSPWjBfpupACEwYBhgLKs4DAMBZVoC9wYUpn-gi6BEMpqPyaUxZit9Xk7Ca6OUptyrVIgUT7-lGVqx79hLXTOaWcg7wf15Vw0yC3y-Mn0AZRpECtigSs4sl0028hhziQfI3dz8yN0N2TYWM3lWXMRCaj2O7ngXfUtXRQ3eqoOk5nwuayXRbe09HxS0zMbYNM0_yh0tAH3naRx-wejObUpkubEIZs-HfzYF-5TDoNrdG4HZNffJnlW9O4mChF45O_lOGWjwv8z2KbN1n0-IGH3SKgP0-T89PV7y2rhMDwqz7CdDOujGlr7kbKrEs5OoA5pSVXjwa2ZUkn2NNRP_8_z8yjH_kXoKN3w41zDvI38gAW9YDM8XJFJ5QiWdEPbolnCO-e2DkP1N-rc7oK-2C5HAP00VYbzYbHUzTyyQp35MSL3GUU4XY09fbg1pgYRtsDwAgU7TkzkdP3gOVtyQ36u90Bw9x1EnjO-Ddv4RsnifbUMnEBX4SuMMlTa_dcg0OZ5t-6SRf3APDgos4l8HcJgk0ouVMVgzZGu-MHHoVA-jjbtLCbSEuIzvdvFRUgli6Ei1UalwCAn7AWFYjfOtny3uJcq9aIWIp7dNkb7CexjU_iISCFyO3WkMOLb8OJtywMMuPqfQF/w140-h140-p/2019-11-22.jpg" /></div>
-            </div>
-            <div class="col-md-8">
-                <div class="col-sm-12">
-                    <div class="row profile__header">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="profile__account">
-                                <h5 class="profile__username">{{name}}</h5>
-                            </div>
-                            <div class="profile__account">
-                              <small class="profile__username">{{email}}</small>
-                          </div>
-  
+<header class="bg-white box_shadow_3"
+    style="position: sticky;top: 0;left: 0; z-index: 2; border-radius: 4px;overflow-x:hidden">
+    <div class="row bg-mywhite-4 pt-3 pb-3">
+        <div class="col-md-4 d-flex justify-content-center">
+            <form [formGroup]="profileImageForm" class="d-flex justify-content-center">
+                <div class="profile__picture box_shadow_1 bg-primary d-flex justify-content-center">
+                    <div *ngIf="!imagePreview" id="profile"></div>
+                    <img *ngIf="imagePreview !='' && imagePreview" [src]="imagePreview">
+                    <div class="changeProfile">
+                        <button mat-icon-button matTooltip="Change profile" (click)="changeProfile()"
+                            class="animated_icon box_shadow_0">
+                            <mat-icon>camera</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            <div class="col-sm-12 pt-4">
+                <div class="row profile__header pt-2">
+                    <div class="col-sm-12 col-md-6 col-lg-6 ">
+                        <div class="profile__account">
+                            <h5 class="profile__username">{{name}}</h5>
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="profile__edit">
-                                <!-- <a routerLink="" class="profile__button" > -->
-                                <a routerLink="">
-  
-                                    <button mat-icon-button>update
-                                        <mat-icon>edit</mat-icon>
-                                    </button> </a>
-                            </div>
+                        <div class="profile__account">
+                            <small class="profile__username">{{email}}</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="">
+                            <button mat-stroked-button class="animated_icon">update
+                                <mat-icon>edit</mat-icon>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12">
-                    <div class="profile__stats">
-                        <div class="profile__stat">
-                            <div class="profile__icon profile__icon--gold"><i class="fas fa-wallet"></i></div>
-                            <div class="profile__value">Mon 2:27 , 6 April 2020
-                                <div class="profile__key">Last Login</div>
-                            </div>
+            </div>
+            <div class="col-sm-12 pr-3 pl-3">
+                <div class="profile__stats">
+                    <div class="profile__stat">
+                        <div class="profile__icon profile__icon--gold"><mat-icon>lock</mat-icon></div>
+                        <div class="profile__value">Mon 2:27 , 6 April 2020
+                            <div class="profile__key">Last Login</div>
                         </div>
-                        <div class="profile__stat">
-                            <div class="profile__icon profile__icon--blue"><i class='fas fa-user-graduate'></i></div>
-                            <div class="profile__value">Admin
-                                <div class="profile__key">Role</div>
-                            </div>
+                    </div>
+                    <div class="profile__stat">
+                        <div class="profile__icon profile__icon--blue"><mat-icon>people</mat-icon></div>
+                        <div class="profile__value">{{user_type}}
+                            <div class="profile__key">Role</div>
                         </div>
-                        <!-- <div class="profile__stat">
-                            <div class="profile__icon profile__icon--pink"><i class="fas fa-eart"></i></div>
-                            <div class="profile__value">2020
-                                <div class="profile__key">Student Id</div>
+                    </div>
+                    <div class="profile__stat">
+                        <div class="profile__icon profile__icon--pink"><mat-icon>loyalty</mat-icon></div>
+                        <div class="profile__value">05 MAY 2020
+                            <div class="profile__key">Join Date</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 p-3 mt-2 d-flex justify-content-center">
+                <ul class="nav nav-pills nav-justified box_shadow_3 "
+                    style="border-radius: 10rem; font-weight: 600;">
+                    <li class="nav-item active">
+                        <a class="nav-link" data-toggle="pill" href="#homes">about</a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a class="nav-link" data-toggle="pill" href="#menus1">Activity</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" data-toggle="pill" href="#menus2">Records</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="">
+    <mat-card class="card border-0 profile box_shadow_3" style="margin-top: 0;">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="homes">
+                <h3 class="profile__username">Welcome {{name}}</h3>
+            </div>
+            <div class="tab-pane  fade" id="menus1">...</div>
+
+            <div id="menus2" class="tab-pane fade">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 col-xl-8 mb-4 align-items-stretch">
+                        <div class="card h-100 border-0 rounded-4">
+                            <div class="card-title mb-1 p-3 d-flex">
+                                <h6>Your Purchases</h6>
+                                <a class="btn ml-auto p-0 text-lightning"> <i class="fas fa-ellipsis-h"></i> </a>
                             </div>
-                        </div> -->
+
+                            <div class="card-body">
+                                <div class="table-responsive-md">
+                                    <div class="table-responsive">
+                                        <table class="table ">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:40%;">Product</th>
+                                                    <th class="number">Price</th>
+                                                    <th style="width:20%;">Date</th>
+                                                    <th style="width:20%;">State</th>
+                                                    <th class="actions" style="width:5%;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="no-border-x">
+                                                <tr>
+                                                    <td>Sony Xperia M4</td>
+                                                    <td class="number">$149</td>
+                                                    <td>Aug 23, 2018</td>
+                                                    <td class="text-success">Completed</td>
+                                                    <td class="actions"><a class="icon" href="#"><i
+                                                                class="mdi mdi-plus-circle-o"></i></a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Apple iPhone 6</td>
+                                                    <td class="number">$535</td>
+                                                    <td>Aug 20, 2018</td>
+                                                    <td class="text-success">Completed</td>
+                                                    <td class="actions"><a class="icon" href="#"><i
+                                                                class="mdi mdi-plus-circle-o"></i></a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Samsung Galaxy S7</td>
+                                                    <td class="number">$583</td>
+                                                    <td>Aug 18, 2018</td>
+                                                    <td class="text-warning">Pending</td>
+                                                    <td class="actions"><a class="icon" href="#"><i
+                                                                class="mdi mdi-plus-circle-o"></i></a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>HTC One M9</td>
+                                                    <td class="number">$350</td>
+                                                    <td>Aug 15, 2018</td>
+                                                    <td class="text-warning">Pending</td>
+                                                    <td class="actions"><a class="icon" href="#"><i
+                                                                class="mdi mdi-plus-circle-o"></i></a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sony Xperia Z5</td>
+                                                    <td class="number">$495</td>
+                                                    <td>Aug 13, 2018</td>
+                                                    <td class="text-danger">Cancelled</td>
+                                                    <td class="actions"><a class="icon" href="#"><i
+                                                                class="mdi mdi-plus-circle-o"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-  
     </mat-card>
-
 </div>

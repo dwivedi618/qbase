@@ -53,6 +53,7 @@ import { SearchComponent } from './search/search.component';
 import { SearchService } from './services/search.service';
 import { CommonService } from './services/common.service';
 import { MatTableResponsiveDirective } from './mat-table-responsive/mat-table-responsive.directive';
+import { QuestionComponent } from './question/question.component';
 
 
 
@@ -70,6 +71,7 @@ import { MatTableResponsiveDirective } from './mat-table-responsive/mat-table-re
     LoginComponent,
     SignupComponent,
     // UploadquestionComponent,
+    // QuestionComponent,
     QuilleditorComponent,
     AboutComponent,
     AboutquestionpaperComponent,

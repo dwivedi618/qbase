@@ -8,6 +8,8 @@ import { NavigationComponent } from '../navigation/navigation.component';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from '../search/search.component';
 import { UploadquestionComponent } from '../uploadquestion/uploadquestion.component';
+import { QuestionComponent } from '../question/question.component';
+
 
 
 
@@ -16,7 +18,9 @@ import { UploadquestionComponent } from '../uploadquestion/uploadquestion.compon
     Home1Component,
     NavigationComponent,
     SearchComponent,
-    UploadquestionComponent
+    UploadquestionComponent,
+    QuestionComponent,
+ 
   ],
   imports: [
     CommonModule,
