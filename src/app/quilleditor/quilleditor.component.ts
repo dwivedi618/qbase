@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { OnInit, Inject } from '@angular/core';
 import * as $ from "jquery";
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -17,6 +17,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { CommonService } from '../services/common.service';
 import { MessageService } from '../services/message.service';
 import { SearchService } from '../services/search.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 // import { editorConfig } from '../../../src/';
 export interface QuestionSectionA {
@@ -40,24 +41,58 @@ export class QuilleditorComponent implements AfterViewInit {
 
 isLoading = false;
 action : string;
-	 data : string;
+open = true;
+
 	// public config: ;
-	
-
-
 	@ViewChild('demoForm') demoForm?: NgForm;
 	@ViewChild('editor') editor;
 	step = 0;
 	isQuestionLoading= true;
 	isOpen = true;
-
-	
 	// public Editor = ClassicEditor;
 	public Editor = DecoupledEditor;
 	templateName: any;
 	templateId: string;
 	path: string;
+	constructor(
+		private route: ActivatedRoute,
+		private commonService : CommonService,
+		private searchService : SearchService,
+		private messageService : MessageService,
+		@Inject (MAT_DIALOG_DATA) public data :any
+	){
+		if(data){
+			this.templateId = data.templateId;
+			this.action = data.action;
+			console.log("data:",data)
+		}
+	}
+	ngOnInit() {
+		
+		// this.templateId = this.route.snapshot.paramMap.get('id');
+		// console.log("Inside Quilleditor::path::",this.route.snapshot.url[0].path);
+		// this.path = this.route.snapshot.url[0].path;
+		// this.searchService.path.emit(this.path);
+		// this.action = this.route.snapshot.paramMap.get('edit');
+		//  this.action = this.route.snapshot.paramMap.get('action');
+		console.log("id:---->action------>",this.templateId,this.action);
+		if( this.action != "new"){
+			this.getTemplate();
+		}
 
+	}
+	getTemplate(){
+		this.commonService.getData('get-template',{id: this.templateId}).subscribe((result) => {
+			this.templateName = result.templates[0].name;
+			console.log("templateName from----->get template editor",this.templateName)
+			this.model.editorData = result.templates[0].string;
+			},(error) => {
+			console.log(error);
+			});
+	}
+	refresh(){
+		this.getTemplate();
+	}
     public onReady( editor ) {
         editor.ui.getEditableElement().parentElement.insertBefore(
             editor.ui.view.toolbar.element,
@@ -65,7 +100,6 @@ action : string;
         );
     }
 	public model = {
-		
 		editorData: `<p style="text-align:center;">
 		<strong>INDERPRASTHA ENGINEERING COLLEGE,GHAZIABAD</strong>
 		</p>
@@ -257,39 +291,7 @@ while (heightLeft >= 0) {
 		  });
 	}
 
-	constructor(
-		private route: ActivatedRoute,
-		private commonService : CommonService,
-		private searchService : SearchService,
-		private messageService : MessageService
-	){}
 
-	getTemplateId
-
-	ngOnInit() {
-		
-		this.templateId = this.route.snapshot.paramMap.get('id');
-		console.log("Inside Quilleditor::path::",this.route.snapshot.url[0].path);
-		this.path = this.route.snapshot.url[0].path;
-		this.searchService.path.emit(this.path);
-		// this.action = this.route.snapshot.paramMap.get('edit');
-		 this.action = this.route.snapshot.paramMap.get('action');
-
-
-		console.log("id:---->action------>",this.templateId,this.action);
-if( this.action != "new"){
-		this.commonService.getData('get-template',{id: this.templateId})
-    .subscribe((result) => {
-	//   console.log("---------------from editor--------------",result.templates[0].string);
-	this.templateName = result.templates[0].name;
-	console.log("templateName from----->get template editor",this.templateName)
-	  this.model.editorData = result.templates[0].string;
-    },(error) => {
-      console.log(error);
-	});
-}
-
-	}
 
 
 	

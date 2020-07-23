@@ -33,7 +33,7 @@ import { SignupComponent } from './signup/signup.component';
 import { PasswordrecoveryComponent } from './login/passwordrecovery/passwordrecovery.component';
 
 
-import { UploadquestionComponent } from './uploadquestion/uploadquestion.component';
+import { UploadquestionComponent } from './question/uploadquestion/uploadquestion.component';
 
 import { AboutComponent } from './about/about.component';
 

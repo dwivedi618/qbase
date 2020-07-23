@@ -9,6 +9,9 @@
             <div class="pb-4">
               <button mat-button> <img src="../../../assets/qbase16.png"></button>
             </div>
+            <button mat-icon-button (click)="openSubLinks('document')">
+              <mat-icon>subject</mat-icon>
+            </button>
             <button mat-icon-button (click)="openSubLinks('add')">
               <mat-icon>add_circle</mat-icon>
             </button>
@@ -34,25 +37,46 @@
           <small><b>{{ primaryLink | uppercase }}</b></small>
         </div>
         <div [ngSwitch]="primaryLink">
+          <ng-template [ngSwitchCase]="'document'">
+            <nav>
+              <button mat-button [routerLink]="['/document']" class="w-100 text-left">
+                <span class="material-icons">
+                  access_time
+                  </span>
+                  <b class="text-link pl-4">Recents</b>
+              </button>
+            
+              <button mat-button [routerLink]="['./template-gallery']" class="w-100 text-left">
+                <span class="material-icons">
+                  crop_portrait
+                  </span>
+                <b class="text-link pl-4">Templates</b>
+              </button>
+              <button mat-button [routerLink]="['./paper-gallery']" class="w-100 text-left">
+                <span class="material-icons">
+                  book
+                  </span>
+                <b class="text-link pl-4">Paper</b>
+              </button>
+
+            </nav>
+          </ng-template>
           <ng-template [ngSwitchCase]="'add'">
             <nav>
-              <!-- <button mat-button routerLink = "document" class="w-100 text-left">
-                <mat-icon>camera</mat-icon>
-                <b class="text-link pl-4">option 1</b>
-              </button>
-              <button mat-button routerLink ="aboutquestionpaper" class="w-100 text-left">
-                <mat-icon>apps</mat-icon>
-                <b class="text-link pl-4">option 2</b>
-              </button> -->
+             
               <button mat-button [routerLink]="['/question']" class="w-100 text-left">
-                <mat-icon>shopping_kart</mat-icon>
+                <mat-icon>storage</mat-icon>
                 <b class="text-link pl-4">All Questions</b>
               </button>
               <button mat-button [routerLink]="['/uploadquestion']" class="w-100 text-left">
-                <mat-icon>shopping_kart</mat-icon>
+                <mat-icon>cloud_upload</mat-icon>
                 <b class="text-link pl-4">Upload Question</b>
               </button>
-
+              <button mat-button [routerLink]="['/aboutquestionpaper']" class="w-100 text-left">
+                <mat-icon>shopping_kart</mat-icon>
+                <b class="text-link pl-4">About question paper</b>
+              </button>
+       
             </nav>
            
           </ng-template>

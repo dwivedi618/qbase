@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Optional, Inject, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface QuestionSectionA {
 	question: string;
@@ -58,24 +59,21 @@ questionInSectionC : QuestionSectionA[] =[
   fetchingQuestionA = true;
   fetchingQuestionB = true;
   fetchingQuestionC = true;
+  
+  @Output() refreshPaper = new EventEmitter();
+//   @Output() minimize = new EventEmitter();
 
-  setStep(index: number) {
-	  this.step = index;
-	}
-  
-	nextStep() {
-	  this.step++;
-	}
-  
-	prevStep() {
-	  this.step--;
-	}
-  
   constructor(
 	private fb : FormBuilder,
-	private commonServices : CommonService
+	private commonServices : CommonService,
+	@Optional() @Inject (MAT_DIALOG_DATA) public data :any
 
-  ) { }
+  ) { 
+	  if(data){
+		  this.templateId = data.templateId;
+		  console.log("templateId from document : ",this.templateId)
+	  }
+  }
 
   ngOnInit() {
     this.sectionA = this.fb.group({
@@ -92,6 +90,19 @@ questionInSectionC : QuestionSectionA[] =[
 		});
 		console.log("from parent",this.templateId);
   }
+  setStep(index: number) {
+	  this.step = index;
+	}
+  
+	nextStep() {
+	  this.step++;
+	}
+  
+	prevStep() {
+	  this.step--;
+	}
+  
+
   get formA() {return this.sectionA.controls}
   get formB() {return this.sectionB.controls}
   get formC() {return this.sectionB.controls}
@@ -111,6 +122,7 @@ questionInSectionC : QuestionSectionA[] =[
 		  console.log("result from section",result);
 		  this.questionInSectionA = result.queList;
 		  console.log("questionInSectionA",this.questionInSectionA);
+		  this.refreshPaper.emit('refresh');
 		})
 		
 		
@@ -129,6 +141,7 @@ questionInSectionC : QuestionSectionA[] =[
 		this.isLoadingB = false;
 		console.log("result from section",result);
 		this.questionInSectionB = result.queList;
+		this.refreshPaper.emit('refresh');
 
 	})
 	
@@ -146,6 +159,7 @@ onSubmitSectionC(){
 		this.isLoadingC = false;
 		console.log("result from section",result);
 		this.questionInSectionC = result.queList;
+		this.refreshPaper.emit('refresh');
 
 	})
 

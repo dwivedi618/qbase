@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UploadquestionComponent } from '../uploadquestion/uploadquestion.component';
+import { UploadquestionComponent } from './uploadquestion/uploadquestion.component';
 import { SearchComponent } from '../search/search.component';
 import { SearchService } from '../services/search.service';
 import { MatSort } from '@angular/material/sort';
@@ -48,18 +48,11 @@ export class QuestionComponent implements OnInit {
 
   isLoading = true;
   selection: any;
-
   public path: any;
-
-
-
-
-
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
-
     return numSelected === numRows;
   }
 
@@ -73,27 +66,17 @@ export class QuestionComponent implements OnInit {
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Question): string {
-
     if (!row) {
-
       return ` ${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-
-
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.question + 1} `;
   }
-
   // filtering
-
-
   public doFilter = (value: string) => {
     console.log("value in search:", this.dataSource);
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
-
   // sorting
-
-
   constructor(
     private router: Router,
     public route: ActivatedRoute,
@@ -161,11 +144,12 @@ export class QuestionComponent implements OnInit {
     // }
 
   }
-  openDialog(action, data) {
-    console.log("action and data--->", action, data);
+  openDialog(action,obj) {
+    obj.action = action;
+    console.log("action and data--->", action, obj);
     const dialogRef = this.dialog.open(UploadquestionComponent, {
       width: '100vw', height: '80vh',
-      data: data
+      data: { obj }
     });
     dialogRef.afterClosed().subscribe(result => {
 

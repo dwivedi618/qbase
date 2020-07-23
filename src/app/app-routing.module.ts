@@ -9,7 +9,7 @@ import { QuilleditorComponent } from './quilleditor/quilleditor.component';
 import { AboutquestionpaperComponent } from './aboutquestionpaper/aboutquestionpaper.component';
 
 
-import { UploadquestionComponent } from './uploadquestion/uploadquestion.component';
+import { UploadquestionComponent } from './question/uploadquestion/uploadquestion.component';
 import { SlidenavComponent } from './slidenav/slidenav.component';
 import { AuthGuard } from './auth.guard';
 import { QuestionComponent } from './question/question.component';
@@ -25,18 +25,12 @@ const routes: Routes = [
   { path: 'sidenav' , component : SlidenavComponent,
 
   children:[
-    { path: 'document' , loadChildren : './document/document.module#DocumentModule' },
     
    
    
-    { path: 'quilleditor/:action' , component : QuilleditorComponent },
-    
-    { path: 'quilleditor/:id/:action' , component : QuilleditorComponent },
+  
 
-    { path: 'aboutquestionpaper' ,component : AboutquestionpaperComponent},
-    
-    
-    // { path : 'profile',loadChildren: './profile/profile.module#ProfileModule'},
+  
     
     { path : 'edit/:id' , component : UploadquestionComponent},
 

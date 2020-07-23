@@ -4,14 +4,15 @@
     border: none;
   }
 </style>
-<div mat-dialog-content>
+<mat-dialog-content >
   <p>Rename</p>
   <mat-form-field class="container">
     <mat-label>{{data.name}}</mat-label>
     <input matInput [(ngModel)]="data.templateName">
   </mat-form-field>
-</div>
-<div mat-dialog-actions class="d-flex justify-content-end">
-  <button mat-button class="box_shadow_1" (click)="onNoClick()">cancel</button>
-  <button mat-button class="box_shadow_1" [mat-dialog-close]="data.templateName" cdkFocusInitial>Rename</button>
-</div>
+</mat-dialog-content >
+    <div mat-dialog-actions class="d-flex justify-content-end">
+      <button mat-button class="" (click)="onNoClick()">cancel</button>
+      <button mat-button  [mat-dialog-close]="data.templateName" cdkFocusInitial>Rename</button>
+    </div>
+  

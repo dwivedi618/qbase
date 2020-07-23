@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonService } from '../services/common.service';
-import { MessageService } from '../services/message.service';
+import { CommonService } from '../../services/common.service';
+import { MessageService } from '../../services/message.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface Type {
   value: string;
@@ -69,6 +70,7 @@ export class UploadquestionComponent implements OnInit {
     {value: 'Long',viewValue: 'Long'},
      
   ];
+  local_data: any;
 
 
   
@@ -78,19 +80,24 @@ export class UploadquestionComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private commonService: CommonService,
-    private messageService: MessageService
-  ) { }
+    private messageService: MessageService,
+    @Optional() @Inject (MAT_DIALOG_DATA) public data:any
+  ) { 
+    if(data && data.obj.id){
+      this.local_data = data.obj
+    }else { this.local_data = [null]}
+  }
 
   ngOnInit() {
     this.questionUploadForm = this.formBuilder.group({
-      subject: ['',Validators.required],
-      unit:[''],
-      courseOutcome:['',Validators.required],
-      topic:[''],
-      answerType:['Medium',Validators.required],
-      type:['subjective',Validators.required],
-      difficultyLevel:['Analysis',Validators.required],
-      question:['',Validators.required]
+      subject: [this.local_data.subject,Validators.required],
+      unit:[this.local_data.unit],
+      courseOutcome:[this.local_data.courseOutcome,Validators.required],
+      topic:[this.local_data.topic],
+      answerType:[this.local_data.answerType,Validators.required],
+      type:[this.local_data.type,Validators.required],
+      difficultyLevel:[this.local_data.difficultyLevel,Validators.required],
+      question:[this.local_data.question,Validators.required]
 
   });
 

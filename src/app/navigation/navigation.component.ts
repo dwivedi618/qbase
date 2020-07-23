@@ -12,26 +12,22 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  
+  elem : any;
+  isOpen = false;
+  userActive = true;
+  show_fullscreen = true;
+  close_fullscreen = false;
   name: string ;
   email: string;
-  @Output() sidenavToggle = new EventEmitter<void>();
-  
-
   mySubscription: any;
-
+  
+  @Output() sidenavToggle = new EventEmitter<void>();
   constructor(
     @Inject(DOCUMENT) private document: any,
     private authService: AuthenticationService,
     private router: Router
-    ) {
-      
-      
-     }
+    ) {}
 
-
-  
-    
   ngOnInit() {
     this.elem = document.documentElement;
     this.name = localStorage.getItem('name');
@@ -39,17 +35,9 @@ export class NavigationComponent implements OnInit {
     console.log("helllooooooooooooooooooooooooo",this.name)
 
   }
-  elem : any;
-  isOpen = false;
-  userActive = true;
-  show_fullscreen = true;
-  close_fullscreen = false;
-
   onToggleSidenav(){
-  
     (this.isOpen) = !(this.isOpen);
     this.sidenavToggle.emit();
-    
   }
 
   openFullscreen() {

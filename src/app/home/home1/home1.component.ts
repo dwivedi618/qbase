@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class Home1Component implements OnInit {
   options: FormGroup;
-  primaryLink: string = 'add'
+  primaryLink: string = 'document'
   isOpened  = true;
   constructor(fb: FormBuilder) {
     this.options = fb.group({

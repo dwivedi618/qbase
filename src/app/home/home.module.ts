@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from '../search/search.component';
-import { UploadquestionComponent } from '../uploadquestion/uploadquestion.component';
+import { UploadquestionComponent } from '../question/uploadquestion/uploadquestion.component';
 import { QuestionComponent } from '../question/question.component';
 
 

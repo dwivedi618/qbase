@@ -12,6 +12,7 @@ import { PaperInfoDetailedComponent } from '../quilleditor/paper-info-detailed/p
 import { Action } from 'rxjs/internal/scheduler/Action';
 // import { template } from '@angular/core/src/render3';
 import { SearchService } from '../services/search.service';
+import { QuilleditorComponent } from '../quilleditor/quilleditor.component';
 
 export interface RenameData {
   templateName: string;
@@ -74,14 +75,30 @@ export class DocumentComponent implements OnInit {
     this.searchService.path.emit(this.route.snapshot.url[0].path);//sending path to searchService
   }
   onTemplateSelect(templateId, action) {
-    // this.dialogService.openDialog(AboutquestionpaperComponent);
-    this.dialogService.openDialog(PaperInfoDetailedComponent, {});
 
-    this.router.navigate(['/quilleditor', templateId, action])
+    // this.dialogService.openDialog(AboutquestionpaperComponent);
+    this.dialogService.openDialog(PaperInfoDetailedComponent, {
+      data : {templateId : templateId }
+    });
+const dialogRef = this.dialog.open(QuilleditorComponent,{
+  maxHeight:'100vh',
+  maxWidth:'100vw',
+  height:'100vh',
+  width:'100vw',
+  data : { templateId: templateId,action:action}
+})
+    // this.router.navigate(['/quilleditor', templateId, action])
 
   }
   onEditSelect(templateId, action) {
-    this.router.navigate(['/quilleditor', templateId, action])
+    // this.router.navigate(['/quilleditor', templateId, action])
+    const dialogRef = this.dialog.open(QuilleditorComponent,{
+      maxHeight:'100vh',
+      maxWidth:'100vw',
+      height:'100vh',
+      width:'100vw',
+      data : { templateId: templateId,action:action}
+    })
   }
   onRenameSelect(templateId, templateName) {
     const dialogRef = this.dialog.open(Rename, {
@@ -148,7 +165,11 @@ export class DocumentComponent implements OnInit {
         this.previewbyid = result.templates;
         console.log("result from Preview", this.preview)
         const dialogRef = this.dialog.open(Preview, {
-          width: '100vw', height: '85vh', disableClose: true,
+          width: '100vw',
+          maxHeight : '100vh',
+          maxWidth: '100vw',
+          height: '100vh',
+           disableClose: true,
           data: {
             id: this.previewbyid[0].id,
             name: this.previewbyid[0].name,
@@ -219,6 +240,7 @@ export class Preview {
   constructor(
     private logServices: DialogService,
     private router: Router,
+    private dialog : MatDialog,
     public dialogRef: MatDialogRef<Preview>,
     @Inject(MAT_DIALOG_DATA) public data: PreviewById
   ) { }
@@ -227,13 +249,16 @@ export class Preview {
     this.dialogRef.close();
   }
   onProceed(templateId, action) {
-    console.log(templateId, action);
-    this.logServices.openDialog(PaperInfoDetailedComponent, {
-      width: '100vw', height: '80vh'
+    action = 'paper-generation';
+    const dialogRef = this.dialog.open(QuilleditorComponent,{
+      maxHeight:'100vh',
+      maxWidth:'100vw',
+      height:'100vh',
+      width:'100vw',
+      data : { templateId: templateId,action:action}
     })
 
-
-    this.router.navigate(['/quilleditor', templateId, action])
+    // this.router.navigate(['/quilleditor', templateId, action])
     this.dialogRef.close();
   }
 
