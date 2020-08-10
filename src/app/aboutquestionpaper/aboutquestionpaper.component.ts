@@ -38,7 +38,7 @@ export class AboutquestionpaperComponent implements OnInit {
       
       
     ];
-    subjects: Subject[] = [
+    subjects = [
       {value: 'Operating System',viewSubject: 'Operating System'},
       {value: 'Software Engineering',viewSubject : 'Software Engineering'},
       {value: 'Data Structure',viewSubject : 'Data Structure'},
@@ -46,6 +46,7 @@ export class AboutquestionpaperComponent implements OnInit {
       {value: 'Microprocessor',viewSubject : 'Microprocessor'},
       {value: 'Information Theory of Coding',viewSubject : 'Information Theory of Coding'},
     ];
+    
     DifficultyLevel = [
       "Low","Medium","High",
     ];
@@ -114,7 +115,6 @@ export class AboutquestionpaperComponent implements OnInit {
 toggleChip = (chip: any) => {
   const addChip = () => { this.chips.add(chip); };
   const removeChip = () => { this.chips.delete(chip); };
-
   this.chips.has(chip) ? removeChip() : addChip();
 }
 

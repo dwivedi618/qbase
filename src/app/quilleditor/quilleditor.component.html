@@ -1,6 +1,13 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
-    <app-paper-info-detailed [id]="templateId" (refreshPaper)="refresh()"></app-paper-info-detailed>
+  <mat-drawer #drawer class="example-sidenav" style="position: absolute;top: 3rem;" mode="side" opened >
+    <mat-tab-group >
+      <mat-tab label="Section">
+        <app-paper-info-detailed [id]="templateId" (refreshPaper)="refresh()"></app-paper-info-detailed>
+      </mat-tab>
+      <mat-tab label="Query">
+        <app-aboutquestionpaper></app-aboutquestionpaper>
+      </mat-tab>
+    </mat-tab-group>
   </mat-drawer>
   <div class="container">
     <form (ngSubmit)="onTemplateSubmit()" #demoForm="ngForm">

@@ -31,6 +31,9 @@ export interface Question {
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  displayedColumns: string[] = ['question', 'subject', 'unit', 'topic', 'courseOutcome', 'difficultyLevel', 'type', 'answerType', 'action'];
   visible = true;
   checked = false;
   selectable = true;
@@ -39,11 +42,7 @@ export class QuestionComponent implements OnInit {
   chipForm: FormGroup;
   chips = new Set();
   selectedQuestion = new Set();
-  questions: Question[];
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  dataSource = new MatTableDataSource<Question>();
-  displayedColumns: string[] = ['select', 'question', 'subject', 'unit', 'topic', 'courseOutcome', 'difficultyLevel', 'type', 'answerType', 'action'];
+  dataSource = new MatTableDataSource<any>();
   // columnsToDisplay: string[] = this.displayedColumns.slice();
 
   isLoading = true;
@@ -85,13 +84,10 @@ export class QuestionComponent implements OnInit {
     private commonService: CommonService,
     private searchService: SearchService,
   ) { }
-  ngAfterViewInit(): void {
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
-  }
+
   ngOnInit() {
     this.dataSource = new MatTableDataSource(); // create new object
-    // this.getLaps();
+    this.getAllQuestions();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.chipForm = this.fB.group({
@@ -104,22 +100,23 @@ export class QuestionComponent implements OnInit {
     this.path = this.route.url
     // this.searchService.path.emit(this.path);//send path to SearchService
     // gethhing all questio from database
-    this.commonService.getData('get-question', {})
-      .subscribe((result) => {
-        this.questions = result.questions;
-        this.dataSource = new MatTableDataSource<Question>(this.questions);
-        this.selection = new SelectionModel<Question>(true, []);
-        console.log("datasource======: ", this.dataSource.data);
-        let temp: any[];
-        this.isLoading = false;
-
-        console.log("INSIDE question resssuullt", this.questions);
-
-      }, (error) => {
-        console.log("INSIDE question eerroor", error);
-      })
+   
   }
+getAllQuestions(){
+  this.isLoading = true;
 
+  this.commonService.getData('get-question', {})
+  .subscribe((result) => {
+    const data = result.questions;
+    this.dataSource.data = data
+    this.selection = new SelectionModel<Question>(true, []);
+    console.log("datasource======: ", this.dataSource.data);
+    let temp: any[];
+    this.isLoading = false;
+  }, (error) => {
+    console.log("error", error);
+  })
+}
 
   get form1() { return this.chipForm.controls; }
 

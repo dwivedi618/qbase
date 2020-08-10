@@ -18,9 +18,9 @@
     </button>
     <mat-menu #apps="matMenu" class="mat_menu">
 
-      <div class="container">
+      <div class="container bg-white">
         <a [routerLink]="['/document']" routerLinkActive="app_active">
-          <div class="app_item p-4  m-1 box_shadow_1">
+          <div class="app_item p-4  m-1 neo_shadow">
             <mat-icon mat-list-icon>subject</mat-icon>
             <small mat-line>Document</small>
 
@@ -28,19 +28,19 @@
         </a>
 
         <a [routerLink]="['/aboutquestionpaper']" routerLinkActive="app_active">
-          <div class="app_item p-4 m-1 box_shadow_1">
+          <div class="app_item p-4 m-1 neo_shadow">
             <mat-icon mat-list-icon>launch</mat-icon>
             <small>General Instructions</small>
           </div>
         </a>
         <a [routerLink]="[ '/question']" routerLinkActive="app_active">
-          <div class="app_item p-4 m-1 box_shadow_1">
+          <div class="app_item p-4 m-1 neo_shadow">
             <mat-icon mat-list-icon>grain</mat-icon>
             <small mat-line>All Questions</small>
           </div>
         </a>
         <a [routerLink]="[ '/uploadquestion']" routerLinkActive="app_active">
-          <div class="app_item p-4 m-1 box_shadow_1 title">
+          <div class="app_item p-4 m-1 neo_shadow title">
             <mat-icon mat-list-icon>cloud_queue</mat-icon>
             <small class="title">Upload Questions</small>
           </div>

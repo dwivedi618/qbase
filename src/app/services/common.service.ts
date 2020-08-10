@@ -39,4 +39,7 @@ export class CommonService {
   deleteData(route,templateId){
     return this.http.delete<any>(`${environment.apiUrl}/${route}/` + templateId);
   }
+  uploadTemplateQuestion(newQuestion){
+    return this.http.post<any>(`${environment.apiUrl}/upload-template-question/`,newQuestion);
+  }
 }

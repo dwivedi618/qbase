@@ -1,4 +1,4 @@
-<section class="container padding_top_down">
+<!-- <section class="container padding_top_down">
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <div class="container padding_top_down mx-auto">
 
@@ -86,8 +86,7 @@
     </form>
   </mat-step>
 
-  <!-- --------- -->
-  <!-- forth steper for slybus and topic from units-->
+
   <mat-step [stepControl]="forthFormGroup">
     <form [formGroup]="forthFormGroup" (ngSubmit)="onTopicsSubmit()">
       <ng-template matStepLabel>Syllabus for {{selectedSubject}}</ng-template>
@@ -110,7 +109,7 @@
                 [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
           </mat-form-field>
-              <!-- <mat-form-field class="container">
+              <mat-form-field class="container">
                 <mat-chip-list #chipUnit1 [multiple]="true" selectable >
                   <mat-chip *ngFor="let i of topicsOfUnit1" (click)="toggleChip(i)" [selected]="chips.has(i)">{{i}}
                   </mat-chip>
@@ -121,9 +120,9 @@
            [matChipInputAddOnBlur]="addOnBlur"
            (matChipInputTokenEnd)="add($event)">
                 </mat-chip-list>
-              </mat-form-field> -->
+              </mat-form-field>
             </mat-tab>
-            <!-- <mat-tab label="Unit 2">
+            <mat-tab label="Unit 2">
               <mat-form-field class="container">
                 <mat-chip-list [multiple]="true" selectable>
                   <mat-chip *ngFor="let i of topicsOfUnit2" (click)="toggleChip(i)" [selected]="chips.has(i)">{{i}}
@@ -154,7 +153,7 @@
                   </mat-chip>
                 </mat-chip-list>
               </mat-form-field>
-            </mat-tab> -->
+            </mat-tab>
 
 
           </mat-tab-group>
@@ -174,7 +173,7 @@
     </form>
   </mat-step>
 
-  <!-- --------- -->
+
   <mat-step [stepControl]="difficultyLevelFormGroup">
     <form [formGroup]="difficultyLevelFormGroup">
       <ng-template matStepLabel>Difficulty Level</ng-template>
@@ -211,4 +210,78 @@
   </mat-step>
   </div>
 </mat-horizontal-stepper>
+</section> -->
+<section class="mb-4">
+  <!-- <div class="col-lg-12  p-5">
+    <h1 class="">Session</h1>
+    <mat-form-field class="container">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let session of sessions" [selectable]="selectable" [removable]="removable"
+          (removed)="remove(session)">
+          {{session.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input  formControlName="secondCtrl" required type="text"
+          [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+  </div> -->
+  
+ 
+    <div class="px-2">
+      <small class="mat-caption">Subject</small>
+      <mat-form-field class="w-100">
+        <mat-chip-list [multiple]="true" selectable>
+          <mat-chip *ngFor="let subject of subjects" (click)="toggleChip(subject)" [selected]="chips.has(subject)">{{subject.value}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+    <div class="px-2">
+      <small class="mat-caption">Unit</small>
+      <mat-form-field class="w-100">
+        <mat-chip-list [multiple]="true" selectable>
+          <mat-chip *ngFor="let unit of units" (click)="toggleChip(i)" [selected]="chips.has(i)">{{i}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+    <div class="px-2">
+      <small class="mat-caption">Topic</small>
+      <mat-form-field class="w-100">
+        <mat-chip-list [multiple]="true" selectable>
+          <mat-chip *ngFor="let i of DifficultyLevel" (click)="toggleChip(i)" [selected]="chips.has(i)">{{i}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+    <div class="px-2">
+      <small class="mat-caption">Course Outcome</small>
+      <mat-form-field class="w-100">
+        <mat-chip-list [multiple]="true" selectable>
+          <mat-chip *ngFor="let i of DifficultyLevel" (click)="toggleChip(i)" [selected]="chips.has(i)">{{i}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+    <div class="px-2">
+      <small class="mat-caption">Answer Type</small>
+      <mat-form-field class="w-100">
+        <mat-chip-list [multiple]="true" selectable>
+          <mat-chip *ngFor="let i of DifficultyLevel" (click)="toggleChip(i)" [selected]="chips.has(i)">{{i}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+    <div class="px-2">
+      <small class="mat-caption">Difficulty Level</small>
+      <mat-form-field class="w-100">
+        <mat-chip-list [multiple]="true" selectable>
+          <mat-chip *ngFor="let i of DifficultyLevel" (click)="toggleChip(i)" [selected]="chips.has(i)">{{i}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+ 
 </section>

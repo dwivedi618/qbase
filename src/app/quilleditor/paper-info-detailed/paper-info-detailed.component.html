@@ -1,4 +1,4 @@
-<div class="pannel pt-5 ">
+<div class="pannel">
   <mat-accordion class="example-headers-align box_shadow_0">
     <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" class="box_shadow_0">
       <mat-expansion-panel-header>
@@ -11,7 +11,7 @@
           <input formControlName="generalInstructionA"matInput placeholder="General Instructon " autocomplete="off">
         </mat-form-field> -->
 
-        <mat-form-field class="container">
+        <mat-form-field class="w-100">
           <input formControlName="questionInA" matInput type="number" min="1" placeholder="Question In Section"
             autocomplete="off">
         </mat-form-field>
@@ -21,7 +21,7 @@
         </div>
         <mat-list class="example-full-width">
           <mat-list-item *ngFor="let i of questionInSectionA">
-            <p mat-line>{{i.question}}</p>
+            <small class="mat-caption">{{i.question | slice:-50}}</small>
             <div class="d-flex justify-content-center">
               <button mat-icon-button (click)="onReplace(i.id)">
                 <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
@@ -66,7 +66,7 @@
         </div>
         <mat-list class="example-full-width" *ngIf="!fetchingQuestionB">
           <mat-list-item *ngFor="let i of questionInSectionB">
-            <p mat-line>{{i.question}}</p>
+            <small class="mat-caption">{{i.question}}</small>
             <div class="d-flex justify-content-center">
               <button mat-icon-button (click)="onReplace(i.id)">
                 <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
@@ -111,7 +111,7 @@
         </div>
         <mat-list class="example-full-width" *ngIf="!fetchingQuestionC">
           <mat-list-item *ngFor="let i of questionInSectionC">
-            <p mat-line>{{i.question}}</p>
+            <small class="mat-caption">{{i.question}}</small>
             <div class="d-flex justify-content-center">
               <button mat-icon-button (click)="onReplace(i.id)">
                 <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
