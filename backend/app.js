@@ -66,6 +66,7 @@ const Subject = sequelize.define("subject", {
     name: {
         type: Sequelize.STRING
     },
+ 
 
 });
 const Unit = sequelize.define("unit", {
@@ -84,8 +85,39 @@ const Topic = sequelize.define("topic", {
     unit_id: {
         type: Sequelize.INTEGER
     },
-
+    
+},
+{
+    underscored: true
 });
+// const Question = sequelize.define("question", {
+//     question: {
+//         type: Sequelize.STRING
+//     },
+//     subject_id: {
+//         type: Sequelize.INTEGER
+//     },
+//     unit_id: {
+//         type: Sequelize.INTEGER
+//     },
+//     topic_id: {
+//         type: Sequelize.INTEGER
+//     },
+//     // mcq/theory/matching/truefalse
+//     question_type: {
+//         type: Sequelize.STRING
+//     },
+
+//     // image: Sequelize.BLOB,
+
+//     course_outcome: {
+//         type: Sequelize.STRING
+//     },
+//     difficulty_level: {
+//         type: Sequelize.STRING
+//     },
+
+// });
 const Question = sequelize.define("question", {
     question: {
         type: Sequelize.STRING
@@ -117,6 +149,25 @@ const Template = sequelize.define("template", {
     },
     thumbnail: {
         type: Sequelize.TEXT('MEDIUM')
+    }
+
+});
+
+const Paper = sequelize.define("paper", {
+    name: {
+        type: Sequelize.STRING
+    },
+    string: {
+        type: Sequelize.TEXT
+    },
+    thumbnail: {
+        type: Sequelize.TEXT('MEDIUM')
+    },
+    subject_id : {
+        type: Sequelize.INTEGER
+    },
+    question_id : {
+        type: Sequelize.INTEGER
     }
 
 });
@@ -184,6 +235,103 @@ app.post("/signup", async (req, res) => {
     });
 });
 
+app.post("/upload-subject", async (req, res) => {
+    console.log("upload subject", req.body);
+    let params = req.body;
+    if (!req.body)
+        return res.json({ message: "Please! send proper Data" });
+    await Subject.create({
+        name: params.name,
+    });
+    res.status(200).json({
+        message: "Subject added successfully",
+    });
+});
+app.get("/get-subject", async (req, res) => {
+    let params = req.query;
+    let query = {
+        where: {
+
+        },
+        raw: true
+    };
+    if (params.id) query.where.id = params.id;
+    // if(params.name) query.where.subject = params.subject;
+
+    let data = await Subject.findAll(query);
+    res.status(200).json({
+        message: "Subject list",
+        data: data
+    });
+});
+app.post("/upload-unit", async (req, res) => {
+    console.log("upload unit", req.body);
+    let params = req.body;
+    if (!req.body)
+        return res.json({ message: "Please! send proper Data" });
+    await Unit.create({
+        name: params.name,
+        subject_id : params.subject_id
+    });
+    res.status(200).json({
+        message: "Unit added successfully",
+    });
+});
+app.get("/get-unit", async (req, res) => {
+    let params = req.query;
+    Unit.hasMany(Topic);
+    Topic.belongsTo(Unit);
+
+    console.log("params",params.subject_id)
+    let query = {
+        // where: {
+        //     subject_id : params.subject_id
+
+        // },
+        include: Topic,
+    };
+    // if (params.id) query.where.id = params.id;
+    // let rawQuery = SELECT * FROM `unit as u,topic as t WHERE `;
+    // let data = await sequelize.query(rawQuery, { type: Sequelize.QueryTypes.SELECT })
+    // if(params.name) query.where.subject = params.subject;
+
+    let data = await Unit.findAll(query);
+    res.status(200).json({
+        message: "Unit list",
+        data: data
+    });
+});
+
+app.post("/upload-topic", async (req, res) => {
+    console.log("upload topic", req.body);
+    let params = req.body;
+    if (!req.body)
+        return res.json({ message: "Please! send proper Data" });
+    await Topic.create({
+        name: params.name,
+        unit_id : params.unit_id
+    });
+    res.status(200).json({
+        message: "Topic added successfully",
+    });
+});
+app.get("/get-topic", async (req, res) => {
+    let params = req.query;
+    let query = {
+        where: {
+            unit_id: params.unit_id
+        },
+        raw: true
+    };
+    if (params.id) query.where.id = params.id;
+    // if(params.name) query.where.subject = params.subject;
+
+    let data = await Topic.findAll(query);
+    res.status(200).json({
+        message: "Topic list",
+        data: data
+    });
+});
 app.post("/upload-question", async (req, res) => {
     console.log("inside sign up", req.body);
     let params = req.body;
