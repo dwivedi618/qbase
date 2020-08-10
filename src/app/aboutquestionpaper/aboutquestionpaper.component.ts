@@ -119,7 +119,7 @@ toggleChip = (chip: any) => {
 }
 
 get chips() { 
-  console.log("chip value",this.forthcntrl.value)
+  // console.log("chip value",this.forthcntrl.value)
   return this.forthcntrl.value; }
 
 get f1() { return this.firstFormGroup.controls; }

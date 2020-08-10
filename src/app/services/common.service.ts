@@ -14,10 +14,17 @@ export class CommonService {
   getData(route,params){
     console.log(params);
     return this.http.get<any>(`${environment.apiUrl}/${route}`,{
-      params: params
+      params: (params)
     });
   }
-
+  getSubject(){
+    console.log("common service All Subject");
+    return this.http.get<any>(`${environment.apiUrl}/get-subject`)
+  }
+  getUnit(subject_id){
+    console.log("common service All Unit with Subject_id",subject_id);
+    return this.http.get<any>(`${environment.apiUrl}/get-unit?subject_id=` +subject_id)
+  }
   getDataById(route){
     return this.http.get<any>(`${environment.apiUrl}/${route}`);
   }

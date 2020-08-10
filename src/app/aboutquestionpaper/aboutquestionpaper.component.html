@@ -232,12 +232,21 @@
     <div class="px-2">
       <small class="mat-caption">Subject</small>
       <mat-form-field class="w-100">
+        <mat-select [multiple]="false" selectable>
+          <mat-option *ngFor="let subject of subjects" value="subject.value" >{{subject.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+      <!-- <div class="px-2">
+      <small class="mat-caption">Subject</small>
+      <mat-form-field class="w-100">
         <mat-chip-list [multiple]="true" selectable>
           <mat-chip *ngFor="let subject of subjects" (click)="toggleChip(subject)" [selected]="chips.has(subject)">{{subject.value}}
           </mat-chip>
         </mat-chip-list>
       </mat-form-field>
-    </div>
+    </div> -->
     <div class="px-2">
       <small class="mat-caption">Unit</small>
       <mat-form-field class="w-100">

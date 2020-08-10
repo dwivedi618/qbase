@@ -125,9 +125,9 @@ const Question = sequelize.define("question", {
     type: {
         type: Sequelize.STRING
     },
-    unit: Sequelize.STRING,
-    subject: Sequelize.STRING,
-    topic: Sequelize.STRING,
+    unit_id: Sequelize.INTEGER,
+    subject_id: Sequelize.INTEGER,
+    topic_id: Sequelize.STRING,
     // image: Sequelize.BLOB,
     difficultyLevel: Sequelize.STRING,
     courseOutcome: {
@@ -523,7 +523,10 @@ app.get('/get-section-question', async (req, res) => {
     let questions = await Question.findAll({
         attributes: ['question'],
         where: {
-
+            subject_id: params.subject_id,
+            unit_id:{
+                [Op.in]: [...params.units]
+            } 
         },
         raw: true,
         offset: 1,
