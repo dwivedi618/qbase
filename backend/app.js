@@ -62,7 +62,30 @@ const User = sequelize.define("user", {
     }
 });
 
+const Subject = sequelize.define("subject", {
+    name: {
+        type: Sequelize.STRING
+    },
 
+});
+const Unit = sequelize.define("unit", {
+    name: {
+        type: Sequelize.STRING
+    },
+    subject_id: {
+        type: Sequelize.INTEGER
+    },
+
+});
+const Topic = sequelize.define("topic", {
+    name: {
+        type: Sequelize.STRING
+    },
+    unit_id: {
+        type: Sequelize.INTEGER
+    },
+
+});
 const Question = sequelize.define("question", {
     question: {
         type: Sequelize.STRING
@@ -83,6 +106,7 @@ const Question = sequelize.define("question", {
     }
 
 });
+
 
 const Template = sequelize.define("template", {
     name: {
