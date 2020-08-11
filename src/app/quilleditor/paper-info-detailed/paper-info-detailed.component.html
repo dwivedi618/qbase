@@ -212,7 +212,7 @@
     
     
             <mat-action-row>
-              <button mat-stroked-button color="primary" type="button">Apply</button>
+              <button mat-stroked-button color="primary" type="button" (click)="injectQuestionManually('A')">Apply</button>
 
               <button mat-button color="primary" type="button" (click)="nextStep()">Next</button>
             </mat-action-row>
@@ -249,7 +249,7 @@
             </mat-list>
     
             <mat-action-row>
-              <button mat-stroked-button color="primary" type="button">Apply</button>
+              <button mat-stroked-button color="primary" type="button" (click)="injectQuestionManually('B')">Apply</button>
 
               <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
     
@@ -287,7 +287,7 @@
               </mat-list-item>
             </mat-list>
             <mat-action-row>
-              <button mat-stroked-button color="primary" type="button">Apply</button>
+              <button mat-stroked-button color="primary" type="button" (click)="injectQuestionManually('C')">Apply</button>
               <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
             </mat-action-row>
           </form>

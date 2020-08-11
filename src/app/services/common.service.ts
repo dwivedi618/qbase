@@ -25,13 +25,16 @@ export class CommonService {
     console.log("common service All Unit with Subject_id",subject_id);
     return this.http.get<any>(`${environment.apiUrl}/get-unit?subject_id=` +subject_id)
   }
+  injectQuestionInTemplate(data){
+    console.log("injectQuestionManually data",data);
+    return this.http.post<any>(`${environment.apiUrl}/inject-question`,data);
+  }
   getDataById(route){
     return this.http.get<any>(`${environment.apiUrl}/${route}`);
   }
 
   postData(route,data){
     return this.http.post<any>(`${environment.apiUrl}/${route}`,data);
-
   }
 
   putData(route,data){

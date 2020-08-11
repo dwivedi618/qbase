@@ -284,10 +284,10 @@ app.get("/get-unit", async (req, res) => {
 
     console.log("params",params.subject_id)
     let query = {
-        // where: {
-        //     subject_id : params.subject_id
+        where: {
+            subject_id : params.subject_id
 
-        // },
+        },
         include: Topic,
     };
     // if (params.id) query.where.id = params.id;
@@ -509,6 +509,64 @@ app.delete("/delete-question", async (req, res) => {
         result: result
     });
 });
+
+app.post("/inject-question", async (req, res) => {
+    let params = req.body;
+    console.log("section Question for injecting in Template", params);
+    if (!req.body)
+        return res.json({ message: "Please! send proper Data" });
+
+    let query = {
+        where: {
+            id: params.templateId
+        },
+        raw: true
+    }
+    let template = await Template.findOne(query);
+
+    //Logic to inject question will go from here
+    let questions = params.questions;
+    let queString = '';
+    console.log("fhasdfaiydsfgh", queString);
+    for (let j = 0; j < questions.length; j++) {
+        queString = queString + `<li> ${questions[j].question} </li> \n`;
+    }
+    queString = `<ol> ${queString} </ol>`;
+    //console.log(    queString,questions);
+    let splittedSection = params.section.replace('/ /g', '').split('-');
+    let splittedTemplate = template.string.split(splittedSection[0]);
+    //test = `<ol><li>dfgsadfgsdfgsdf</li>\tshfadgajkhs </ol>`
+    //console.log( "------>>>> ",splittedTemplate[1].replace(/\n/g," ").replace(/<ol>.*<\/ol>/,queString));
+    let a = 0;
+    for (let i = 1; i < splittedTemplate.length; i++) {
+        console.log(splittedTemplate[i].trim().charAt(1), "---", splittedSection[1]);
+        if (splittedTemplate[i].split('<')[0].replace(/ /g, '').charAt(1) == splittedSection[1]) {
+            console.log("thsi is the section nane", splittedSection[0] + "-" + splittedSection[1])
+            splittedTemplate[i] = splittedTemplate[i].replace(/\n/g, " ").replace(/<ol>.*<\/ol>/, queString);
+            a = i;
+            break;
+        }
+    }
+    //console.log("iiiiiiiiiiiiiii",splittedTemplate[a])
+    template.string = splittedTemplate.join(splittedSection[0]);
+    //console.log("team11111",template);
+    //Logic ends here
+
+
+    let updated = await Template.update({
+        string: template.string
+    },{
+        where: {
+            id: params.templateId
+        }
+    });
+
+    res.status(200).json({
+        message: "question inserted successfully",
+        template: template
+    });
+});
+
 
 app.get('/get-section-question', async (req, res) => {
     let params = req.query;

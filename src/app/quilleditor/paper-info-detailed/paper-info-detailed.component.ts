@@ -140,7 +140,6 @@ onUnitChange(event) {
       height : '80vh',
       maxHeight: '100vh',
       maxWidth: '100vw',
-
       data: { obj }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -167,17 +166,7 @@ onUnitChange(event) {
 
 
   }
-  setStep(index: number) {
-	  this.step = index;
-	}
-  
-	nextStep() {
-	  this.step++;
-	}
-  
-	prevStep() {
-	  this.step--;
-	}
+
   
 
   get formA() {return this.sectionA.controls}
@@ -257,8 +246,69 @@ onSubmitSectionC(){
 
 
 }
+
+
+//Manully fetched question Inject to template
+injectQuestionManually(section){
+	console.log("injectQuestionManually section",section);
+	console.log("injectQuestionManually templateId",this.templateId)
+
+	if(this.templateId){
+		if(section == 'A'){
+			this.commonServices.injectQuestionInTemplate({
+				section: "SECTION-A", 
+				templateId:this.templateId,
+				questions : this.questionInSectionA
+				
+			  })
+				.subscribe((result)=>{
+			//   this.isLoadingA = false;
+				console.log("<---------------------result After Injecting---------->",result);
+				this.refreshPaper.emit('refresh');
+			  })
+		}
+		if(section == 'B'){
+			this.commonServices.injectQuestionInTemplate({
+				section: "SECTION-B", 
+				templateId:this.templateId,
+				questions : this.questionInSectionB
+				
+			  })
+				.subscribe((result)=>{
+			//   this.isLoadingA = false;
+				console.log("<---------------------result After Injecting---------->",result);
+				this.refreshPaper.emit('refresh');
+			  })
+		}
+		if(section == 'C'){
+			this.commonServices.injectQuestionInTemplate({
+				section: "SECTION-C", 
+				templateId:this.templateId,
+				questions : this.questionInSectionC
+				
+			  })
+				.subscribe((result)=>{
+			//   this.isLoadingA = false;
+				console.log("<---------------------result After Injecting---------->",result);
+				this.refreshPaper.emit('refresh');
+			  })
+		}
+	}
+
+}
 onReplace(id){
 	this.isReplacing = !this.isReplacing;
 	console.log("id",id);
 }
+setStep(index: number) {
+	this.step = index;
+  }
+
+  nextStep() {
+	this.step++;
+  }
+
+  prevStep() {
+	this.step--;
+  }
 }

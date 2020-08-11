@@ -10,6 +10,9 @@ import { SearchComponent } from '../search/search.component';
 import { UploadquestionComponent } from '../question/uploadquestion/uploadquestion.component';
 import { QuestionComponent } from '../question/question.component';
 import { AddPaperComponent } from '../add-paper/add-paper.component';
+import { AlertService } from '../services/alert.service';
+import { CommonService } from '../services/common.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 
@@ -39,6 +42,17 @@ import { AddPaperComponent } from '../add-paper/add-paper.component';
   entryComponents : [
     AddPaperComponent,
     QuestionComponent
+  ],
+  providers :[
+    AlertService,
+    CommonService,
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+
+ 
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ]
 })
 export class HomeModule { }

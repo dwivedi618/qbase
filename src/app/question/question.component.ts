@@ -67,19 +67,22 @@ export class QuestionComponent implements OnInit {
     public dialogRef: MatDialogRef<QuestionComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
-    this.local_data = { ...data.obj };
-    if(this.local_data.subject_id){
-      this.subject_id = this.local_data.subject_id
+    if(data){
+      this.local_data = { ...data.obj };
+      if(this.local_data.subject_id){
+        this.subject_id = this.local_data.subject_id
+      }
+      if(this.local_data.units){
+        this.units = this.local_data.units
+      }
+      if(this.local_data.componentRef){
+        this.componentRef = this.local_data.componentRef
+      }
+      if(this.local_data.method){
+        this.method = this.local_data.method
+      }
     }
-    if(this.local_data.units){
-      this.units = this.local_data.units
-    }
-    if(this.local_data.componentRef){
-      this.componentRef = this.local_data.componentRef
-    }
-    if(this.local_data.method){
-      this.method = this.local_data.method
-    }
+   
    
     console.log("local data : ", this.local_data);
     
