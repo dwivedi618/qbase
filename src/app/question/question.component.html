@@ -63,7 +63,7 @@
           </button>
         </div>
         <div class="pl-2">
-          <button mat-button class="" color="" (click)="onAddPurchase('add',{})">
+          <button mat-button class="" color="" (click)="openDialog('add',{})">
             <mat-icon>add_box</mat-icon>Add
           </button>
         </div>
@@ -90,9 +90,9 @@
           </mat-menu>
 
           <mat-menu #insert ="matMenu">
-            <button mat-menu-item>Section A</button>
-            <button mat-menu-item>Section B</button>
-            <button mat-menu-item>Section C</button>
+            <button mat-menu-item (click)="sendQuestionToSection('A')">Section A</button>
+            <button mat-menu-item (click)="sendQuestionToSection('B')">Section B</button>
+            <button mat-menu-item (click)="sendQuestionToSection('C')">Section C</button>
           </mat-menu>
         </div>
 

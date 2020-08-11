@@ -41,3 +41,21 @@ min-height: 200px;
     transform: translateY(-1.1em) scale(.75);
     width: 133.33333%;
 }
+// custom scrollbar for dialog-content
+.mat-dialog-content::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    // background-color: rgba(146, 146, 146, 0.37);
+    visibility: hidden;
+  }
+  .mat-dialog-content:hover::-webkit-scrollbar{
+    visibility: visible;
+  }
+  .mat-dialog-content::-webkit-scrollbar-thumb {
+    background-color: rgba(146, 146, 146, 0.404); 
+    border-radius: 6rem;
+    visibility: hidden;
+  }
+  .mat-dialog-content:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }

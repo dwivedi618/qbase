@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Optional, Inject, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { QuestionComponent } from 'src/app/question/question.component';
 
 export interface QuestionSectionA {
 	question: string;
@@ -40,11 +41,8 @@ export class PaperInfoDetailedComponent implements OnInit {
 // 	{value: 'Microprocessor',viewSubject : 'Microprocessor'},
 // 	{value: 'Information Theory of Coding',viewSubject : 'Information Theory of Coding'},
 //   ];
-  questionInSectionA : QuestionSectionA[] =[
-		{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
-		{ question:"Differentiate deep learning with machine learning by an example."},
-		{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
-		{ question:"Explain why dropout in a neural network act as a regularizer"},
+  questionInSectionA  =[
+
 
   ];
 
@@ -57,11 +55,8 @@ export class PaperInfoDetailedComponent implements OnInit {
 ];
 
 
-questionInSectionC : QuestionSectionA[] =[
-	{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
-	{ question:"Differentiate deep learning with machine learning by an example."},
-	{ question:"Differentiate PCA, LDA and manifolds dimensional reduction techniques."},
-	{ question:"Explain why dropout in a neural network act as a regularizer"},
+questionInSectionC  =[
+
 
 ];
   step = 0;
@@ -78,6 +73,7 @@ questionInSectionC : QuestionSectionA[] =[
 
   constructor(
 	private fb : FormBuilder,
+	private dialog : MatDialog,
 	private commonServices : CommonService,
 	@Optional() @Inject (MAT_DIALOG_DATA) public data :any
 
@@ -132,7 +128,45 @@ onUnitChange(event) {
     console.log("value changes", this.unitIncludes,event);
     
   }
+  openQuestionDialog(subject_id,unitInclude, obj) {
+	// obj.action = action;
+	obj.subject_id = subject_id;
+	obj.units = unitInclude;
+	obj.componentRef = 'paper-info-detailed'
+	obj.method = 'manual'
+    console.log("data",obj);
+    const dialogRef = this.dialog.open(QuestionComponent, {
+      width: '70rem',
+      height : '80vh',
+      maxHeight: '100vh',
+      maxWidth: '100vw',
 
+      data: { obj }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+		console.log("result",result);
+		if(result && result.questionList){
+			if(result.section && result.section == 'A'){
+	         	this.isLoadingA = false;
+				this.questionInSectionA = result.questionList
+				console.log("this.questionInSectionA Manual",this.questionInSectionA);
+			}
+			if(result.section && result.section == 'B'){
+				this.isLoadingB = false;
+				this.questionInSectionB = result.questionList
+				console.log("this.questionInSection Manual",this.questionInSectionB);
+			}
+			if(result.section && result.section == 'C'){
+				this.isLoadingC = false;
+				this.questionInSectionC = result.questionList
+				console.log("this.questionInSectionC Manual",this.questionInSectionC);
+			}
+		}
+
+    });
+
+
+  }
   setStep(index: number) {
 	  this.step = index;
 	}
@@ -171,11 +205,10 @@ onUnitChange(event) {
 		this.isLoadingA = false;
 		  console.log("result from section",result);
 		  this.questionInSectionA = result.queList;
-		  console.log("questionInSectionA",this.questionInSectionA);
+		  console.log("Automatic questionInSectionA",this.questionInSectionA);
 		  this.refreshPaper.emit('refresh');
 		})
-		
-		
+
 	}
 	onSubmitSectionB(){
 		console.log("Section B",this.sectionB.value);

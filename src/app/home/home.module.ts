@@ -37,7 +37,8 @@ import { AddPaperComponent } from '../add-paper/add-paper.component';
     SearchComponent
   ],
   entryComponents : [
-    AddPaperComponent
+    AddPaperComponent,
+    QuestionComponent
   ]
 })
 export class HomeModule { }
