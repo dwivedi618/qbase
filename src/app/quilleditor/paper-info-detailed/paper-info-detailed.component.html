@@ -1,158 +1,322 @@
-<div class="pannel">
-  <div class="px-2">
-    <!-- <small class="mat-caption">Subject</small> -->
-    <mat-form-field class="w-100">
-      <mat-label>Select subject</mat-label>
-      <mat-select [multiple]="false" selectable  [(ngModel)]="subject_id" (selectionChange)="onSubjectChange($event.value)">
-        <mat-option *ngFor="let subject of subjects" [value]="subject.id" >{{subject.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="px-2" [hidden]="!subject_id">
-    <!-- <small class="mat-caption">Subject</small> -->
-    <mat-form-field class="w-100">
-      <mat-label>Units</mat-label>
-      <mat-select [multiple]="true" selectable  [(ngModel)]="unit_id" (selectionChange)="onUnitChange($event.value)">
-        <mat-option *ngFor="let unit of units" [value]="unit.id" >{{unit.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <!-- <mat-tab-group>
-    <mat-tab label="Section A"></mat-tab>
-    <mat-tab label="Section B"></mat-tab>
-    <mat-tab label="Section C"></mat-tab>
-
-  </mat-tab-group> -->
-  <mat-accordion class="example-headers-align box_shadow_0" [hidden]="!subject_id">
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" class="box_shadow_0">
-      <mat-expansion-panel-header>
-        <mat-panel-title class="pl-0">
-          Section A
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <form [formGroup]="sectionA" (ngSubmit)="onSubmitSectionA()">
-        <!-- <mat-form-field class="container">
-          <input formControlName="generalInstructionA"matInput placeholder="General Instructon " autocomplete="off">
-        </mat-form-field> -->
-
+<mat-tab-group >
+  <mat-tab label="Automatic">
+    <div class="pannel">
+      <div class="px-2">
+        <!-- <small class="mat-caption">Subject</small> -->
         <mat-form-field class="w-100">
-          <input formControlName="questionInA" matInput type="number" min="1" placeholder="How many questions"
-            autocomplete="off">
+          <mat-label>Select subject</mat-label>
+          <mat-select [multiple]="false" selectable  [(ngModel)]="subject_id" (selectionChange)="onSubjectChange($event.value)">
+            <mat-option *ngFor="let subject of subjects" [value]="subject.id" >{{subject.name}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingA">
-          <mat-spinner diameter="30"></mat-spinner>
-          <div class="pl-1 pt-1 text-primary">Fetching...</div>
-        </div>
-        <mat-list class="example-full-width" *ngIf="!fetchingQuestionA">
-          <mat-list-item *ngFor="let i of questionInSectionA">
-            <small class="mat-caption">{{i.question | slice:-50}}</small>
-            <div class="d-flex justify-content-center">
-              <button mat-icon-button (click)="onReplace(i.id)">
-                <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
-                </mat-icon>
-              </button>
-            </div>
-          </mat-list-item>
-        </mat-list>
-
-
-        <mat-action-row>
-          <button mat-button color="accent" type="submit">Fetch</button>
-          <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
-
-        </mat-action-row>
-      </form>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" class="box_shadow_0">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Section B
-        </mat-panel-title>
-        <!-- <mat-panel-description>
-            Type the country name
-            <mat-icon>map</mat-icon>
-          </mat-panel-description> -->
-      </mat-expansion-panel-header>
-
-      <form [formGroup]="sectionB" (ngSubmit)="onSubmitSectionB()">
-        <!-- <mat-form-field class="container">
-            <input formControlName="generalInstructionB"matInput placeholder="General Instructon " autocomplete="off">
-          </mat-form-field> -->
-
-        <mat-form-field class="container">
-          <input formControlName="questionInB" matInput type="number" min="1" placeholder="How many questions"
-            autocomplete="off">
+      </div>
+      <div class="px-2" [hidden]="!subject_id">
+        <!-- <small class="mat-caption">Subject</small> -->
+        <mat-form-field class="w-100">
+          <mat-label>Units</mat-label>
+          <mat-select [multiple]="true" selectable  [(ngModel)]="unit_id" (selectionChange)="onUnitChange($event.value)">
+            <mat-option *ngFor="let unit of units" [value]="unit.id" >{{unit.name}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingB">
-          <mat-spinner diameter="30"></mat-spinner>
-          <div class="pl-1 pt-1 text-primary">Fetching...</div>
-        </div>
-        <mat-list class="example-full-width" *ngIf="!fetchingQuestionB">
-          <mat-list-item *ngFor="let i of questionInSectionB">
-            <small class="mat-caption">{{i.question}}</small>
-            <div class="d-flex justify-content-center">
-              <button mat-icon-button (click)="onReplace(i.id)">
-                <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
-                </mat-icon>
-              </button>
+      </div>
+    
+      <!-- <mat-tab-group>
+        <mat-tab label="Section A"></mat-tab>
+        <mat-tab label="Section B"></mat-tab>
+        <mat-tab label="Section C"></mat-tab>
+    
+      </mat-tab-group> -->
+      <mat-accordion class="example-headers-align box_shadow_0" [hidden]="!subject_id">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" class="box_shadow_0">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="pl-0">
+              Section A
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form [formGroup]="sectionA" (ngSubmit)="onSubmitSectionA()">
+            <!-- <mat-form-field class="container">
+              <input formControlName="generalInstructionA"matInput placeholder="General Instructon " autocomplete="off">
+            </mat-form-field> -->
+    
+            <mat-form-field class="w-100">
+              <input formControlName="questionInA" matInput type="number" min="1" placeholder="How many questions"
+                autocomplete="off">
+            </mat-form-field>
+            <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingA">
+              <mat-spinner diameter="30"></mat-spinner>
+              <div class="pl-1 pt-1 text-primary">Fetching...</div>
             </div>
-          </mat-list-item>
-        </mat-list>
-
-        <mat-action-row>
-          <button mat-button color="accent" type="submit">Fetch</button>
-          <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
-
-          <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
-
-        </mat-action-row>
-      </form>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" class="box_shadow_0">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Section C
-        </mat-panel-title>
-        <!-- <mat-panel-description>
-            Inform the date you wish to travel
-            <mat-icon>date_range</mat-icon>
-          </mat-panel-description> -->
-      </mat-expansion-panel-header>
-      <form [formGroup]="sectionC" (ngSubmit)="onSubmitSectionC()">
-        <!-- <mat-form-field class="container">
-            <input formControlName="generalInstructionC"matInput placeholder="General Instructon " autocomplete="off">
-          </mat-form-field> -->
-
-        <mat-form-field class="container">
-          <input formControlName="questionInC" matInput type="number" min="1" placeholder="How many questions"
-            autocomplete="off">
+            <mat-list class="example-full-width" *ngIf="!fetchingQuestionA">
+              <mat-list-item *ngFor="let i of questionInSectionA">
+                <small class="mat-caption">{{i.question | slice:-50}}</small>
+                <div class="d-flex justify-content-center">
+                  <button mat-icon-button (click)="onReplace(i.id)">
+                    <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
+                    </mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+    
+    
+            <mat-action-row>
+              <button mat-button color="accent" type="submit">Fetch</button>
+              <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
+    
+            </mat-action-row>
+          </form>
+        </mat-expansion-panel>
+    
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" class="box_shadow_0">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Section B
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+                Type the country name
+                <mat-icon>map</mat-icon>
+              </mat-panel-description> -->
+          </mat-expansion-panel-header>
+    
+          <form [formGroup]="sectionB" (ngSubmit)="onSubmitSectionB()">
+            <!-- <mat-form-field class="container">
+                <input formControlName="generalInstructionB"matInput placeholder="General Instructon " autocomplete="off">
+              </mat-form-field> -->
+    
+            <mat-form-field class="container">
+              <input formControlName="questionInB" matInput type="number" min="1" placeholder="How many questions"
+                autocomplete="off">
+            </mat-form-field>
+            <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingB">
+              <mat-spinner diameter="30"></mat-spinner>
+              <div class="pl-1 pt-1 text-primary">Fetching...</div>
+            </div>
+            <mat-list class="example-full-width" *ngIf="!fetchingQuestionB">
+              <mat-list-item *ngFor="let i of questionInSectionB">
+                <small class="mat-caption">{{i.question}}</small>
+                <div class="d-flex justify-content-center">
+                  <button mat-icon-button (click)="onReplace(i.id)">
+                    <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
+                    </mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+    
+            <mat-action-row>
+              <button mat-button color="accent" type="submit">Fetch</button>
+              <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
+    
+              <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
+    
+            </mat-action-row>
+          </form>
+        </mat-expansion-panel>
+    
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" class="box_shadow_0">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Section C
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+                Inform the date you wish to travel
+                <mat-icon>date_range</mat-icon>
+              </mat-panel-description> -->
+          </mat-expansion-panel-header>
+          <form [formGroup]="sectionC" (ngSubmit)="onSubmitSectionC()">
+            <!-- <mat-form-field class="container">
+                <input formControlName="generalInstructionC"matInput placeholder="General Instructon " autocomplete="off">
+              </mat-form-field> -->
+    
+            <mat-form-field class="container">
+              <input formControlName="questionInC" matInput type="number" min="1" placeholder="How many questions"
+                autocomplete="off">
+            </mat-form-field>
+            <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingC">
+              <mat-spinner diameter="30"></mat-spinner>
+              <div class="pl-1 pt-1 text-primary">Fetching...</div>
+            </div>
+            <mat-list class="example-full-width" *ngIf="!fetchingQuestionC">
+              <mat-list-item *ngFor="let i of questionInSectionC">
+                <small class="mat-caption">{{i.question}}</small>
+                <div class="d-flex justify-content-center">
+                  <button mat-icon-button (click)="onReplace(i.id)">
+                    <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
+                    </mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+            <mat-action-row>
+              <button mat-button color="accent" type="submit">Fetch</button>
+              <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </form>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+  <mat-tab label="Manual">
+    <div class="pannel">
+      <div class="px-2">
+        <!-- <small class="mat-caption">Subject</small> -->
+        <mat-form-field class="w-100">
+          <mat-label>Select subject</mat-label>
+          <mat-select [multiple]="false" selectable  [(ngModel)]="subject_id" (selectionChange)="onSubjectChange($event.value)">
+            <mat-option *ngFor="let subject of subjects" [value]="subject.id" >{{subject.name}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingC">
-          <mat-spinner diameter="30"></mat-spinner>
-          <div class="pl-1 pt-1 text-primary">Fetching...</div>
-        </div>
-        <mat-list class="example-full-width" *ngIf="!fetchingQuestionC">
-          <mat-list-item *ngFor="let i of questionInSectionC">
-            <small class="mat-caption">{{i.question}}</small>
-            <div class="d-flex justify-content-center">
-              <button mat-icon-button (click)="onReplace(i.id)">
-                <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
-                </mat-icon>
-              </button>
+      </div>
+      <div class="px-2" [hidden]="!subject_id">
+        <!-- <small class="mat-caption">Subject</small> -->
+        <mat-form-field class="w-100">
+          <mat-label>Units</mat-label>
+          <mat-select [multiple]="true" selectable  [(ngModel)]="unit_id" (selectionChange)="onUnitChange($event.value)">
+            <mat-option *ngFor="let unit of units" [value]="unit.id" >{{unit.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    
+      <!-- <mat-tab-group>
+        <mat-tab label="Section A"></mat-tab>
+        <mat-tab label="Section B"></mat-tab>
+        <mat-tab label="Section C"></mat-tab>
+    
+      </mat-tab-group> -->
+      <mat-accordion class="example-headers-align box_shadow_0" [hidden]="!subject_id">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" class="box_shadow_0">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="pl-0">
+              Section A
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form [formGroup]="sectionA" (ngSubmit)="onSubmitSectionA()">
+            <!-- <mat-form-field class="container">
+              <input formControlName="generalInstructionA"matInput placeholder="General Instructon " autocomplete="off">
+            </mat-form-field> -->
+    
+            <mat-form-field class="w-100">
+              <input formControlName="questionInA" matInput type="number" min="1" placeholder="How many questions"
+                autocomplete="off">
+            </mat-form-field>
+            <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingA">
+              <mat-spinner diameter="30"></mat-spinner>
+              <div class="pl-1 pt-1 text-primary">Fetching...</div>
             </div>
-          </mat-list-item>
-        </mat-list>
-        <mat-action-row>
-          <button mat-button color="accent" type="submit">Fetch</button>
-          <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
-          <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
-        </mat-action-row>
-      </form>
-    </mat-expansion-panel>
-  </mat-accordion>
-</div>
+            <mat-list class="example-full-width" *ngIf="!fetchingQuestionA">
+              <mat-list-item *ngFor="let i of questionInSectionA">
+                <small class="mat-caption">{{i.question | slice:-50}}</small>
+                <div class="d-flex justify-content-center">
+                  <button mat-icon-button (click)="onReplace(i.id)">
+                    <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
+                    </mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+    
+    
+            <mat-action-row>
+              <button mat-button color="accent" type="submit">Fetch</button>
+              <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
+    
+            </mat-action-row>
+          </form>
+        </mat-expansion-panel>
+    
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" class="box_shadow_0">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Section B
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+                Type the country name
+                <mat-icon>map</mat-icon>
+              </mat-panel-description> -->
+          </mat-expansion-panel-header>
+    
+          <form [formGroup]="sectionB" (ngSubmit)="onSubmitSectionB()">
+            <!-- <mat-form-field class="container">
+                <input formControlName="generalInstructionB"matInput placeholder="General Instructon " autocomplete="off">
+              </mat-form-field> -->
+    
+            <mat-form-field class="container">
+              <input formControlName="questionInB" matInput type="number" min="1" placeholder="How many questions"
+                autocomplete="off">
+            </mat-form-field>
+            <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingB">
+              <mat-spinner diameter="30"></mat-spinner>
+              <div class="pl-1 pt-1 text-primary">Fetching...</div>
+            </div>
+            <mat-list class="example-full-width" *ngIf="!fetchingQuestionB">
+              <mat-list-item *ngFor="let i of questionInSectionB">
+                <small class="mat-caption">{{i.question}}</small>
+                <div class="d-flex justify-content-center">
+                  <button mat-icon-button (click)="onReplace(i.id)">
+                    <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
+                    </mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+    
+            <mat-action-row>
+              <button mat-button color="accent" type="submit">Fetch</button>
+              <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
+    
+              <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
+    
+            </mat-action-row>
+          </form>
+        </mat-expansion-panel>
+    
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" class="box_shadow_0">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Section C
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+                Inform the date you wish to travel
+                <mat-icon>date_range</mat-icon>
+              </mat-panel-description> -->
+          </mat-expansion-panel-header>
+          <form [formGroup]="sectionC" (ngSubmit)="onSubmitSectionC()">
+            <!-- <mat-form-field class="container">
+                <input formControlName="generalInstructionC"matInput placeholder="General Instructon " autocomplete="off">
+              </mat-form-field> -->
+    
+            <mat-form-field class="container">
+              <input formControlName="questionInC" matInput type="number" min="1" placeholder="How many questions"
+                autocomplete="off">
+            </mat-form-field>
+            <div class="d-flex justify-content-center pb-3" *ngIf="isLoadingC">
+              <mat-spinner diameter="30"></mat-spinner>
+              <div class="pl-1 pt-1 text-primary">Fetching...</div>
+            </div>
+            <mat-list class="example-full-width" *ngIf="!fetchingQuestionC">
+              <mat-list-item *ngFor="let i of questionInSectionC">
+                <small class="mat-caption">{{i.question}}</small>
+                <div class="d-flex justify-content-center">
+                  <button mat-icon-button (click)="onReplace(i.id)">
+                    <mat-icon [class.loading]="isReplacing && false" mat-list-icon matTooltip="Replace" matRipple>loop
+                    </mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+            <mat-action-row>
+              <button mat-button color="accent" type="submit">Fetch</button>
+              <button mat-button color="warn" type="button" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" type="submit" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </form>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-tab>
+</mat-tab-group>

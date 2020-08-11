@@ -1,7 +1,14 @@
-
+.example-container {
+  height: calc(100vh - 9.2rem); 
+  overflow: auto;
+  // -webkit-animation: popUp ease-in-out 350ms;
+  //     animation: popUp ease-in-out 350ms;
+  -webkit-animation: fadeIn ease-in-out 450ms;
+  animation: fadeIn ease-in-out 450ms;
+  }
 .position_sticky{
   position: sticky;
-  z-index: 5;
+  z-index: 10000;
   top: 0rem;
 }
 .chip_scroll{

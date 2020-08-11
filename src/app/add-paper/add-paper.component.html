@@ -1,0 +1,20 @@
+<div mat-dialog-content>
+    <div class="d-flex justify-content-around">
+        <mat-form-field appearance="outline">
+            <mat-label>Document name</mat-label>
+            <input matInput type="text" [(ngModel)]="name" placeholder="untitled/file">
+        </mat-form-field>
+        <!-- <div class="px-2">
+            <button mat-stroked-button color="primary" [disabled]="!name">Save</button>
+        </div> -->
+    </div>
+</div>
+<footer mat-dialog-action class="d-flex justify-content-end">
+
+    <div class="px-2">
+        <button mat-button mat-dialog-close >cancel</button>
+    </div>
+    <div class="px-2">
+        <button mat-stroked-button color="primary" [disabled]="!name" (click)="save(name)">Save</button>
+    </div>
+</footer>

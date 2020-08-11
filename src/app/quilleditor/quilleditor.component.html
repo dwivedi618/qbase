@@ -1,13 +1,8 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" style="position: absolute;top: 3rem;" mode="side" opened >
-    <mat-tab-group >
-      <mat-tab label="Automatic">
+
         <app-paper-info-detailed [id]="templateId" (refreshPaper)="refresh()"></app-paper-info-detailed>
-      </mat-tab>
-      <mat-tab label="Manual">
-        <app-aboutquestionpaper></app-aboutquestionpaper>
-      </mat-tab>
-    </mat-tab-group>
+
   </mat-drawer>
   <div class="container">
     <form (ngSubmit)="onTemplateSubmit()" #demoForm="ngForm">
@@ -91,7 +86,7 @@
     </button>
   </div>
   <div class="p-2">
-    <button mat-mini-fab color="arn" (click)="onTemplateSubmit()" matTooltip="save as new">
+    <button mat-mini-fab color="arn" (click)="onSaveAsNew({})" matTooltip="save as new">
       <mat-icon>add_circle</mat-icon>
     </button>
   </div>

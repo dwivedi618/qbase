@@ -39,14 +39,7 @@ export class UploadquestionComponent implements OnInit {
     {value: 'Subjective',viewValue: 'Subjective'},  
   ];
 
-  subjects: Subject[] = [
-    {value: 'DBMS',viewSubject: 'DBMS'},
-    {value: 'Software Engineering',viewSubject : 'Software Engineering'},
-    {value: 'Data Structure',viewSubject : 'Data Structure'},
-    {value: 'Object oriented Technique',viewSubject : 'Object oriented Technique'},
-    {value: 'Microprocessor',viewSubject : 'Microprocessor'},
-    {value: 'Information Theory of Coding',viewSubject : 'Information Theory of Coding'},
-  ];
+
 
   courseOutcomes: CourseOutcome[] = [
     {value: 'CO1',viewValue: 'CO1'}, 
@@ -71,7 +64,10 @@ export class UploadquestionComponent implements OnInit {
      
   ];
   local_data: any;
-
+  subject_id: any;
+  unitIncludes: any;
+  units: any;
+  subjects : any
 
   
   
@@ -79,7 +75,7 @@ export class UploadquestionComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private commonService: CommonService,
+    private commonServices: CommonService,
     private messageService: MessageService,
     @Optional() @Inject (MAT_DIALOG_DATA) public data:any
   ) { 
@@ -90,18 +86,45 @@ export class UploadquestionComponent implements OnInit {
 
   ngOnInit() {
     this.questionUploadForm = this.formBuilder.group({
-      subject: [this.local_data.subject,Validators.required],
-      unit:[this.local_data.unit],
+      subject_id: [this.local_data.subject_id,Validators.required],
+      unit_id:[this.local_data.unit_id],
       courseOutcome:[this.local_data.courseOutcome,Validators.required],
-      topic:[this.local_data.topic],
+      topic_id:[this.local_data.topic_id],
       answerType:[this.local_data.answerType,Validators.required],
       type:[this.local_data.type,Validators.required],
       difficultyLevel:[this.local_data.difficultyLevel,Validators.required],
       question:[this.local_data.question,Validators.required]
-
-  });
+    });
+    this.getSubjectList();
 
 }
+getSubjectList(){
+  this.commonServices.getSubject().subscribe(result => {
+    console.log("result",result)
+    this.subjects = result.data;
+  }),error => {
+    console.log("error",error);
+  }
+}
+onSubjectChange(event) {
+  this.subject_id = event;
+  console.log("value changes", this.subject_id);
+  this.getUnitList(this.subject_id)
+}
+getUnitList(subject_id){
+this.commonServices.getUnit(subject_id).subscribe(result => {
+  console.log("result",result)
+  this.units = result.data;
+}),error => {
+  console.log("error",error);
+}
+}
+onUnitChange(event) {
+  this.unitIncludes  = [...event] 
+  console.log("value changes", this.unitIncludes,event);
+  
+}
+
 get form() { return this.questionUploadForm.controls; }
 onQuestionUpload(){
   if(this.questionUploadForm.invalid){
@@ -110,7 +133,7 @@ onQuestionUpload(){
   }
   
   console.log("Before submitstudent",this.questionUploadForm.value);
-  this.commonService.postData("upload-question",this.questionUploadForm.value)
+  this.commonServices.postData("upload-question",this.questionUploadForm.value)
     .subscribe((result) => {
       console.log("result",result);
       this.isUploading = false;

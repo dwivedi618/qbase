@@ -204,7 +204,8 @@ onSubmitSectionC(){
  this.isLoadingC = true;//set false again when question Loaded
  this.fetchingQuestionC = false;
  console.log("this.sectionC.value.questionInC: ",this.sectionC.value.questionInC);
-	this.commonServices.getData("get-section-question",{section: "SECTION-C",
+	this.commonServices.getData("get-section-question",{
+	section: "SECTION-C",
 	templateId:this.templateId,
 	count: this.sectionC.value.questionInC,
 	subject_id:this.subject_id,

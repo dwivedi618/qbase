@@ -13,16 +13,27 @@
             <mat-error *ngIf="form.type.hasError('required')">Required</mat-error>
           </mat-form-field>
       
-          <mat-form-field appearance="outline" class="p-2 container">
-            <mat-label>Subject</mat-label>
-            <mat-select formControlName="subject">
-              <mat-option *ngFor="let subject of subjects" [value]="subject.value" required>
-                {{subject.viewSubject}}
-              </mat-option>
-
-            </mat-select>
-            <mat-error *ngIf="form.subject.hasError('required')">Required</mat-error>
-          </mat-form-field>
+          <div class="px-2">
+            <!-- <small class="mat-caption">Subject</small> -->
+            <mat-form-field class="w-100">
+              <mat-label>Select subject</mat-label>
+              <mat-select [multiple]="false" selectable formControlName="subject_id" (selectionChange)="onSubjectChange($event.value)">
+                <mat-option *ngFor="let subject of subjects" [value]="subject.id" >{{subject.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="px-2" [hidden]="!subject_id">
+            <!-- <small class="mat-caption">Subject</small> -->
+            <mat-form-field class="w-100">
+              <mat-label>Units</mat-label>
+              <mat-select [multiple]="false" selectable formControlName="unit_id"  (selectionChange)="onUnitChange($event.value)">
+                <mat-option *ngFor="let unit of units" [value]="unit.id" >{{unit.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        
         </div>
         <div class="col-lg-6 col-md-6  ">
           <mat-form-field appearance="outline" class="p-2 container">
@@ -45,8 +56,6 @@
             </mat-select>
             <mat-error *ngIf="form.answerType.hasError('required')">Required</mat-error>
           </mat-form-field>
-        </div>
-       
           <mat-form-field appearance="outline" class="p-2 container">
             <mat-label>Difficulty Level</mat-label>
             <mat-select formControlName="difficultyLevel">
@@ -56,20 +65,23 @@
             </mat-select>
             <mat-error *ngIf="form.difficultyLevel.hasError('required')">Required</mat-error>
           </mat-form-field>
+        </div>
+       
+         
       
        
-          <mat-form-field appearance="outline" class="p-2 container">
+          <!-- <mat-form-field appearance="outline" class="p-2 container">
             <mat-label>Unit</mat-label>
             <input type="text" matInput formControlName="unit" required>
             <mat-error *ngIf="form.unit.hasError('required')">Required</mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
     
        
-          <mat-form-field appearance="outline" class="p-2 container">
+          <!-- <mat-form-field appearance="outline" class="p-2 container">
             <mat-label>Topic</mat-label>
-            <input type="text" matInput formControlName="topic" required>
+            <input type="text" matInput formControlName="topic_id" required>
             <mat-error *ngIf="form.unit.hasError('required')">Required</mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
 
       </div>
       <div class="row">

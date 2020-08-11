@@ -33,7 +33,8 @@ export interface Question {
 export class QuestionComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  displayedColumns: string[] = ['question', 'subject', 'unit', 'topic', 'courseOutcome', 'difficultyLevel', 'type', 'answerType', 'action'];
+  dataSource = new MatTableDataSource<any>();
+  displayedColumns: string[] = ['select','question', 'subject', 'unit', 'topic', 'courseOutcome', 'difficultyLevel', 'type', 'answerType', 'action'];
   visible = true;
   checked = false;
   selectable = true;
@@ -42,12 +43,13 @@ export class QuestionComponent implements OnInit {
   chipForm: FormGroup;
   chips = new Set();
   selectedQuestion = new Set();
-  dataSource = new MatTableDataSource<any>();
   // columnsToDisplay: string[] = this.displayedColumns.slice();
 
   isLoading = true;
   selection: any;
   public path: any;
+  displayNoRecords: boolean;
+  selectedQuestionList = [];
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -58,11 +60,13 @@ export class QuestionComponent implements OnInit {
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-    console.log("thsoi iosd dayta gsdkjfgljk", this.dataSource);
+    this.clearSelectedQuestion() : this.selectAllQuestion()
   }
-
+  selectAllQuestion(){
+    this.dataSource.data.forEach(row => this.selection.select(row));
+      console.log("Master Selection", this.dataSource.data);
+      this.selectedQuestionList = this.dataSource.data;
+  }
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Question): string {
     if (!row) {
@@ -74,6 +78,19 @@ export class QuestionComponent implements OnInit {
   public doFilter = (value: string) => {
     console.log("value in search:", this.dataSource);
     this.dataSource.filter = value.trim().toLocaleLowerCase();
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+    if (this.dataSource.filteredData.length == 0) {
+      console.log("No matching records found")
+      this.displayNoRecords = true;
+    } else this.displayNoRecords = false;
+
   }
   // sorting
   constructor(
@@ -133,12 +150,19 @@ getAllQuestions(){
     this.selection.toggle(row);
     const addQuestion = () => { this.selectedQuestion.add(row); console.log("add Called") };
     const removeQuestion = () => { this.selectedQuestion.delete(row); console.log("remove Called") };
-    this.selectedQuestion.has(row.id) ? removeQuestion() : addQuestion();
-    console.log("selected Question : ", Array.from(this.selectedQuestion));
+    this.selectedQuestion.has(row) ? removeQuestion() : addQuestion();
+    this.selectedQuestionList = Array.from(this.selectedQuestion)
+    console.log("selected Question List: ", this.selectedQuestionList);
     // if( action !='select'){
     //   console.log("action edit ------->",row.id,action)
     //   this.router.navigate(['/edit',row.id])
     // }
+  }
+  clearSelectedQuestion(){
+    this.selectedQuestionList = [];
+    this.selectedQuestion.clear();
+    this.selection.clear();
+    console.log("selected Question List: ", this.selectedQuestionList);
 
   }
   openDialog(action,obj) {

@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SearchComponent } from '../search/search.component';
 import { UploadquestionComponent } from '../question/uploadquestion/uploadquestion.component';
 import { QuestionComponent } from '../question/question.component';
+import { AddPaperComponent } from '../add-paper/add-paper.component';
 
 
 
@@ -20,6 +21,7 @@ import { QuestionComponent } from '../question/question.component';
     SearchComponent,
     UploadquestionComponent,
     QuestionComponent,
+    AddPaperComponent,
  
   ],
   imports: [
@@ -33,6 +35,9 @@ import { QuestionComponent } from '../question/question.component';
   exports:[
     NavigationComponent,
     SearchComponent
+  ],
+  entryComponents : [
+    AddPaperComponent
   ]
 })
 export class HomeModule { }

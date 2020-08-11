@@ -377,6 +377,7 @@ app.get("/get-question", async (req, res) => {
     console.log("from backend question")
     let params = req.body;
     let query = {
+        
         raw: true
     };
     if (params.subject) query.where.subject = params.subject;

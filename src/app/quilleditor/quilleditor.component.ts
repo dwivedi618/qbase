@@ -17,7 +17,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { CommonService } from '../services/common.service';
 import { MessageService } from '../services/message.service';
 import { SearchService } from '../services/search.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { AddPaperComponent } from '../add-paper/add-paper.component';
 
 // import { editorConfig } from '../../../src/';
 export interface QuestionSectionA {
@@ -57,6 +58,7 @@ export class QuilleditorComponent implements AfterViewInit {
 	constructor(
 		private route: ActivatedRoute,
 		private commonService: CommonService,
+		private dialog : MatDialog,
 		private searchService: SearchService,
 		private messageService: MessageService,
 		@Inject(MAT_DIALOG_DATA) public data: any
@@ -245,9 +247,23 @@ export class QuilleditorComponent implements AfterViewInit {
 	public isPreviewActive: boolean;
 
 	public previewModel: string;
+	onSaveAsNew(obj) {
+		obj.action = 'save';
+		const dialogRef = this.dialog.open(AddPaperComponent, {
+		  maxHeight: '100vh',
+		  maxWidth: '100vw',
+		  disableClose: true,
+		  data: { obj }
+		})
+		dialogRef.afterClosed().subscribe((result) => {
+		  console.log("document info", result);
+		  if(result && result.data){
+			this.onTemplateSubmit(result.data);
+		  }
+		})
+	  }
 
-
-	onTemplateSubmit() {
+	onTemplateSubmit(name) {
 
 		const options = {
 			background: 'white',

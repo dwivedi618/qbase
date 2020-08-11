@@ -43,34 +43,99 @@
       </div> -->
 
     </form>
-    <mat-toolbar class="bg-white box_shadow_1">
-      <mat-toolbar-row>
-        <div class="pr-1"></div>
-        <div class="pr-1">
+    <mat-toolbar class="bg-white mb-3 box_shadow_3 ">
+      <mat-toolbar-row class="container">
+        <!-- <div class="spacer"></div> -->
+        <div class="filter_container box_shadow_4 pr-1 pl-2  ">
+          <input type="search" (keyup)="applyFilter($event)" placeholder="search..">
           <button mat-icon-button>
-            <mat-icon>delete</mat-icon>
+            <mat-icon>search</mat-icon>
           </button>
         </div>
-        <div class="pr-1">
-          <button mat-icon-button>
-            <mat-icon>more_vert</mat-icon>
-          </button>
-        </div>
-        <div class="example-spacer"></div>
+        
 
-        <!-- <button mat-raised-button (click)="shuffle()"> Shuffle </button> -->
-        <div class="pr-1" >
-          <mat-paginator >
-          </mat-paginator>
+        <div class="spacer"></div>
+        <!-- <mat-paginator class="paginator_sm"></mat-paginator> -->
+        <div>
+          <button mat-icon-button matTooltip="refresh" (click)="getPurchaseList()">
+            <mat-icon [class.spin]="isPurchaseLoading" *ngIf="isPurchaseLoading">refresh</mat-icon>
+            <mat-icon *ngIf="!isPurchaseLoading">refresh</mat-icon>
+          </button>
+        </div>
+        <div class="pl-2">
+          <button mat-button class="" color="" (click)="onAddPurchase('add',{})">
+            <mat-icon>add_box</mat-icon>Add
+          </button>
         </div>
       </mat-toolbar-row>
+      
+      <mat-toolbar-row [hidden]="selectedQuestionList.length == 0">
+        
+        <div class="px-2">
+          <button mat-icon-button (click)="clearSelectedQuestion()">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
+        <div class="px-2 d-flex">
+          <b class="px-1">{{selectedQuestionList?selectedQuestionList.length:'0'}}</b>
+          <b class="px-2 ">question select</b>
+        </div>
+        <div class="spacer"></div>
+        <div class="px-2">
+          <button mat-button [matMenuTriggerFor]="action">
+            <mat-icon>more_vert</mat-icon>Action
+          </button>
+          <mat-menu #action="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="insert">Insert Into </button>
+          </mat-menu>
+
+          <mat-menu #insert ="matMenu">
+            <button mat-menu-item>Section A</button>
+            <button mat-menu-item>Section B</button>
+            <button mat-menu-item>Section C</button>
+          </mat-menu>
+        </div>
+
+      </mat-toolbar-row>
+    
     </mat-toolbar>
+    <!-- <mat-toolbar class="bg-white box_shadow_1" >
+      <mat-toolbar-row>
+        <div class="px-2"></div>
+        <div class="px-2">
+          <button mat-icon-button (click)="clearSelectedQuestion()">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
+        <div class="px-2 d-flex">
+          <b class="px-1">{{selectedQuestionList?selectedQuestionList.length:'0'}}</b>
+          <b class="px-2">question select</b>
+        </div>
+        <div class="spacer"></div>
+        <div class="px-2">
+          <button mat-button [matMenuTriggerFor]="action">
+            <mat-icon>more_vert</mat-icon>Action
+          </button>
+          <mat-menu #action="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="insert">Insert Into </button>
+          </mat-menu>
+
+          <mat-menu #insert ="matMenu">
+            <button mat-menu-item>Section A</button>
+            <button mat-menu-item>Section B</button>
+            <button mat-menu-item>Section C</button>
+          </mat-menu>
+
+         
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar> -->
   </div>
-  <div class="p-5 ">
-    <table class="table" mat-table [dataSource]="dataSource" class=" mat-elevation-z8" matSort>
+  <div class="position-sticky">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
       <!-- Checkbox Column -->
-      <!-- <ng-container matColumnDef="select">
+      <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox (change)="$event ? masterToggle(row) : null" [checked]="selection.hasValue() && isAllSelected()"
             [indeterminate]="selection.hasValue() && !isAllSelected()">
@@ -86,7 +151,7 @@
         </td>
 
 
-      </ng-container> -->
+      </ng-container>
 
 
       <ng-container matColumnDef="question">
@@ -135,7 +200,7 @@
       </ng-container>
       <ng-container matColumnDef="action" class="action_container">
         <th mat-header-cell *matHeaderCellDef class="pl-2 pr-2 text-warning">Action</th>
-        <td mat-cell *matCellDef="let element" class="pl-2 pr-2">
+        <td mat-cell *matCellDef="let element" class="pl-2 pr-2" (click)="$event.stopPropagation()">
           <div class="action">
             <div class="d-flex justify-content-center">
               <button mat-icon-button matTooltip="Edit" (click)="openDialog('Update',element)">
@@ -152,7 +217,9 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: false"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;  sticky: true"></tr>
+      <!-- <tr mat-header-row *matHeaderRowDef="['question']" class="example-second-header-row">
+      </tr> -->
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectedRow(row,'select')">
 
       </tr>
