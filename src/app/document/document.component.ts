@@ -71,15 +71,15 @@ export class DocumentComponent implements OnInit {
       }, (error) => {
         console.log(error);
       });
-    console.log("Inside DocumentComponent::path::", this.route.snapshot.url[0].path);
-    this.searchService.path.emit(this.route.snapshot.url[0].path);//sending path to searchService
+    // console.log("Inside DocumentComponent::path::", this.route.snapshot.url[0].path);
+    // this.searchService.path.emit(this.route.snapshot.url[0].path);//sending path to searchService
   }
   onTemplateSelect(templateId, action) {
-
+    console.log("onTemplate select--------------",action)
     // this.dialogService.openDialog(AboutquestionpaperComponent);
-    this.dialogService.openDialog(PaperInfoDetailedComponent, {
-      data : {templateId : templateId }
-    });
+    // this.dialogService.openDialog(PaperInfoDetailedComponent, {
+    //   data : {templateId : templateId }
+    // });
 const dialogRef = this.dialog.open(QuilleditorComponent,{
   maxHeight:'100vh',
   maxWidth:'100vw',

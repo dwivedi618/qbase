@@ -13,9 +13,7 @@ export class CommonService {
 
   getData(route,params){
     console.log(params);
-    return this.http.get<any>(`${environment.apiUrl}/${route}`,{
-      params: (params)
-    });
+    return this.http.get<any>(`${environment.apiUrl}/${route}`,{params})
   }
   getSubject(){
     console.log("common service All Subject");

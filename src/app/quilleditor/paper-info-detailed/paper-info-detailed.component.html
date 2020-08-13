@@ -182,15 +182,19 @@
         </mat-form-field>
       </div>
     
-      <div class="px-4">
-        <button mat-stroked-button (click)="openQuestionDialog(subject_id,unitIncludes,{})" [disabled]="!(subject_id && unitIncludes.length != 0)"> Select Question</button>
-      </div>
+      <!-- <div class="px-4">
+        <button mat-raised-button color="primary" (click)="openQuestionDialog(subject_id,unitIncludes,{})" [disabled]="!(subject_id && unitIncludes.length != 0)"> Select Question</button>
+      </div> -->
       <mat-accordion class="example-headers-align box_shadow_0" [hidden]="!subject_id">
         <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" class="box_shadow_0">
           <mat-expansion-panel-header>
             <mat-panel-title class="pl-0">
               Section A
             </mat-panel-title>
+            <div class="px-2">
+              <button mat-raised-button color="primary" (click)="openQuestionDialog(subject_id,unitIncludes,{})" [disabled]="!(subject_id && unitIncludes.length != 0)"> Select Question</button>
+            </div>
+
           </mat-expansion-panel-header>
           <form [formGroup]="sectionA" (ngSubmit)="onSubmitSectionA()">
    
@@ -224,10 +228,9 @@
             <mat-panel-title>
               Section B
             </mat-panel-title>
-            <!-- <mat-panel-description>
-                Type the country name
-                <mat-icon>map</mat-icon>
-              </mat-panel-description> -->
+            <div class="px-2">
+              <button mat-raised-button color="primary" (click)="openQuestionDialog(subject_id,unitIncludes,{})" [disabled]="!(subject_id && unitIncludes.length != 0)"> Select Question</button>
+            </div>
           </mat-expansion-panel-header>
     
           <form [formGroup]="sectionB" (ngSubmit)="onSubmitSectionB()">
@@ -264,10 +267,9 @@
             <mat-panel-title>
               Section C
             </mat-panel-title>
-            <!-- <mat-panel-description>
-                Inform the date you wish to travel
-                <mat-icon>date_range</mat-icon>
-              </mat-panel-description> -->
+            <div class="px-2">
+              <button mat-raised-button color="primary" (click)="openQuestionDialog(subject_id,unitIncludes,{})" [disabled]="!(subject_id && unitIncludes.length != 0)"> Select Question</button>
+            </div>
           </mat-expansion-panel-header>
           <form [formGroup]="sectionC" (ngSubmit)="onSubmitSectionC()">
           

@@ -26,6 +26,7 @@
 }
 html,body{
     font-family: 'Roboto', sans-serif;
+    
 }
 body{
     margin: 0%;
@@ -45,7 +46,15 @@ button.mat-icon-button:focus{
   border: none !important;
   outline: none!important; 
 }
-
+.layout {
+  -webkit-box-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  /* height: 100vh; */
+}
 .custom-center{
   position: absolute;
   top: 50%;

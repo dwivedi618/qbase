@@ -1,8 +1,16 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" style="position: absolute;top: 3rem;" mode="side" opened >
+  <mat-drawer #drawer class="example-sidenav" style="position: absolute;top: 3rem;" mode="side" opened>
 
-        <app-paper-info-detailed [id]="templateId" (refreshPaper)="refresh()"></app-paper-info-detailed>
-
+    <app-paper-info-detailed *ngIf="action != 'new'" [id]="templateId" (refreshPaper)="refresh()">
+    </app-paper-info-detailed>
+    <div *ngIf= "action==new" class="layout">
+      <div class="d-flex flex-column">
+      <h1 class="mat-title">Create New Template</h1>
+      <small>At this moment <b>creating new tremplate</b> is <em>not</em> fully developed</small>
+      <b>warning</b>
+      <small>You should change only Header</small>
+      </div>
+    </div>
   </mat-drawer>
   <div class="container">
     <form (ngSubmit)="onTemplateSubmit()" #demoForm="ngForm">
@@ -13,7 +21,8 @@
       </div>
     </form>
     <div class=" " style="position: absolute;left: -0.7rem; bottom:3rem;z-index: 10000;">
-      <button type="button" mat-stroked-button (click)="drawer.toggle()" (click)="open =!open" class="rounded-pill" color="warn">
+      <button type="button" mat-stroked-button (click)="drawer.toggle()" (click)="open =!open" class="rounded-pill"
+        color="warn">
         <mat-icon *ngIf="open">chevron_left</mat-icon>
         <mat-icon *ngIf="!open">chevron_right</mat-icon>
       </button>
@@ -71,7 +80,12 @@
 
 <div class="action_buttons ">
   <div class="p-2">
-    <button matTooltip="refresh" mat-mini-fab type="button" aria-label="" color="warn" (click)="refresh()">
+    <button matTooltip="Exit" mat-mini-fab type="button" aria-label="" color="warn" mat-dialog-close>
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+  <div class="p-2">
+    <button matTooltip="refresh" mat-mini-fab type="button" aria-label="" color="" (click)="refresh()">
       <mat-icon>refresh</mat-icon>
     </button>
   </div>
@@ -80,14 +94,14 @@
       <mat-icon>print</mat-icon>
     </button>
   </div>
-  <div class="p-2" *ngIf="action  != 'new' ">
+  <!-- <div class="p-2" *ngIf="action  != 'new' ">
     <button mat-mini-fab color="arn" (click)="onTemplateSubmit(template.id)" matTooltip="Update">
       <mat-icon>save</mat-icon>
     </button>
-  </div>
+  </div> -->
   <div class="p-2">
     <button mat-mini-fab color="arn" (click)="onSaveAsNew({})" matTooltip="save as new">
-      <mat-icon>add_circle</mat-icon>
+      <mat-icon>save</mat-icon>
     </button>
   </div>
 </div>

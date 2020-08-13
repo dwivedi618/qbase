@@ -1,8 +1,12 @@
-<section class="jumbotron">
+<section class="bg-white">
  
   <div class="container ">
-    <div class="mr-auto pp-2  title "><strong>Paper
-      gallery</strong></div>
+    <div class="d-flex justify-content-start pp-2  title ">
+        <strong>All Papers</strong>
+        <div class="spacer"></div>
+        <button mat-stroked-button (click)="getPaper();">refresh</button>
+      
+    </div>
       <div  *ngIf="isLoading" class="row">
           <div class="col-md-4 pb-5">
               <div class="post  p-2 ">
@@ -40,7 +44,7 @@
               <small class="pl-2 pt-1">Loading...</small>
           </div>
       </div>
-      <div class="row" *ngIf="!isLoading">
+      <div class="row layout" *ngIf="!isLoading">
           <h1 *ngIf="onEmpty" class="m-auto">{{onEmptyMessage}}</h1>
 
           <div class="p-4" *ngFor="let template of templates">

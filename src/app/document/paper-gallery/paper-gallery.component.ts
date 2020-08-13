@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { DialogService } from 'src/app/services/dialog.service';
 import { SearchService } from 'src/app/services/search.service';
-import { Rename, Delete } from '../document.component';
+import { Rename, Delete, Preview } from '../document.component';
 import { PaperInfoDetailedComponent } from 'src/app/quilleditor/paper-info-detailed/paper-info-detailed.component';
 import { MatDialog } from '@angular/material/dialog';
+import { QuilleditorComponent } from 'src/app/quilleditor/quilleditor.component';
 
 export interface RenameData {
   templateName: string;
@@ -49,7 +50,10 @@ export class PaperGalleryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.commonService.getData('get-template', [])
+    this.getPaper();
+  }
+getPaper(){
+  this.commonService.getData('get-template', [])
     .subscribe((result) => {
       this.isLoading = false;
       this.templates = result.templates;
@@ -58,22 +62,36 @@ export class PaperGalleryComponent implements OnInit {
         this.onEmpty = true;
         this.onEmptyMessage = "No template Created yet!!";
         console.log("message :", this.onEmptyMessage);
-      }
+      }else { 
+        this.onEmpty = false;
+
+       }
       // html2canvas(this.templates[1].string).then((canvas) => {});
     }, (error) => {
       console.log(error);
     });
-  }
-
+};
   onTemplateSelect(templateId, action) {
     // this.dialogService.openDialog(AboutquestionpaperComponent);
-    this.dialogService.openDialog(PaperInfoDetailedComponent, {});
-
-    this.router.navigate(['/quilleditor', templateId, action])
+    // this.dialogService.openDialog(PaperInfoDetailedComponent, {
+    //   maxHeight : '100vh',
+    //   minHeight : '50vh',
+    // });
+    const dialogRef = this.dialog.open(QuilleditorComponent,{
+      maxHeight:'100vh',
+      maxWidth:'100vw',
+      height:'100vh',
+      width:'100vw',
+      data : { templateId: templateId,action:action}
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      this.getPaper();
+    })
+    // this.router.navigate(['/quilleditor', templateId, action])
 
   }
   onEditSelect(templateId, action) {
-    this.router.navigate(['/quilleditor', templateId, action])
+    // this.router.navigate(['/quilleditor', templateId, action])
   }
   onRenameSelect(templateId, templateName) {
     const dialogRef = this.dialog.open(Rename, {
@@ -86,6 +104,8 @@ export class PaperGalleryComponent implements OnInit {
       if (newName != undefined && newName != "") {
         this.commonService.putData('update-template', { name: newName, id: templateId })
           .subscribe((result) => {
+          this.getPaper();
+
             console.log("newName", newName)
             var updatedTemplates = this.templates.filter(function (p) {
               return p.id == templateId;
@@ -97,6 +117,8 @@ export class PaperGalleryComponent implements OnInit {
             // this.templates = updatedTemplates;
             console.log("rename successfull updated template::::>>>>after Rename", updatedTemplates);
           })
+          this.getPaper();
+
       }
       console.log('The dialog was closed-----> New name', this.templateName, templateId);
     });
@@ -125,6 +147,7 @@ export class PaperGalleryComponent implements OnInit {
               this.onEmpty = true;
             }
             const afterDelete = result;
+            this.getPaper();
             console.log("delete result", afterDelete);
           },
           )
@@ -132,6 +155,37 @@ export class PaperGalleryComponent implements OnInit {
       }
       else { console.log("delete canceled"); }
     });
+  }
+
+
+  onTemplatePreview(templateId) {
+    this.commonService.getData('get-template', { id: templateId })
+      .subscribe((result) => {
+        this.previewbyid = result.templates;
+        console.log("result from Preview", this.preview)
+        const dialogRef = this.dialog.open(Preview, {
+          width: '100vw',
+          maxHeight : '100vh',
+          maxWidth: '100vw',
+          height: '100vh',
+           disableClose: true,
+          data: {
+            id: this.previewbyid[0].id,
+            name: this.previewbyid[0].name,
+            thumbnail: this.previewbyid[0].thumbnail
+          }
+
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          //this.templates = result;
+          console.log('The dialog was closed-----> thumbnail', result);
+        });
+      },
+        (error) => {
+          console.log("error during Image Priview")
+        })
+
+
   }
 
 }

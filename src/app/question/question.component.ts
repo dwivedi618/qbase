@@ -11,6 +11,7 @@ import { SearchService } from '../services/search.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { query } from '@angular/animations';
 export interface Question {
   question: string;
   subject: string;
@@ -89,7 +90,16 @@ export class QuestionComponent implements OnInit {
   }
   ngOnInit() {
     this.dataSource = new MatTableDataSource(); // create new object
-    this.getAllQuestions();
+    if(this.componentRef =="paper-info-detailed"){
+      console.log("quesry  --------------------***********")
+      this.getAllQuestions({
+        subject_id : this.subject_id,
+        units : this.units
+      });
+    }else {
+      this.getAllQuestions({});
+
+    }
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.chipForm = this.fB.group({
@@ -104,10 +114,10 @@ export class QuestionComponent implements OnInit {
     // gethhing all questio from database
    
   }
-getAllQuestions(){
+getAllQuestions(query){
   this.isLoading = true;
 
-  this.commonService.getData('get-question', {})
+  this.commonService.getData('get-question', query)
   .subscribe((result) => {
     const data = result.questions;
     this.dataSource.data = data

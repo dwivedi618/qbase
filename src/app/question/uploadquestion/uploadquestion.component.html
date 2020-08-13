@@ -24,7 +24,7 @@
 
             <div class="px-2">
               <!-- <small class="mat-caption">Subject</small> -->
-              <mat-form-field class="w-100">
+              <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Select subject</mat-label>
                 <mat-select [multiple]="false" selectable formControlName="subject_id"
                   (selectionChange)="onSubjectChange($event.value)">
@@ -33,9 +33,9 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <div class="px-2" [hidden]="!subject_id">
+            <div class="px-2" >
               <!-- <small class="mat-caption">Subject</small> -->
-              <mat-form-field class="w-100">
+              <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Units</mat-label>
                 <mat-select [multiple]="false" selectable formControlName="unit_id"
                   (selectionChange)="onUnitChange($event.value)">

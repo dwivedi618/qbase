@@ -101,6 +101,7 @@ export class QuilleditorComponent implements AfterViewInit {
 			editor.ui.getEditableElement()
 		);
 	}
+	//refTemplate for create new template
 	public model = {
 		editorData: `<p style="text-align:center;">
 		<strong>INDERPRASTHA ENGINEERING COLLEGE,GHAZIABAD</strong>
@@ -273,6 +274,7 @@ export class QuilleditorComponent implements AfterViewInit {
 		html2canvas(document.querySelector(".ck-content"), options).then(canvas => {
 
 			this.demoForm.value.thumbnail = canvas.toDataURL();
+			this.demoForm.value.name = name;
 			// console.log("---canvas-------->>>>>>>>>>>>",this.demoForm.value.thumbnail);
 			// document.body.appendChild(canvas)
 			// console.log("before template upload",this.demoForm.value);

@@ -374,15 +374,15 @@ app.post("/upload-template-questions", async (req, res) => {
     });
 });
 app.get("/get-question", async (req, res) => {
-    console.log("from backend question")
     let params = req.body;
+    console.log("from backend question",params)
     let query = {
-        
+        where: {},
         raw: true
     };
-    if (params.subject) query.where.subject = params.subject;
-    if (params.topic) query.where.topic = params.topic;
-    if (params.unit) query.where.unit = params.unit;
+    if (params.subject_id) query.where.subject_id = params.subject_id;
+    if (params.topics) query.where.topic_id = {[Op.in]: [...params.topics]};
+    if (params.units) query.where.unit_id = {[Op.in]: [...params.units]};
     if (params.courseOutcome) query.where.courseOutcome = params.courseOutcome;
     if (params.answerType) query.where.answerType = params.answerType;
     if (params.type) query.where.type = params.type;
@@ -393,12 +393,13 @@ app.get("/get-question", async (req, res) => {
         message: "user created",
         questions: questions
     });
-    console.log("questions", questions)
 });
 
 app.post("/upload-template", async (req, res) => {
     let params = req.body;
     console.log("editor data---", params.thumbnail);
+    console.log("editor data---", params.name);
+
     if (!req.body)
         return res.json({ message: "Please use proper Data" });
     await Template.create({
